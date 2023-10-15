@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
-<head><title>Login</title></head>
+<head>
+    <title>Login</title>
+    <style>
+        <%@include file='/css/style.css' %>
+    </style>
+</head>
 <body>
-<form name="loginForm" method="POST" action="controller">
+<form name="loginForm" method="POST" action="login" class = loginForm>
     <input type="hidden" name="command" value="login"/>
     Login:<br/>
     <input type="text" name="login" value=""/>
