@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="demo:war exploded">
+  <artifact type="exploded-war" build-on-make="true" name="demo:war exploded">
     <output-path>$PROJECT_DIR$/target/demo-1.0-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>
