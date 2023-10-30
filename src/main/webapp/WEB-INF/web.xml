@@ -11,10 +11,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <url-pattern>/controller</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <jsp-config>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+            <taglib-location>/WEB-INF/lib/jstl-1.2.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 
 </web-app>

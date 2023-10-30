@@ -7,7 +7,7 @@
     </style>
 </head>
 <body>
-<form name="loginForm" method="POST" action="login" class = loginForm>
+<form name="loginForm" method="POST" action="controller" class = loginForm>
     <input type="hidden" name="command" value="login"/>
     Login:<br/>
     <input type="text" name="login" value=""/>

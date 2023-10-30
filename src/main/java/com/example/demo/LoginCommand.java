@@ -16,9 +16,8 @@ public class LoginCommand implements ActionCommand {
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String pass = request.getParameter(PARAM_NAME_PASSWORD);
 
-        UserDictionary userDictionary = new UserDictionary();
-        RoleType userRole = userDictionary.getUserRole(login);
-        String storedPassword = userDictionary.getUserPassword(login);
+        RoleType userRole = UserDictionary.getUserRole(login);
+        String storedPassword = UserDictionary.getUserPassword(login);
 
         if (storedPassword != null && storedPassword.equals(pass)) {
             // Проверка роли пользователя и установка соответствующей страницы

@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Панель администратора</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <h1>Панель администратора</h1>
 
-<h2>Создание пользователя</h2>
+<%--<h2>Создание пользователя</h2>
 <form action="createUser" method="post">
     Имя пользователя: <input type="text" name="username"><br>
     Пароль: <input type="password" name="password"><br>
@@ -19,14 +25,27 @@
 <form action="deleteUser" method="post">
     Имя пользователя: <input type="text" name="username"><br>
     <input type="submit" value="Удалить пользователя">
-</form>
+</form>--%>
 
 <h2>Просмотр списка пользователей</h2>
-<form action="viewUsers" method="get">
+<form action="controller" method="get">
+    <input type="hidden" name="command" value="viewusers">
     <input type="submit" value="Показать список пользователей">
 </form>
 
-<h2>Просмотр каталога книг</h2>
+<table>
+    <tr>
+        <th>Имя пользователя</th>
+    </tr>
+    <c:forEach var="userEntry" items="${userDictionary}">
+        <tr>
+            <td>${userEntry}</td>
+        </tr>
+    </c:forEach>
+</table>
+
+
+<%--<h2>Просмотр каталога книг</h2>
 <form action="viewBooks" method="get">
     <input type="submit" value="Показать каталог книг">
 </form>
@@ -62,6 +81,6 @@
     Новое имя: <input type="text" name="newUsername"><br>
     Новый пароль: <input type="password" name="newPassword"><br>
     <input type="submit" value="Редактировать пользователя">
-</form>
+</form>--%>
 </body>
 </html>
