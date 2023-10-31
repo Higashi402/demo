@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<div class="black-line-container">
+    <hr class="black-line">
+    <div class="centered-text">E-Book</div>
+</div>
+
 <div class = loginForm>
     <div class="loginForm-title">Авторизация</div>
     <form name="loginForm" method="POST" action="controller">
@@ -17,22 +22,19 @@
         </div>
         <input type="text" name="login" value="" class="field-login"/>
         <div class = "loginForm-label-password">
-            <br/>Пароль:
+            Пароль:
         </div>
         <input type="password" name="password" value="" class = "field-password"/>
-        <br/>
-        ${errorLoginPassMessage}
-        <br/>
-        ${wrongAction}
-        <br/>
-        ${nullPage}
-        <br/>
-        <div class = "btn btn-loginForm-button-submit btn-sep icon-info">
-            <div type="submit" value="Log in" class="button" id="button-2">
-                <div id="slide"></div>
-                <a href="#">Авторизоваться</a>
-            </div>
+        <br>
+        <div class="error-wrongLogin">
+            ${errorLoginPassMessage}
         </div>
+        ${wrongAction}
+        ${nullPage}
+        <div class = "btn btn-loginForm-button-submit btn-sep icon-info">
+            <input type="submit" value="Авторизоваться" class="button" id="button-log">
+        </div>
+
     </form>
 </div>
 <hr/>
