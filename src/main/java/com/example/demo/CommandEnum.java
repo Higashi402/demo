@@ -16,6 +16,7 @@ public enum CommandEnum {
             this.command = new ViewUsersCommand();
         }
     };
+
     ActionCommand command;
 
     public ActionCommand getCurrentCommand() {
