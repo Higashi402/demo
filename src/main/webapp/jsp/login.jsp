@@ -7,21 +7,34 @@
     </style>
 </head>
 <body>
-<form name="loginForm" method="POST" action="controller" class = loginForm>
-    <input type="hidden" name="command" value="login"/>
-    Login:<br/>
-    <input type="text" name="login" value=""/>
-    <br/>Password:<br/>
-    <input type="password" name="password" value=""/>
-    <br/>
-    ${errorLoginPassMessage}
-    <br/>
-    ${wrongAction}
-    <br/>
-    ${nullPage}
-    <br/>
-    <input type="submit" value="Log in"/>
-</form>
+
+<div class = loginForm>
+    <div class="loginForm-title">Авторизация</div>
+    <form name="loginForm" method="POST" action="controller">
+        <input type="hidden" name="command" value="login"/>
+        <div class = "loginForm-label-login">
+            Логин:
+        </div>
+        <input type="text" name="login" value="" class="field-login"/>
+        <div class = "loginForm-label-password">
+            <br/>Пароль:
+        </div>
+        <input type="password" name="password" value="" class = "field-password"/>
+        <br/>
+        ${errorLoginPassMessage}
+        <br/>
+        ${wrongAction}
+        <br/>
+        ${nullPage}
+        <br/>
+        <div class = "btn btn-loginForm-button-submit btn-sep icon-info">
+            <div type="submit" value="Log in" class="button" id="button-2">
+                <div id="slide"></div>
+                <a href="#">Авторизоваться</a>
+            </div>
+        </div>
+    </form>
+</div>
 <hr/>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <body>
 <h1>Панель администратора</h1>
 
-<%--<h2>Создание пользователя</h2>
+<h2>Создание пользователя</h2>
 <form action="createUser" method="post">
     Имя пользователя: <input type="text" name="username"><br>
     Пароль: <input type="password" name="password"><br>
@@ -25,7 +25,7 @@
 <form action="deleteUser" method="post">
     Имя пользователя: <input type="text" name="username"><br>
     <input type="submit" value="Удалить пользователя">
-</form>--%>
+</form>
 
 <h2>Просмотр списка пользователей</h2>
 <form action="controller" method="get">
@@ -36,16 +36,18 @@
 <table>
     <tr>
         <th>Имя пользователя</th>
+        <th>Роль</th>
     </tr>
     <c:forEach var="userEntry" items="${userDictionary}">
         <tr>
-            <td>${userEntry}</td>
+            <td>${userEntry.getKey()}</td>
+            <td>${userEntry.getValue()}</td>
         </tr>
     </c:forEach>
 </table>
 
 
-<%--<h2>Просмотр каталога книг</h2>
+<h2>Просмотр каталога книг</h2>
 <form action="viewBooks" method="get">
     <input type="submit" value="Показать каталог книг">
 </form>
@@ -81,6 +83,6 @@
     Новое имя: <input type="text" name="newUsername"><br>
     Новый пароль: <input type="password" name="newPassword"><br>
     <input type="submit" value="Редактировать пользователя">
-</form>--%>
+</form>
 </body>
 </html>

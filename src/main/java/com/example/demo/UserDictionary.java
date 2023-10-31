@@ -29,7 +29,9 @@ public class UserDictionary {
     public static Map<String, String> initPasswords() {
         Map<String, String> result = new HashMap<>();
         result.put("user1", "password1");
-        result.put("user2", "password2");
+        result.put("user2", "password1");
+        result.put("user3", "password1");
+        result.put("user4", "password2");
         result.put("admin", "adminPassword");
         return result;
     }
@@ -37,7 +39,9 @@ public class UserDictionary {
     public static Map<String, RoleType> initRoles() {
         Map<String, RoleType> result = new HashMap<>();
         result.put("user1", RoleType.USER);
-        result.put("user2", RoleType.MODERATOR);
+        result.put("user2", RoleType.USER);
+        result.put("user3", RoleType.USER);
+        result.put("user4", RoleType.MODERATOR);
         result.put("admin", RoleType.ADMIN);
         return result;
     }
@@ -50,6 +54,7 @@ public class UserDictionary {
         return dictionary.entrySet().stream()
                 .filter(entry -> entry.getValue() == RoleType.USER)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
     }
 
     public static Map<String, RoleType> getUsers() {
