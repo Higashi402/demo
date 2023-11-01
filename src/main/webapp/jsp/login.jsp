@@ -6,11 +6,11 @@
         <%@include file='/css/style.css' %>
     </style>
 </head>
-<body>
+<body> 
 
 <div class="black-line-container">
-    <hr class="black-line">
-    <div class="centered-text">E-Book</div>
+    <hr class="login-black-line">
+    <div class="login-centered-text">E-Book</div>
 </div>
 
 <div class = loginForm>
@@ -31,10 +31,7 @@
         </div>
         ${wrongAction}
         ${nullPage}
-        <div class = "btn btn-loginForm-button-submit btn-sep icon-info">
-            <input type="submit" value="Авторизоваться" class="button" id="button-log">
-        </div>
-
+        <input type="submit" value="Авторизоваться" class="login-button-submit" id="button-hover">
     </form>
 </div>
 <hr/>

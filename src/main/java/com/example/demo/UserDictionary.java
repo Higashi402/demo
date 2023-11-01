@@ -28,11 +28,11 @@ public class UserDictionary {
 
     public static Map<String, String> initPasswords() {
         Map<String, String> result = new HashMap<>();
-        result.put("user1", "password1");
-        result.put("user2", "password1");
-        result.put("user3", "password1");
-        result.put("user4", "password2");
-        result.put("admin", "adminPassword");
+        result.put("user1", "1");
+        result.put("user2", "1");
+        result.put("user3", "1");
+        result.put("user4", "1");
+        result.put("admin", "1");
         return result;
     }
 
