@@ -21,22 +21,35 @@
 </div>
 
 <div class = "user-buttons">
-    <button id="button-hover"  onclick="openForm('viewBooksForm')" class="user-buttons-catalog">Просмотр каталога книг</button>
-    <button id="button-hover" onclick="openForm('requestBookForm')" class = "user-buttons-request">Просмотр заявок</button>
-    <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
+  <form action="controller" method="get">
+    <input type="hidden" name="command" value="viewbooks">
+    <button type="submit" id="button-hover" onclick="openForm('viewBooksForm')" class="user-buttons-catalog">Просмотр каталога книг</button>
+  </form>
+  <button id="button-hover" onclick="openForm('requestBookForm')" class = "user-buttons-request">Просмотр заявок</button>
+  <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
 </div>
 
-<div id="viewBooksForm" class="modal">
+<div id="viewBooksForm" class="modal" style="display: none;">
   <div class="modal-content-catalog" id="viewBooksContent">
-    <div class="close-button" id ="button-hover" onclick="closeForm('viewBooksForm')"></div>
-    <h2>Просмотр каталога книг</h2>
-    <form action="viewBooks.jsp" method="get">
-      <input class = "user-button-submit" id="button-hover" type="submit" value="Показать каталог книг">
-    </form>
+    <div class="close-button" id="button-hover" onclick="closeForm('viewBooksForm')"></div>
+    <table>
+      <tr>
+        <th>Название книги</th>
+        <th>Автор книги</th>
+      </tr>
+      <c:forEach var="bookEntry" items="${bookDictionary}">
+        <tr>
+          <td>${bookEntry.value.title}</td>
+          <td>${bookEntry.value.author}</td>
+        </tr>
+      </c:forEach>
+    </table>
   </div>
+
 </div>
 
-<div id="requestBookForm" class="modal">
+
+<div id="requestBookForm" class="modal"  style="display: none;">
   <div class="modal-content-request" id="requestBookContent">
     <div class="close-button" id="button-hover" onclick="closeForm('requestBookForm')"></div>
     <h2>Просмотр заявок</h2>
@@ -46,7 +59,7 @@
   </div>
 </div>
 
-<div id="confirmExitForm" class="modal">
+<div id="confirmExitForm" class="modal" style="display: none;">
   <div class="modal-content-exit" id="confirmExitContent">
     <div class="close-button" id="button-hover" onclick="closeForm('confirmExitForm')"></div>
     <div class = "exitForm-label-acception">
@@ -66,24 +79,47 @@
 </div>
 
 <script>
-  function openForm(formId) {
-    var modals = document.querySelectorAll(".modal");
-    for (var i = 0; i < modals.length; i++) {
-      modals[i].style.display = "none";
-    }
-
-    var form = document.getElementById(formId);
-    form.style.display = "block";
+  // Функция для сохранения состояния формы в localStorage
+  // Функция для сохранения состояния формы в localStorage
+  function saveFormState(formId, isOpen) {
+    // Сохраняем состояние формы в localStorage
+    localStorage.setItem(formId, isOpen ? "1" : "0");
   }
 
+  // Функция для открытия формы
+  function openForm(formId) {
+    var form = document.getElementById(formId);
+    form.style.display = "block";
+
+    // Сохраняем состояние формы как открытой
+    saveFormState(formId, true);
+  }
+
+  // Функция для закрытия формы
   function closeForm(formId) {
     var form = document.getElementById(formId);
     form.style.display = "none";
 
-    function exit() {
-      closeForm('confirmExitForm');
+    // Сохраняем состояние формы как закрытой
+    saveFormState(formId, false);
+  }
+
+  // Функция для восстановления состояния форм после обновления страницы
+  function restoreFormState() {
+    // Проходим по всем ключам в localStorage
+    for (var i = 0; i < localStorage.length; i++) {
+      var formId = localStorage.key(i);
+      var isOpen = localStorage.getItem(formId);
+
+      if (isOpen === "1") {
+        openForm(formId); // Открываем формы, для которых состояние - 1 (открыто)
+      }
     }
   }
+
+  // Восстанавливаем состояние после загрузки страницы
+  window.addEventListener('load', restoreFormState);
+
 </script>
 </body>
 </html>

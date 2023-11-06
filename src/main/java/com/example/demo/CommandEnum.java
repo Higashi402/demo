@@ -15,8 +15,13 @@ public enum CommandEnum {
         {
             this.command = new ViewUsersCommand();
         }
-    };
 
+    },
+    VIEWBOOKS {
+        {
+            this.command = new ViewBooksCommand();
+        }
+    };
     ActionCommand command;
 
     public ActionCommand getCurrentCommand() {
