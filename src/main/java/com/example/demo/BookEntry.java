@@ -22,4 +22,8 @@ public class BookEntry {
     public String getAuthor() {
         return author;
     }
+
+    public double getRating() {
+        return rating;
+    }
 }

@@ -33,19 +33,24 @@
   <div class="modal-content-catalog" id="viewBooksContent">
     <div class="close-button" id="button-hover" onclick="closeForm('viewBooksForm')"></div>
     <table>
-      <tr>
-        <th>Название книги</th>
-        <th>Автор книги</th>
-      </tr>
-      <c:forEach var="bookEntry" items="${bookDictionary}">
+      <thead>
         <tr>
-          <td>${bookEntry.value.title}</td>
-          <td>${bookEntry.value.author}</td>
+          <th>Название книги</th>
+          <th>Автор книги</th>
+          <th>Рейтинг</th>
         </tr>
-      </c:forEach>
+      </thead>
+      <tbody id="bookTableBody">
+        <c:forEach var="bookEntry" items="${bookDictionary}">
+          <tr>
+            <td>${bookEntry.value.title}</td>
+            <td>${bookEntry.value.author}</td>
+            <td>${bookEntry.value.rating}</td>
+          </tr>
+        </c:forEach>
+      </tbody>
     </table>
   </div>
-
 </div>
 
 
@@ -78,9 +83,18 @@
   </div>
 </div>
 
+<div id="newForm">
+  <h2>Данные книги</h2>
+  <!-- Добавьте элементы для отображения данных -->
+
+  <!-- Заглушка для кнопки закрытия, будет заменена при открытии формы -->
+  <div id="closeButtonPlaceholder"></div>
+
+  <!-- Кнопка закрытия формы -->
+  <button onclick="closeForm('newForm')">Закрыть</button>
+</div>
+
 <script>
-  // Функция для сохранения состояния формы в localStorage
-  // Функция для сохранения состояния формы в localStorage
   function saveFormState(formId, isOpen) {
     // Сохраняем состояние формы в localStorage
     localStorage.setItem(formId, isOpen ? "1" : "0");
@@ -99,8 +113,6 @@
   function closeForm(formId) {
     var form = document.getElementById(formId);
     form.style.display = "none";
-
-    // Сохраняем состояние формы как закрытой
     saveFormState(formId, false);
   }
 
@@ -117,7 +129,56 @@
     }
   }
 
-  // Восстанавливаем состояние после загрузки страницы
+  document.addEventListener('DOMContentLoaded', function () {
+    var tableRows = document.querySelectorAll('#bookTableBody tr');
+    tableRows.forEach(function (row) {
+      row.addEventListener('mouseover', function () {
+        this.classList.add('hover');
+      });
+
+      row.addEventListener('mouseout', function () {
+        this.classList.remove('hover');
+      });
+
+      row.addEventListener('click', function () {
+        openNewFormWithData(row.cells[0].innerText, row.cells[1].innerText, row.cells[2].innerText);
+      });
+    });
+  });
+
+  function openNewFormWithData(bookTitle, bookAuthor, bookRating) {
+    var newForm = document.getElementById('newForm');
+    newForm.style.display = 'block';
+
+    var formContent = '<h2>Данные книги</h2>' +
+            '<p><strong>Название:</strong> ' + bookTitle + '</p>' +
+            '<p><strong>Автор:</strong> ' + bookAuthor + '</p>' +
+            '<p><strong>Рейтинг:</strong> ' + bookRating + '</p>';
+
+    newForm.innerHTML = formContent;
+
+    var closeButton = document.createElement('div');
+    closeButton.className = 'close-button';
+    closeButton.onclick = function() { closeForm('newForm'); };
+    newForm.appendChild(closeButton);
+  }
+
+  /*function submitRequest() {
+    var tableBody = document.getElementById('bookTableBody');
+    var selectedRow = tableBody.querySelector('tr.selected');
+
+    if (selectedRow) {
+      var bookTitle = selectedRow.cells[0].innerText;
+      var bookAuthor = selectedRow.cells[1].innerText;
+      var bookRating = selectedRow.cells[2].innerText;
+
+      // Передаем данные в функцию для открытия формы с данными
+      openNewFormWithData(bookTitle, bookAuthor, bookRating);
+    } else {
+      alert('Выберите книгу в таблице перед оформлением заявки.');
+    }
+  }*/
+
   window.addEventListener('load', restoreFormState);
 
 </script>
