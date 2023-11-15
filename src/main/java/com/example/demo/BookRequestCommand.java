@@ -7,7 +7,7 @@ import java.util.Map;
 public class BookRequestCommand implements ActionCommand {
 
     private static final String PARAM_ACTION= "action";
-    private static  Map<Integer, BookRequest> bookRequests = new HashMap<>();
+    public static  Map<Integer, BookRequest> bookRequests = new HashMap<>();
     private static final BookDictionary iniBooks = BookDictionary.createBookDictionaryWithInitialData();
 
     @Override
@@ -39,12 +39,12 @@ public class BookRequestCommand implements ActionCommand {
                     break;
                 case "view":
                     BookRequestManager.getAllBookRequests(bookRequests);
-                    request.setAttribute("requestsDicionary", bookRequests);
+                    request.setAttribute("requestDictionary", bookRequests);
                     break;
                 case "remove":
                     int removeId = Integer.parseInt(request.getParameter("removeId"));
                     BookRequestManager.removeBookRequest(bookRequests, removeId);
-                    request.setAttribute("requestsDicionary", bookRequests);
+                    request.setAttribute("requestDictionary", bookRequests);
                     break;
                 default:
                     // Обработка других действий (по желанию)
@@ -62,7 +62,7 @@ public class BookRequestCommand implements ActionCommand {
         for (Map.Entry<Integer, BookRequest> entry : bookRequests.entrySet()) {
             System.out.println("ID книги: " + entry.getKey() + ", Данные о запросе: " + entry.getValue());
         }
-        page = ConfigurationManager.getProperty("path.page.admin");
+        page = ConfigurationManager.getProperty("path.page.user");
         return page; // Возвращаете актуальный путь
     }
 }

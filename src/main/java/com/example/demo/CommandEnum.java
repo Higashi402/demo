@@ -27,6 +27,11 @@ public enum CommandEnum {
         {
             this.command = new ViewBooksCommand();
         }
+    },
+    VIEWREQUESTS {
+        {
+            this.command = new ViewRequests();
+        }
     };
     ActionCommand command;
 

@@ -28,7 +28,11 @@
     <input type="hidden" name="command" value="viewbooks">
     <button type="submit" id="button-hover" onclick="openForm('viewBooksForm')" class="user-buttons-catalog">Просмотр каталога книг</button>
   </form>
-  <button id="button-hover" onclick="showRequestsForm()" class = "user-buttons-request">Просмотр заявок</button>
+
+  <form action="controller" method="get">
+    <input type="hidden" name="command" value="viewrequests">
+    <button type="submit" id="button-hover" onclick="openForm('requestsForm')" class="user-buttons-request">Просмотр заявок</button>
+  </form>
   <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
 </div>
 
@@ -95,12 +99,18 @@
         <thead>
         <tr>
           <th>Номер заявки</th>
-          <th>Клиент</th>
-          <th>Статус</th>
+          <th>Автор</th>
+          <th>Название книги</th>
         </tr>
         </thead>
-        <tbody id="requestsTableBody">
-        <!-- Здесь будут строки таблицы с заявками -->
+        <tbody id="requestTableBody">
+        <c:forEach var="requestEntry" items="${requestDictionary}">
+          <tr>
+            <td>${requestEntry.key}</td>
+            <td>${requestEntry.value.bookAuthor}</td>
+            <td>${requestEntry.value.bookTitle}</td>
+          </tr>
+        </c:forEach>
         </tbody>
       </table>
     </div>
@@ -119,58 +129,6 @@
 </div>
 
 <script>
-  function showRequestsForm() {
-    // Ваш код для загрузки данных заявок в таблицу. Например, через AJAX-запрос.
-    // Временные данные для примера
-    var requestData = [
-      { id: 1, client: 'Иванов', status: 'В обработке' },
-      { id: 2, client: 'Петров', status: 'Завершена' },
-      { id: 3, client: 'Иванов', status: 'В обработке' },
-      { id: 4, client: 'Петров', status: 'Завершена' },
-      { id: 5, client: 'Иванов', status: 'В обработке' },
-      { id: 6, client: 'Петров', status: 'Завершена' },
-      { id: 7, client: 'Иванов', status: 'В обработке' },
-      { id: 8, client: 'Петров', status: 'Завершена' },
-      { id: 9, client: 'Иванов', status: 'В обработке' },
-      { id: 10, client: 'Петров', status: 'Завершена' },
-      { id: 11, client: 'Иванов', status: 'В обработке' },
-      { id: 12, client: 'Петров', status: 'Завершена' },
-      { id: 13, client: 'Иванов', status: 'В обработке' },
-      { id: 14, client: 'Петров', status: 'Завершена' },
-      { id: 15, client: 'Иванов', status: 'В обработке' },
-      { id: 16, client: 'Петров', status: 'Завершена' },
-      { id: 17, client: 'Петров', status: 'Завершена' },
-      { id: 18, client: 'Иванов', status: 'В обработке' },
-      { id: 20, client: 'Петров', status: 'Завершена' },
-      { id: 21, client: 'Иванов', status: 'В обработке' },
-      { id: 22, client: 'Петров', status: 'Завершена' },
-      { id: 23, client: 'Иванов', status: 'В обработке' },
-      { id: 24, client: 'Петров', status: 'Завершена' },
-      { id: 25, client: 'Петров', status: 'Завершена' },
-      { id: 26, client: 'Иванов', status: 'В обработке' },
-      { id: 27, client: 'Петров', status: 'Завершена' },
-      { id: 28, client: 'Иванов', status: 'В обработке' },
-      { id: 29, client: 'Петров', status: 'Завершена' },
-      { id: 30, client: 'Иванов', status: 'В обработке' },
-      { id: 31, client: 'Петров', status: 'Завершена' },
-    ];
-
-    // Очищаем предыдущие данные в таблице
-    document.getElementById('requestsTableBody').innerHTML = '';
-
-    // Заполняем таблицу данными заявок
-    requestData.forEach(function (request) {
-      var row = document.createElement('tr');
-      row.innerHTML = '<td>' + request.id + '</td>' +
-              '<td>' + request.client + '</td>' +
-              '<td>' + request.status + '</td>';
-      document.getElementById('requestsTableBody').appendChild(row);
-    });
-
-    // Отображаем форму с заявками
-    document.getElementById('requestsForm').style.display = 'block';
-  }
-
 
   function saveFormState(formId, isOpen) {
     localStorage.setItem(formId, isOpen ? "1" : "0");
