@@ -17,6 +17,12 @@ public enum CommandEnum {
         }
 
     },
+    BOOKREQUESTCOMMAND {
+        {
+            this.command = new BookRequestCommand();
+        }
+
+    },
     VIEWBOOKS {
         {
             this.command = new ViewBooksCommand();

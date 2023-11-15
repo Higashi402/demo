@@ -48,6 +48,9 @@ public class BookDictionary {
         return bookInfo;
     }
 
+    public BookEntry getBookById(int bookId) {
+        return bookInfo.get(bookId);
+    }
 }
 
 

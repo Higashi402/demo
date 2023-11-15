@@ -1,5 +1,8 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.google.gson.Gson" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +46,8 @@
       <tbody id="bookTableBody">
         <c:forEach var="bookEntry" items="${bookDictionary}">
           <tr>
+
+            <td hidden>${bookEntry.key}</td>
             <td>${bookEntry.value.title}</td>
             <td>${bookEntry.value.author}</td>
             <td>${bookEntry.value.rating}</td>
@@ -85,11 +90,10 @@
 
 <div id="newForm">
   <h2>Данные книги</h2>
-  <!-- Добавьте элементы для отображения данных -->
 
-  <!-- Заглушка для кнопки закрытия, будет заменена при открытии формы -->
   <div id="closeButtonPlaceholder"></div>
 
+  <div id="sendRequestButtonPlaceholder"></div>
   <!-- Кнопка закрытия формы -->
   <button onclick="closeForm('newForm')">Закрыть</button>
 </div>
@@ -131,6 +135,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var tableRows = document.querySelectorAll('#bookTableBody tr');
+
     tableRows.forEach(function (row) {
       row.addEventListener('mouseover', function () {
         this.classList.add('hover');
@@ -141,26 +146,41 @@
       });
 
       row.addEventListener('click', function () {
-        openNewFormWithData(row.cells[0].innerText, row.cells[1].innerText, row.cells[2].innerText);
+        var rowIndex = this.getAttribute('data-row-index'); // Получаем номер строки
+        openNewFormWithData(row.cells[0].innerText, row.cells[1].innerText, row.cells[2].innerText, row.cells[3].innerText);
       });
     });
   });
 
-  function openNewFormWithData(bookTitle, bookAuthor, bookRating) {
+  function openNewFormWithData(bookId, bookTitle, bookAuthor, bookRating) {
     var newForm = document.getElementById('newForm');
     newForm.style.display = 'block';
 
     var formContent = '<h2>Данные книги</h2>' +
+            '<p><strong>ID:</strong> ' + bookId + '</p>' +
             '<p><strong>Название:</strong> ' + bookTitle + '</p>' +
             '<p><strong>Автор:</strong> ' + bookAuthor + '</p>' +
             '<p><strong>Рейтинг:</strong> ' + bookRating + '</p>';
 
     newForm.innerHTML = formContent;
 
+    var sendRequestButtonPlaceholder = document.getElementById('sendRequestButtonPlaceholder');
+    var sendRequestButton = document.createElement('button');
+    sendRequestButton.textContent = 'Оставить заявку на книгу';
+    sendRequestButton.addEventListener('click', function() {
+      redirectToBookRequestForm(bookId); // Вызываем функцию для отправки запроса на сервер
+    });
+    newForm.appendChild(sendRequestButton);
+
     var closeButton = document.createElement('div');
     closeButton.className = 'close-button';
     closeButton.onclick = function() { closeForm('newForm'); };
     newForm.appendChild(closeButton);
+  }
+
+
+  function redirectToBookRequestForm(bookId) {
+
   }
 
   /*function submitRequest() {
