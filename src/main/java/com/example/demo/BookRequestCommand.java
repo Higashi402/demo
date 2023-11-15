@@ -7,27 +7,34 @@ import java.util.Map;
 public class BookRequestCommand implements ActionCommand {
 
     private static final String PARAM_ACTION= "action";
+    private static  Map<Integer, BookRequest> bookRequests = new HashMap<>();
+    private static final BookDictionary iniBooks = BookDictionary.createBookDictionaryWithInitialData();
 
     @Override
     public String execute(HttpServletRequest request) {
         String action = request.getParameter(PARAM_ACTION);
         String page = null;
-        Map<Integer, BookRequest> bookRequests = new HashMap<>();
-        BookDictionary iniBooks = BookDictionary.createBookDictionaryWithInitialData();
         if (action != null) {
             switch (action) {
                 case "add":
                     int id = Integer.parseInt(request.getParameter("id"));
-                    try {
-                        BookRequestManager.addBookRequest(bookRequests, iniBooks, id);
-                        request.setAttribute("resultMessage",
-                                MessageManager.getProperty("message.addingrequestsucces"));
-                        System.out.println("Книга добавлена");
-                        System.out.println(bookRequests.get(id));
-                        // Ваша логика добавления книги в заявки
-                    } catch (IllegalArgumentException e) {
+
+                    if (!bookRequests.containsKey(id)) {
+                        try {
+                            BookRequestManager.addBookRequest(bookRequests, iniBooks, id);
+                            request.setAttribute("resultMessage",
+                                    MessageManager.getProperty("message.addingrequestsucces"));
+                            System.out.println("Книга добавлена");
+                            System.out.println(bookRequests.get(id));
+                            // Ваша логика добавления книги в заявки
+                        } catch (IllegalArgumentException e) {
+                            request.setAttribute("resultMessage",
+                                    MessageManager.getProperty("message.existserror"));
+                        }
+                    } else {
                         request.setAttribute("resultMessage",
                                 MessageManager.getProperty("message.existserror"));
+                        System.out.println("Книга уже есть");// Устанавливаем сообщение об ошибке, что книга с таким ID уже существует
                     }
                     break;
                 case "view":
@@ -51,7 +58,10 @@ public class BookRequestCommand implements ActionCommand {
         else {  request.setAttribute("errorBookRequestMessage",
                 MessageManager.getProperty("message.bookRequestError"));
             System.out.println("Ошибка");}
-        System.out.println("Запрос выполнен");
+        System.out.println("Содержимое переменной bookRequests:");
+        for (Map.Entry<Integer, BookRequest> entry : bookRequests.entrySet()) {
+            System.out.println("ID книги: " + entry.getKey() + ", Данные о запросе: " + entry.getValue());
+        }
         page = ConfigurationManager.getProperty("path.page.admin");
         return page; // Возвращаете актуальный путь
     }
