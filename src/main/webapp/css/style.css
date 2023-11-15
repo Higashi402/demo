@@ -324,16 +324,6 @@ body {
 }
 
 
-#viewBooksForm {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
 .modal-content-catalog {
     background-color: #fff;
     margin: 10% auto;
@@ -411,4 +401,43 @@ th {
 
 #newForm button {
     margin-top: 10px;
+}
+
+#requestsForm {
+    position: absolute; /* Используйте 'absolute' или 'fixed' в зависимости от ваших потребностей */
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Стили для контейнера формы */
+#requestsForm .modal-content-catalog {
+    padding: 20px;
+    margin: 0;
+    overflow-y: auto; /* Добавьте полосу прокрутки, если содержимое превысит максимальную высоту */
+}
+
+/* Стили для таблицы */
+#requestsTableContainer {
+    max-height: 80vh; /* Задайте максимальную высоту для таблицы */
+    font-size: 30px; /* Размер текста в ячейках таблицы */
+}
+
+#viewBooksForm {
+    position: absolute; /* Используйте 'absolute' или 'fixed' в зависимости от ваших потребностей */
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#viewBooksForm .modal-content-catalog {
+    padding: 20px;
+    margin: 0;
+    overflow-y: auto; /* Добавьте полосу прокрутки, если содержимое превысит максимальную высоту */
+}
+
+
+#booksContainer {
+    max-height: 80vh; /* Задайте максимальную высоту для таблицы */
+    font-size: 30px; /* Размер текста в ячейках таблицы */
 }

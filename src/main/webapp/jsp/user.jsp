@@ -28,46 +28,40 @@
     <input type="hidden" name="command" value="viewbooks">
     <button type="submit" id="button-hover" onclick="openForm('viewBooksForm')" class="user-buttons-catalog">Просмотр каталога книг</button>
   </form>
-  <button id="button-hover" onclick="openForm('requestBookForm')" class = "user-buttons-request">Просмотр заявок</button>
+  <button id="button-hover" onclick="showRequestsForm()" class = "user-buttons-request">Просмотр заявок</button>
   <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
 </div>
 
 <div id="viewBooksForm" class="modal" style="display: none;">
-  <div class="modal-content-catalog" id="viewBooksContent">
+  <div class="modal-content-catalog" id="viewBooksContent" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
     <div class="close-button" id="button-hover" onclick="closeForm('viewBooksForm')"></div>
-    <table>
-      <thead>
-        <tr>
-          <th>Название книги</th>
-          <th>Автор книги</th>
-          <th>Рейтинг</th>
-        </tr>
-      </thead>
-      <tbody id="bookTableBody">
-        <c:forEach var="bookEntry" items="${bookDictionary}">
+
+    <h2 style="text-align: center; font-size: 40px;">Каталог книг</h2>
+    <div id="booksContainer">
+      <table style="width: 700px;">
+        <thead>
           <tr>
-
-            <td hidden>${bookEntry.key}</td>
-            <td>${bookEntry.value.title}</td>
-            <td>${bookEntry.value.author}</td>
-            <td>${bookEntry.value.rating}</td>
+            <th>Название книги</th>
+            <th style="width: 200px;">Автор книги</th>
+            <th style="width: 200px;">Рейтинг</th>
           </tr>
-        </c:forEach>
-      </tbody>
-    </table>
+        </thead>
+        <tbody id="bookTableBody">
+          <c:forEach var="bookEntry" items="${bookDictionary}">
+            <tr>
+
+              <td hidden>${bookEntry.key}</td>
+              <td>${bookEntry.value.title}</td>
+              <td>${bookEntry.value.author}</td>
+              <td>${bookEntry.value.rating}</td>
+            </tr>
+          </c:forEach>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
-
-<div id="requestBookForm" class="modal"  style="display: none;">
-  <div class="modal-content-request" id="requestBookContent">
-    <div class="close-button" id="button-hover" onclick="closeForm('requestBookForm')"></div>
-    <h2>Просмотр заявок</h2>
-    <form action="viewBooks" method="get">
-      <input class = "user-button-submit" id="button-hover" type="submit" value="Показать список заявок">
-    </form>
-  </div>
-</div>
 
 <div id="confirmExitForm" class="modal" style="display: none;">
   <div class="modal-content-exit" id="confirmExitContent">
@@ -88,19 +82,97 @@
   </div>
 </div>
 
+<div id="requestsForm" class="modal common-form-style" style="display: none;">
+  <div class="modal-content-catalog" style="display: flex; flex-direction: column; align-items: center;">
+    <div class="close-button" onclick="closeForm('requestsForm')"></div>
+
+    <!-- Добавленный элемент для текста "Ваши заявки" -->
+    <h2 style="text-align: center; font-size: 40px;">Ваши заявки</h2>
+
+    <!-- Контейнер для таблицы -->
+    <div id="requestsTableContainer">
+      <table>
+        <thead>
+        <tr>
+          <th>Номер заявки</th>
+          <th>Клиент</th>
+          <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody id="requestsTableBody">
+        <!-- Здесь будут строки таблицы с заявками -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
 <div id="newForm">
   <h2>Данные книги</h2>
 
   <div id="closeButtonPlaceholder"></div>
 
   <div id="sendRequestButtonPlaceholder"></div>
-  <!-- Кнопка закрытия формы -->
+
   <button onclick="closeForm('newForm')">Закрыть</button>
 </div>
 
 <script>
+  function showRequestsForm() {
+    // Ваш код для загрузки данных заявок в таблицу. Например, через AJAX-запрос.
+    // Временные данные для примера
+    var requestData = [
+      { id: 1, client: 'Иванов', status: 'В обработке' },
+      { id: 2, client: 'Петров', status: 'Завершена' },
+      { id: 3, client: 'Иванов', status: 'В обработке' },
+      { id: 4, client: 'Петров', status: 'Завершена' },
+      { id: 5, client: 'Иванов', status: 'В обработке' },
+      { id: 6, client: 'Петров', status: 'Завершена' },
+      { id: 7, client: 'Иванов', status: 'В обработке' },
+      { id: 8, client: 'Петров', status: 'Завершена' },
+      { id: 9, client: 'Иванов', status: 'В обработке' },
+      { id: 10, client: 'Петров', status: 'Завершена' },
+      { id: 11, client: 'Иванов', status: 'В обработке' },
+      { id: 12, client: 'Петров', status: 'Завершена' },
+      { id: 13, client: 'Иванов', status: 'В обработке' },
+      { id: 14, client: 'Петров', status: 'Завершена' },
+      { id: 15, client: 'Иванов', status: 'В обработке' },
+      { id: 16, client: 'Петров', status: 'Завершена' },
+      { id: 17, client: 'Петров', status: 'Завершена' },
+      { id: 18, client: 'Иванов', status: 'В обработке' },
+      { id: 20, client: 'Петров', status: 'Завершена' },
+      { id: 21, client: 'Иванов', status: 'В обработке' },
+      { id: 22, client: 'Петров', status: 'Завершена' },
+      { id: 23, client: 'Иванов', status: 'В обработке' },
+      { id: 24, client: 'Петров', status: 'Завершена' },
+      { id: 25, client: 'Петров', status: 'Завершена' },
+      { id: 26, client: 'Иванов', status: 'В обработке' },
+      { id: 27, client: 'Петров', status: 'Завершена' },
+      { id: 28, client: 'Иванов', status: 'В обработке' },
+      { id: 29, client: 'Петров', status: 'Завершена' },
+      { id: 30, client: 'Иванов', status: 'В обработке' },
+      { id: 31, client: 'Петров', status: 'Завершена' },
+    ];
+
+    // Очищаем предыдущие данные в таблице
+    document.getElementById('requestsTableBody').innerHTML = '';
+
+    // Заполняем таблицу данными заявок
+    requestData.forEach(function (request) {
+      var row = document.createElement('tr');
+      row.innerHTML = '<td>' + request.id + '</td>' +
+              '<td>' + request.client + '</td>' +
+              '<td>' + request.status + '</td>';
+      document.getElementById('requestsTableBody').appendChild(row);
+    });
+
+    // Отображаем форму с заявками
+    document.getElementById('requestsForm').style.display = 'block';
+  }
+
+
   function saveFormState(formId, isOpen) {
-    // Сохраняем состояние формы в localStorage
     localStorage.setItem(formId, isOpen ? "1" : "0");
   }
 
@@ -109,7 +181,6 @@
     var form = document.getElementById(formId);
     form.style.display = "block";
 
-    // Сохраняем состояние формы как открытой
     saveFormState(formId, true);
   }
 
@@ -122,13 +193,12 @@
 
   // Функция для восстановления состояния форм после обновления страницы
   function restoreFormState() {
-    // Проходим по всем ключам в localStorage
     for (var i = 0; i < localStorage.length; i++) {
       var formId = localStorage.key(i);
       var isOpen = localStorage.getItem(formId);
 
       if (isOpen === "1") {
-        openForm(formId); // Открываем формы, для которых состояние - 1 (открыто)
+        openForm(formId);
       }
     }
   }
@@ -181,39 +251,21 @@
 
   function redirectToBookRequestForm(bookId) {
     const params = new URLSearchParams();
-    params.append('command', 'bookrequestcommand'); // Указываем значение параметра command
-    params.append('action', 'add'); // Указываем значение параметра action
-    params.append('id', bookId); // Указываем значение параметра id
+    params.append('command', 'bookrequestcommand');
+    params.append('action', 'add');
+    params.append('id', bookId);
 
     fetch('controller', {
-      method: 'POST', // Метод запроса (в данном случае POST)
-      body: params // Передаем параметры запроса
+      method: 'POST',
+      body: params
     })
             .then(response => {
-              // Обрабатываем ответ от сервера здесь
               console.log('Ответ от сервера', response);
             })
             .catch(error => {
-              // Обрабатываем ошибку здесь
               console.error('Ошибка:', error);
             });
   }
-
-  /*function submitRequest() {
-    var tableBody = document.getElementById('bookTableBody');
-    var selectedRow = tableBody.querySelector('tr.selected');
-
-    if (selectedRow) {
-      var bookTitle = selectedRow.cells[0].innerText;
-      var bookAuthor = selectedRow.cells[1].innerText;
-      var bookRating = selectedRow.cells[2].innerText;
-
-      // Передаем данные в функцию для открытия формы с данными
-      openNewFormWithData(bookTitle, bookAuthor, bookRating);
-    } else {
-      alert('Выберите книгу в таблице перед оформлением заявки.');
-    }
-  }*/
 
   window.addEventListener('load', restoreFormState);
 
