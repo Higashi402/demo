@@ -180,7 +180,23 @@
 
 
   function redirectToBookRequestForm(bookId) {
+    const params = new URLSearchParams();
+    params.append('command', 'bookrequestcommand'); // Указываем значение параметра command
+    params.append('action', 'add'); // Указываем значение параметра action
+    params.append('id', bookId); // Указываем значение параметра id
 
+    fetch('controller', {
+      method: 'POST', // Метод запроса (в данном случае POST)
+      body: params // Передаем параметры запроса
+    })
+            .then(response => {
+              // Обрабатываем ответ от сервера здесь
+              console.log('Ответ от сервера', response);
+            })
+            .catch(error => {
+              // Обрабатываем ошибку здесь
+              console.error('Ошибка:', error);
+            });
   }
 
   /*function submitRequest() {

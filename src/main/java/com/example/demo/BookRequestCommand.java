@@ -22,6 +22,8 @@ public class BookRequestCommand implements ActionCommand {
                         BookRequestManager.addBookRequest(bookRequests, iniBooks, id);
                         request.setAttribute("resultMessage",
                                 MessageManager.getProperty("message.addingrequestsucces"));
+                        System.out.println("Книга добавлена");
+                        System.out.println(bookRequests.get(id));
                         // Ваша логика добавления книги в заявки
                     } catch (IllegalArgumentException e) {
                         request.setAttribute("resultMessage",
@@ -47,7 +49,8 @@ public class BookRequestCommand implements ActionCommand {
 
         }
         else {  request.setAttribute("errorBookRequestMessage",
-                MessageManager.getProperty("message.bookRequestError")); }
+                MessageManager.getProperty("message.bookRequestError"));
+            System.out.println("Ошибка");}
         System.out.println("Запрос выполнен");
         page = ConfigurationManager.getProperty("path.page.admin");
         return page; // Возвращаете актуальный путь
