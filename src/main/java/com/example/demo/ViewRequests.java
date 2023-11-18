@@ -9,6 +9,7 @@ public class ViewRequests implements ActionCommand {
         System.out.println("4124123");
         request.setAttribute("requestDictionary", BookRequestCommand.bookRequests);
         String page = ConfigurationManager.getProperty("path.page.user");
+        request.setAttribute("hasBookRequests", !BookRequestCommand.bookRequests.isEmpty());
         String result;
     /*    result = BookRequestCommand.bookRequests.;*/
    /*     System.out.println(result);*/

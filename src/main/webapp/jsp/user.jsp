@@ -95,7 +95,7 @@
 
     <!-- Контейнер для таблицы -->
     <div id="requestsTableContainer">
-      <table>
+      <table id = "requestTable">
         <thead>
         <tr>
           <th>Номер заявки</th>
@@ -140,11 +140,27 @@
     form.style.display = "block";
 
     saveFormState(formId, true);
+    if(formId == 'requestsForm') {
+      var hasBookRequests = <%= request.getAttribute("hasBookRequests") %>;
+
+      if (!hasBookRequests) {
+        document.getElementById('requestsTableContainer').style.display = 'none';
+        document.getElementById('requestTable').style.display = 'none';
+
+      } else {
+
+      }
+    }
   }
 
   // Функция для закрытия формы
   function closeForm(formId) {
     var form = document.getElementById(formId);
+    var form_main = document.getElementById('newForm');
+    if (formId == 'viewBooksForm') {
+      form.style.display = "none";
+      form_main.style.display = "none";
+    }
     form.style.display = "none";
     saveFormState(formId, false);
   }
@@ -208,6 +224,9 @@
 
 
   function redirectToBookRequestForm(bookId) {
+
+
+
     const params = new URLSearchParams();
     params.append('command', 'bookrequestcommand');
     params.append('action', 'add');

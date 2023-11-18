@@ -329,8 +329,8 @@ body {
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 1200px;
     border-radius: 5px;
 }
 
@@ -406,8 +406,8 @@ th {
 #requestsForm {
     position: absolute; /* Используйте 'absolute' или 'fixed' в зависимости от ваших потребностей */
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 30%;
+    width: 800px;
 }
 
 /* Стили для контейнера формы */
@@ -426,8 +426,8 @@ th {
 #viewBooksForm {
     position: absolute; /* Используйте 'absolute' или 'fixed' в зависимости от ваших потребностей */
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 30%;
+    width: 800px;
 }
 
 #viewBooksForm .modal-content-catalog {
