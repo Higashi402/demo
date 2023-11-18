@@ -20,7 +20,7 @@
 </div>
 
 <div class = "user-button-catalog">
-
+<div></div>
 </div>
 
 <div class = "user-buttons">
