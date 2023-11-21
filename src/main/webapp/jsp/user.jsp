@@ -30,7 +30,7 @@
   </form>
 
   <form action="controller" method="get">
-    <input type="hidden" name="command" value="viewrequests">
+    <input type="hidden" name="command" value="bookrequestviewcommand">
     <button type="submit" id="button-hover" onclick="openForm('requestsForm')" class="user-buttons-request">Просмотр заявок</button>
   </form>
   <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
@@ -96,6 +96,13 @@
     <!-- Контейнер для таблицы -->
     <div id="requestsTableContainer">
       <table id = "requestTable">
+
+        <tbody id="requestTableBody">
+        <c:choose>
+          <c:when test="${empty requestDictionary}">
+            <p>Заявок нет</p>
+          </c:when>
+          <c:otherwise>
         <thead>
         <tr>
           <th>Номер заявки</th>
@@ -103,14 +110,15 @@
           <th>Название книги</th>
         </tr>
         </thead>
-        <tbody id="requestTableBody">
-        <c:forEach var="requestEntry" items="${requestDictionary}">
-          <tr>
-            <td>${requestEntry.key}</td>
-            <td>${requestEntry.value.bookAuthor}</td>
-            <td>${requestEntry.value.bookTitle}</td>
-          </tr>
-        </c:forEach>
+            <c:forEach var="requestEntry" items="${requestDictionary}">
+              <tr>
+                <td>${requestEntry.key}</td>
+                <td>${requestEntry.value.bookAuthor}</td>
+                <td>${requestEntry.value.bookTitle}</td>
+              </tr>
+            </c:forEach>
+          </c:otherwise>
+        </c:choose>
         </tbody>
       </table>
     </div>
@@ -119,14 +127,27 @@
 </div>
 
 <div id="newForm">
-  <h2>Данные книги</h2>
+  <c:choose>
+    <c:when test="${empty resMessage}">
+      <h2>Данные книги</h2>
+    </c:when>
+    <c:otherwise>
+      <h2>Заявка</h2>
+      <p><strong>Статус:</strong> ${resMessage}</p>
+      <!-- Здесь можете добавить другие атрибуты книги, если они также будут отправляться -->
+    </c:otherwise>
+  </c:choose>
 
   <div id="closeButtonPlaceholder"></div>
 
   <div id="sendRequestButtonPlaceholder"></div>
 
+
+
   <button onclick="closeForm('newForm')">Закрыть</button>
 </div>
+
+
 
 <script>
 
@@ -136,21 +157,18 @@
 
   // Функция для открытия формы
   function openForm(formId) {
+
     var form = document.getElementById(formId);
     form.style.display = "block";
-
     saveFormState(formId, true);
-    if(formId == 'requestsForm') {
-      var hasBookRequests = <%= request.getAttribute("hasBookRequests") %>;
-
-      if (!hasBookRequests) {
-        document.getElementById('requestsTableContainer').style.display = 'none';
-        document.getElementById('requestTable').style.display = 'none';
-
-      } else {
-
-      }
+    if(formId == 'confirmExitForm') {
+      localStorage.clear();
+      saveFormState(formId, false);
     }
+
+
+
+
   }
 
   // Функция для закрытия формы
@@ -177,6 +195,8 @@
     }
   }
 
+
+
   document.addEventListener('DOMContentLoaded', function () {
     var tableRows = document.querySelectorAll('#bookTableBody tr');
 
@@ -192,6 +212,7 @@
       row.addEventListener('click', function () {
         var rowIndex = this.getAttribute('data-row-index'); // Получаем номер строки
         openNewFormWithData(row.cells[0].innerText, row.cells[1].innerText, row.cells[2].innerText, row.cells[3].innerText);
+
       });
     });
   });
@@ -199,50 +220,35 @@
   function openNewFormWithData(bookId, bookTitle, bookAuthor, bookRating) {
     var newForm = document.getElementById('newForm');
     newForm.style.display = 'block';
-
     var formContent = '<h2>Данные книги</h2>' +
             '<p><strong>ID:</strong> ' + bookId + '</p>' +
             '<p><strong>Название:</strong> ' + bookTitle + '</p>' +
             '<p><strong>Автор:</strong> ' + bookAuthor + '</p>' +
-            '<p><strong>Рейтинг:</strong> ' + bookRating + '</p>';
+            '<p><strong>Рейтинг:</strong> ' + bookRating + '</p>' +
+            '<form action="controller" method="post">' +
+            '<input type="hidden" name="command" value="bookrequestaddcommand">' +
+            '<input type="hidden" name="id" value="' + bookId + '">' +
+            '<button type="submit" id="button-hover" onclick="openForm(\'newForm\'); closeForm(\'viewBooksForm\');"  > Отправить заявку на книгу</button>' +
+            '</form>';
 
     newForm.innerHTML = formContent;
 
-    var sendRequestButtonPlaceholder = document.getElementById('sendRequestButtonPlaceholder');
-    var sendRequestButton = document.createElement('button');
-    sendRequestButton.textContent = 'Оставить заявку на книгу';
-    sendRequestButton.addEventListener('click', function() {
-      redirectToBookRequestForm(bookId); // Вызываем функцию для отправки запроса на сервер
+    // Добавление обработчика события на отправку формы при нажатии на кнопку
+    document.getElementById('bookRequestForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Предотвращаем стандартное действие отправки формы
+
+      var closeButton = document.createElement('div');
+      closeButton.className = 'close-button';
+      closeButton.onclick = function () {
+        closeForm('newForm');
+      };
+      newForm.appendChild(closeButton);
     });
-    newForm.appendChild(sendRequestButton);
-
-    var closeButton = document.createElement('div');
-    closeButton.className = 'close-button';
-    closeButton.onclick = function() { closeForm('newForm'); };
-    newForm.appendChild(closeButton);
   }
 
 
-  function redirectToBookRequestForm(bookId) {
 
 
-
-    const params = new URLSearchParams();
-    params.append('command', 'bookrequestcommand');
-    params.append('action', 'add');
-    params.append('id', bookId);
-
-    fetch('controller', {
-      method: 'POST',
-      body: params
-    })
-            .then(response => {
-              console.log('Ответ от сервера', response);
-            })
-            .catch(error => {
-              console.error('Ошибка:', error);
-            });
-  }
 
   window.addEventListener('load', restoreFormState);
 

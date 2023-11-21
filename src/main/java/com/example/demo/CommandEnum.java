@@ -17,20 +17,27 @@ public enum CommandEnum {
         }
 
     },
-    BOOKREQUESTCOMMAND {
+    BOOKREQUESTADDCOMMAND {
         {
-            this.command = new BookRequestCommand();
+            this.command = new BookRequestAddCommand();
+        }
+
+    },
+    BOOKREQUESTVIEWCOMMAND {
+        {
+            this.command = new BookRequestsViewCommand();
+        }
+
+    },
+    BOOKREQUESTDELETECOMMAND {
+        {
+            this.command = new BookRequestDeleteCommand();
         }
 
     },
     VIEWBOOKS {
         {
             this.command = new ViewBooksCommand();
-        }
-    },
-    VIEWREQUESTS {
-        {
-            this.command = new ViewRequests();
         }
     };
     ActionCommand command;
