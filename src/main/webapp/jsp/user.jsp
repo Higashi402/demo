@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.google.gson.Gson" %>
@@ -11,30 +10,11 @@
   <style>
     <%@include file='/css/style.css' %>
   </style>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/scripts.js"></script>
 </head>
 <body>
 
-<div class="black-line-container">
-  <hr class="user-black-line">
-  <div class="user-centered-text">E-Book</div>
-</div>
-
-<div class = "user-button-catalog">
-<div></div>
-</div>
-
-<div class = "user-buttons">
-  <form action="controller" method="get">
-    <input type="hidden" name="command" value="viewbooks">
-    <button type="submit" id="button-hover" onclick="openForm('viewBooksForm')" class="user-buttons-catalog">Просмотр каталога книг</button>
-  </form>
-
-  <form action="controller" method="get">
-    <input type="hidden" name="command" value="bookrequestviewcommand">
-    <button type="submit" id="button-hover" onclick="openForm('requestsForm')" class="user-buttons-request">Просмотр заявок</button>
-  </form>
-  <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
-</div>
+<%@include file="header.jsp" %>
 
 <div id="viewBooksForm" class="modal" style="display: none;">
   <div class="modal-content-catalog" id="viewBooksContent" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
@@ -142,116 +122,7 @@
 
   <div id="sendRequestButtonPlaceholder"></div>
 
-
-
   <button onclick="closeForm('newForm')">Закрыть</button>
 </div>
-
-
-
-<script>
-
-  function saveFormState(formId, isOpen) {
-    localStorage.setItem(formId, isOpen ? "1" : "0");
-  }
-
-  // Функция для открытия формы
-  function openForm(formId) {
-
-    var form = document.getElementById(formId);
-    form.style.display = "block";
-    saveFormState(formId, true);
-    if(formId == 'confirmExitForm') {
-      localStorage.clear();
-      saveFormState(formId, false);
-    }
-
-
-
-
-  }
-
-  // Функция для закрытия формы
-  function closeForm(formId) {
-    var form = document.getElementById(formId);
-    var form_main = document.getElementById('newForm');
-    if (formId == 'viewBooksForm') {
-      form.style.display = "none";
-      form_main.style.display = "none";
-    }
-    form.style.display = "none";
-    saveFormState(formId, false);
-  }
-
-  // Функция для восстановления состояния форм после обновления страницы
-  function restoreFormState() {
-    for (var i = 0; i < localStorage.length; i++) {
-      var formId = localStorage.key(i);
-      var isOpen = localStorage.getItem(formId);
-
-      if (isOpen === "1") {
-        openForm(formId);
-      }
-    }
-  }
-
-
-
-  document.addEventListener('DOMContentLoaded', function () {
-    var tableRows = document.querySelectorAll('#bookTableBody tr');
-
-    tableRows.forEach(function (row) {
-      row.addEventListener('mouseover', function () {
-        this.classList.add('hover');
-      });
-
-      row.addEventListener('mouseout', function () {
-        this.classList.remove('hover');
-      });
-
-      row.addEventListener('click', function () {
-        var rowIndex = this.getAttribute('data-row-index'); // Получаем номер строки
-        openNewFormWithData(row.cells[0].innerText, row.cells[1].innerText, row.cells[2].innerText, row.cells[3].innerText);
-
-      });
-    });
-  });
-
-  function openNewFormWithData(bookId, bookTitle, bookAuthor, bookRating) {
-    var newForm = document.getElementById('newForm');
-    newForm.style.display = 'block';
-    var formContent = '<h2>Данные книги</h2>' +
-            '<p><strong>ID:</strong> ' + bookId + '</p>' +
-            '<p><strong>Название:</strong> ' + bookTitle + '</p>' +
-            '<p><strong>Автор:</strong> ' + bookAuthor + '</p>' +
-            '<p><strong>Рейтинг:</strong> ' + bookRating + '</p>' +
-            '<form action="controller" method="post">' +
-            '<input type="hidden" name="command" value="bookrequestaddcommand">' +
-            '<input type="hidden" name="id" value="' + bookId + '">' +
-            '<button type="submit" id="button-hover" onclick="openForm(\'newForm\'); closeForm(\'viewBooksForm\');"  > Отправить заявку на книгу</button>' +
-            '</form>';
-
-    newForm.innerHTML = formContent;
-
-    // Добавление обработчика события на отправку формы при нажатии на кнопку
-    document.getElementById('bookRequestForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Предотвращаем стандартное действие отправки формы
-
-      var closeButton = document.createElement('div');
-      closeButton.className = 'close-button';
-      closeButton.onclick = function () {
-        closeForm('newForm');
-      };
-      newForm.appendChild(closeButton);
-    });
-  }
-
-
-
-
-
-  window.addEventListener('load', restoreFormState);
-
-</script>
 </body>
 </html>
