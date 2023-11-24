@@ -25,8 +25,4 @@ public class BookRequestManager {
     public static Map<Integer, BookRequest> getAllBookRequests(Map<Integer, BookRequest> bookRequests) {
         return new HashMap<>(bookRequests);
     }
-
-
-
-    // Другие методы для работы с заявками...
 }

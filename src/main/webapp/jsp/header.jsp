@@ -10,15 +10,17 @@
 </div>
 
 <div class = "user-buttons">
+
     <form action="controller" method="get">
         <input type="hidden" name="command" value="viewbooks">
-        <button type="submit" id="button-hover" onclick="openForm('viewBooksForm')" class="user-buttons-catalog">Просмотр каталога книг</button>
+        <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
     </form>
 
     <form action="controller" method="get">
         <input type="hidden" name="command" value="bookrequestviewcommand">
-        <button type="submit" id="button-hover" onclick="openForm('requestsForm')" class="user-buttons-request">Просмотр заявок</button>
+        <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
     </form>
+
     <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
 </div>
 </body>

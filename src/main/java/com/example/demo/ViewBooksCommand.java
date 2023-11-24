@@ -9,13 +9,12 @@ public class ViewBooksCommand implements ActionCommand {
 
         @Override
         public String execute(HttpServletRequest request) {
-            System.out.println("123123");
-
+            System.out.println("VIEWBOOKSCOMMAND");
             BookDictionary iniBooks =  BookDictionary.createBookDictionaryWithInitialData();
             Map<Integer, BookEntry> bookDictionary = iniBooks.getAllBooks();
             request.setAttribute("bookDictionary", bookDictionary);
-            String page = ConfigurationManager.getProperty("path.page.user");
-            return page; // Замените на актуальный путь
+            String page = ConfigurationManager.getProperty("path.page.catalog");
+            return page;
         }
 }
 

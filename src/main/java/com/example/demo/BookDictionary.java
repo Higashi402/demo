@@ -21,6 +21,10 @@ public class BookDictionary {
         bookDictionary.addBook(10, "Граф Монте-Кристо", "А. Дюма", 3, 5);
         bookDictionary.addBook(11, "Буря мечей", "Д. Мартин", 3, 5);
         bookDictionary.addBook(12, "В списках не значился", "Б. Васильев", 3, 5);
+        bookDictionary.addBook(14, "В списках не значился", "Б. Васильев", 3, 5);
+        bookDictionary.addBook(15, "В списках не значился", "Б. Васильев", 3, 5);
+        bookDictionary.addBook(16, "В списках не значился", "Б. Васильев", 3, 5);
+        bookDictionary.addBook(17, "В списках не значился", "Б. Васильев", 3, 5);
 
         return bookDictionary;
     }

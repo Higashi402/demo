@@ -6,46 +6,22 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>User</title>
+  <title>Пользователь</title>
   <style>
     <%@include file='/css/style.css' %>
+    body {
+        background-image: url('/img/background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
   </style>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/scripts.js"></script>
 </head>
 <body>
 
 <%@include file="header.jsp" %>
-
-<div id="viewBooksForm" class="modal" style="display: none;">
-  <div class="modal-content-catalog" id="viewBooksContent" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-    <div class="close-button" id="button-hover" onclick="closeForm('viewBooksForm')"></div>
-
-    <h2 style="text-align: center; font-size: 40px;">Каталог книг</h2>
-    <div id="booksContainer">
-      <table style="width: 700px;">
-        <thead>
-          <tr>
-            <th>Название книги</th>
-            <th style="width: 200px;">Автор книги</th>
-            <th style="width: 200px;">Рейтинг</th>
-          </tr>
-        </thead>
-        <tbody id="bookTableBody">
-          <c:forEach var="bookEntry" items="${bookDictionary}">
-            <tr>
-
-              <td hidden>${bookEntry.key}</td>
-              <td>${bookEntry.value.title}</td>
-              <td>${bookEntry.value.author}</td>
-              <td>${bookEntry.value.rating}</td>
-            </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
 
 <div id="confirmExitForm" class="modal" style="display: none;">
   <div class="modal-content-exit" id="confirmExitContent">
@@ -70,10 +46,8 @@
   <div class="modal-content-catalog" style="display: flex; flex-direction: column; align-items: center;">
     <div class="close-button" onclick="closeForm('requestsForm')"></div>
 
-    <!-- Добавленный элемент для текста "Ваши заявки" -->
     <h2 style="text-align: center; font-size: 40px;">Ваши заявки</h2>
 
-    <!-- Контейнер для таблицы -->
     <div id="requestsTableContainer">
       <table id = "requestTable">
 

@@ -26,7 +26,7 @@ public class BookRequestAddCommand implements ActionCommand {
                                 MessageManager.getProperty("message.existserror"));
                         System.out.println("Книга уже есть");// Устанавливаем сообщение об ошибке, что книга с таким ID уже существует
                     }
-        String page = ConfigurationManager.getProperty("path.page.user");
+        String page = ConfigurationManager.getProperty("path.page.");
         return page; // Возвращаете актуальный путь
     }
 }

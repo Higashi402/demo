@@ -25,7 +25,7 @@ public enum CommandEnum {
     },
     BOOKREQUESTVIEWCOMMAND {
         {
-            this.command = new BookRequestsViewCommand();
+            this.command = new ViewRequestsCommand();
         }
 
     },
@@ -38,6 +38,11 @@ public enum CommandEnum {
     VIEWBOOKS {
         {
             this.command = new ViewBooksCommand();
+        }
+    },
+    CLOSE {
+        {
+            this.command = new CloseCommand();
         }
     };
     ActionCommand command;

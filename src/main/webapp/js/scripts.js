@@ -2,10 +2,6 @@ function saveFormState(formId, isOpen) {
     localStorage.setItem(formId, isOpen ? "1" : "0");
 }
 
-function openViewBooksPage() {
-    window.location.href = 'jsp/requests.jsp';
-}
-
 // Функция для открытия формы
 function openForm(formId) {
     var form = document.getElementById(formId);
@@ -17,77 +13,52 @@ function openForm(formId) {
     }
 }
 
-// Функция для закрытия формы
-function closeForm(formId) {
-    var form = document.getElementById(formId);
-    var form_main = document.getElementById('newForm');
-    if (formId == 'viewBooksForm') {
-        form.style.display = "none";
-        form_main.style.display = "none";
+function closeForm() {
+    var form = document.querySelector('.book-form');
+    var overlay = document.querySelector('.overlay');
+    if (form) {
+        form.remove();
     }
-    form.style.display = "none";
-    saveFormState(formId, false);
-}
-
-// Функция для восстановления состояния форм после обновления страницы
-function restoreFormState() {
-    for (var i = 0; i < localStorage.length; i++) {
-        var formId = localStorage.key(i);
-        var isOpen = localStorage.getItem(formId);
-
-        if (isOpen === "1") {
-            openForm(formId);
-        }
+    if (overlay) {
+        overlay.remove();
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var tableRows = document.querySelectorAll('#bookTableBody tr');
+    var rows = document.querySelectorAll('.book-row');
 
-    tableRows.forEach(function (row) {
-        row.addEventListener('mouseover', function () {
-            this.classList.add('hover');
-        });
-
-        row.addEventListener('mouseout', function () {
-            this.classList.remove('hover');
-        });
-
+    rows.forEach(function (row) {
         row.addEventListener('click', function () {
-            var rowIndex = this.getAttribute('data-row-index'); // Получаем номер строки
-            openNewFormWithData(row.cells[0].innerText, row.cells[1].innerText, row.cells[2].innerText, row.cells[3].innerText);
+            var bookId = row.dataset.id;
+            var bookTitle = row.cells[1].innerText;
+            var bookAuthor = row.cells[2].innerText;
+            var bookRating = row.cells[3].innerText;
 
+            // Создаем слой подложки
+            var overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            document.body.appendChild(overlay);
+
+            // Создаем форму
+            var form = document.createElement('div');
+            form.classList.add('book-form');
+
+            // Добавляем информацию о книге в форму
+            form.innerHTML = `
+                <button class="close-button" onclick="closeForm()"></button>
+                <h2>${bookTitle}</h2>
+                <p>Автор: ${bookAuthor}</p>
+                <p>Рейтинг: ${bookRating}</p>
+                <button onclick="makeRequest(${bookId})">Сделать заявку</button>
+            `;
+
+            // Добавляем форму к телу документа
+            document.body.appendChild(form);
+
+            // Закрытие формы и слоя подложки при клике на overlay
+            overlay.addEventListener('click', function () {
+                closeForm();
+            });
         });
     });
 });
-
-function openNewFormWithData(bookId, bookTitle, bookAuthor, bookRating) {
-    var newForm = document.getElementById('newForm');
-    newForm.style.display = 'block';
-    var formContent = '<h2>Данные книги</h2>' +
-        '<p><strong>ID:</strong> ' + bookId + '</p>' +
-        '<p><strong>Название:</strong> ' + bookTitle + '</p>' +
-        '<p><strong>Автор:</strong> ' + bookAuthor + '</p>' +
-        '<p><strong>Рейтинг:</strong> ' + bookRating + '</p>' +
-        '<form action="controller" method="post">' +
-        '<input type="hidden" name="command" value="bookrequestaddcommand">' +
-        '<input type="hidden" name="id" value="' + bookId + '">' +
-        '<button type="submit" id="button-hover" onclick="openForm(\'newForm\'); closeForm(\'viewBooksForm\');"  > Отправить заявку на книгу</button>' +
-        '</form>';
-
-    newForm.innerHTML = formContent;
-
-    // Добавление обработчика события на отправку формы при нажатии на кнопку
-    document.getElementById('bookRequestForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Предотвращаем стандартное действие отправки формы
-
-        var closeButton = document.createElement('div');
-        closeButton.className = 'close-button';
-        closeButton.onclick = function () {
-            closeForm('newForm');
-        };
-        newForm.appendChild(closeButton);
-    });
-}
-
-window.addEventListener('load', restoreFormState);
