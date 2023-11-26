@@ -34,8 +34,6 @@ function closeForm() {
     var bookAuthor = element.dataset.author;
     var bookRating = element.dataset.rating;
     var bookId = element.dataset.id;
-
-    console.log(bookTitle, bookAuthor, bookRating, "успешно");
     var overlay = document.createElement('div');
     overlay.classList.add('overlay');
     document.body.appendChild(overlay);
