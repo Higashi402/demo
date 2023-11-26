@@ -44,6 +44,27 @@ public class BookDictionary {
     public BookEntry getBookById(int bookId) {
         return bookInfo.get(bookId);
     }
+    public int getDictionarySize() {
+        return bookInfo.size();
+    }
+
+    public void updateBookById(int id, String newTitle, String newAuthor, int newAmount, double newRating) {
+        BookEntry bookToUpdate = bookInfo.get(id);
+        if (bookToUpdate != null) {
+            bookToUpdate.setTitle(newTitle);
+            bookToUpdate.setAuthor(newAuthor);
+            bookToUpdate.setAmount(newAmount);
+            bookToUpdate.setRating(newRating);
+            // Заменяем старую запись новой
+            bookInfo.put(id, bookToUpdate);
+        } else {
+            // Если книга с заданным id не найдена, можно сгенерировать ошибку или выполнить другую логику
+            // Например, можно выбросить исключение или записать в лог сообщение о неудаче
+            // throw new IllegalArgumentException("Книга с id " + id + " не найдена.");
+            // или
+            // logger.error("Книга с id {} не найдена", id);
+        }
+    }
 }
 
 

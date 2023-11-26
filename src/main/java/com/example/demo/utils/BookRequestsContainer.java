@@ -8,6 +8,6 @@ import java.util.Map;
 
 public class BookRequestsContainer {
     public static Map<Integer, BookRequest> bookRequests = new HashMap<>();
-    private static final BookDictionary iniBooks = BookDictionary.createBookDictionaryWithInitialData();
+    private static final BookDictionary iniBooks = (BookDictionary) BookContainer.bookInfo;
 
 }

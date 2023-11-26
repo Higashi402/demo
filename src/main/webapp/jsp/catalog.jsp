@@ -21,6 +21,19 @@
         </form>
 
         <h2 style="text-align: center; font-size: 40px;">Каталог книг</h2>
+
+        <c:choose>
+            <c:when test="${sessionScope.userRole eq 'ADMIN'}">
+                <!-- Кнопка "Добавить книгу" для админа -->
+                <form action="controller" method="post">
+                    <input type="hidden" name="command" value="redirecttoaddbookpagecommand">
+                    <button type="submit" id="button-hover">Добавить книгу</button>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <!-- Кнопка скрыта для других ролей -->
+            </c:otherwise>
+        </c:choose>
         <div id="booksContainer">
             <table style="width: 700px; font-size: 20px;">
                 <thead>
@@ -30,8 +43,12 @@
                     <th style="width: 200px;">Рейтинг</th>
                 </tr>
                 </thead>
-                <tbody class="tableBody">
+
+<c:choose>
+    <c:when test="${sessionScope.userRole eq 'USER'}">
+        <tbody class="tableBody">
                 <c:forEach var="bookEntry" items="${bookDictionary}">
+
                     <tr class='book-row' onclick="displayBookInfo(this)" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
                         <td hidden>${bookEntry.key}</td>
                         <td>${bookEntry.value.title}</td>
@@ -39,7 +56,25 @@
                         <td>${bookEntry.value.rating}</td>
                     </tr>
                 </c:forEach>
-                </tbody>
+        </tbody>
+    </c:when>
+    <c:when test="${sessionScope.userRole eq 'ADMIN'}">
+        <tbody class="tableBody">
+        <c:forEach var="bookEntry" items="${bookDictionary}">
+            <tr class='book-row' onclick="displayBookInfoForAdmin(this)" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
+                <td hidden>${bookEntry.key}</td>
+                <td>${bookEntry.value.title}</td>
+                <td>${bookEntry.value.author}</td>
+                <td>${bookEntry.value.rating}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </c:when>
+                <c:otherwise>
+                    <!-- Код для других пользователей или обработка ошибки -->
+                </c:otherwise>
+                </c:choose>
+
             </table>
         </div>
     </div>

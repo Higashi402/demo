@@ -19,11 +19,37 @@ public class BookEntry {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthor() {
         return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public double getRating() {
         return rating;
     }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+
+
+
+
+
 }
