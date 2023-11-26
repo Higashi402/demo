@@ -32,7 +32,7 @@
                 </thead>
                 <tbody class="tableBody">
                 <c:forEach var="bookEntry" items="${bookDictionary}">
-                    <tr class='book-row' data-id="${bookEntry.key}">
+                    <tr class='book-row' onclick="displayBookInfo(this)" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
                         <td hidden>${bookEntry.key}</td>
                         <td>${bookEntry.value.title}</td>
                         <td>${bookEntry.value.author}</td>

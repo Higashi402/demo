@@ -50,15 +50,6 @@
         </div>
 </div>
 
-<div id="bookInfo" style="display: none;">
-    <div class="modal-content-catalog"></div>
-    <h2>Информация о книге:</h2>
-    <form id="bookInfoForm">
-        <p><strong>Название:</strong> <span id="bookTitle"></span></p>
-        <p><strong>Автор:</strong> <span id="bookAuthor"></span></p>
-        <p><strong>Рейтинг:</strong> <span id="bookRating"></span></p>
-    </form>
-</div>
 
 
 </body>

@@ -30,6 +30,8 @@ public class BookRequestAddCommand implements ActionCommand {
                         System.out.println("Книга уже есть");// Устанавливаем сообщение об ошибке, что книга с таким ID уже существует
                     }
         String page = ConfigurationManager.getProperty("path.page.catalog");
+        System.out.println("Запрос выполнен");
         return page; // Возвращаете актуальный путь
+
     }
 }
