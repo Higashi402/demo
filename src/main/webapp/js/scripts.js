@@ -49,7 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h2>${bookTitle}</h2>
                 <p>Автор: ${bookAuthor}</p>
                 <p>Рейтинг: ${bookRating}</p>
-                <button onclick="makeRequest(${bookId})">Сделать заявку</button>
+                <form action="controller" method="get">
+                    <input type="hidden" name="command" value="bookrequestaddcommand">
+                    <button type="submit" id="button-hover" class="user-buttons-catalog">Сделать заявку</button>
+                </form>
             `;
 
             // Добавляем форму к телу документа
