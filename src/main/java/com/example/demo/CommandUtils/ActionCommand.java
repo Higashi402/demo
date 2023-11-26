@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.CommandUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

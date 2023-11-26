@@ -1,18 +1,43 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.google.gson.Gson" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Панель администратора</title>
+    <title>Admin</title>
     <style>
-        h1 {
-            text-align: center;
-        }
+        <%@include file='/css/style.css' %>
     </style>
 </head>
-<body>
-<h1>Панель администратора</h1>
+
+
+<div class="black-line-container">
+    <hr class="user-black-line">
+    <div class="user-centered-text">E-Book</div>
+</div>
+
+<div class = "user-button-catalog">
+    <div></div>
+</div>
+
+<div class = "user-buttons">
+    <form action="controller" method="get">
+        <input type="hidden" name="command" value="viewbooksniversal">
+        <button type="submit" id="button-hover"  class="user-buttons-catalog">Просмотр каталога книг</button>
+    </form>
+
+    <form action="controller" method="get">
+        <input type="hidden" name="command" value="bookrequestviewcommand">
+        <button type="submit" id="button-hover" onclick="openForm('requestsForm')" class="user-buttons-request">Просмотр заявок</button>
+    </form>
+    <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
+</div>
+
+
+<%--<body>
 
 <h2>Создание пользователя</h2>
 <form action="createUser" method="post">
@@ -83,6 +108,51 @@
     Новое имя: <input type="text" name="newUsername"><br>
     Новый пароль: <input type="password" name="newPassword"><br>
     <input type="submit" value="Редактировать пользователя">
-</form>
+</form>--%>
+
+<script>
+
+    function saveFormState(formId, isOpen) {
+        localStorage.setItem(formId, isOpen ? "1" : "0");
+    }
+
+    // Функция для открытия формы
+    function openForm(formId) {
+
+        var form = document.getElementById(formId);
+        form.style.display = "block";
+        saveFormState(formId, true);
+    }
+
+    // Функция для закрытия формы
+    function closeForm(formId) {
+        var form = document.getElementById(formId);
+        form.style.display = "none";
+        saveFormState(formId, false);
+    }
+
+    // Функция для восстановления состояния форм после обновления страницы
+    function restoreFormState() {
+        for (var i = 0; i < localStorage.length; i++) {
+            var formId = localStorage.key(i);
+            var isOpen = localStorage.getItem(formId);
+
+            if (isOpen === "1") {
+                openForm(formId);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+    window.addEventListener('load', restoreFormState);
+
+</script>
 </body>
 </html>

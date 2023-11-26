@@ -7,7 +7,7 @@
          id="WebApp_ID" version="3.0">
     <servlet>
         <servlet-name>controller</servlet-name>
-        <servlet-class>com.example.demo.Controller</servlet-class>
+        <servlet-class>com.example.demo.CommandUtils.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>controller</servlet-name>

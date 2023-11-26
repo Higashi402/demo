@@ -1,7 +1,5 @@
 package com.example.demo.roles;
 
-import com.example.demo.Entity;
-
 import java.util.Objects;
 
 public class Role extends Entity {

@@ -24,6 +24,7 @@ function closeForm() {
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', function () {
     var rows = document.querySelectorAll('.book-row');
 
@@ -65,3 +66,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+
+    function displayBookInfo(element) {
+    var bookTitle = element.dataset.title;
+    var bookAuthor = element.dataset.author;
+    var bookRating = element.dataset.rating;
+    console.log(bookTitle, bookAuthor, bookRating);
+    document.getElementById('bookTitle').innerText = bookTitle;
+    document.getElementById('bookAuthor').innerText = bookAuthor;
+    document.getElementById('bookRating').innerText = bookRating;
+    document.getElementById('bookInfo').style.display = 'block';
+}
+
+
+function showBookInfo(row) {
+    var cells = row.getElementsByTagName('td');
+    var title = cells[1].innerText;
+    var author = cells[2].innerText;
+    var rating = cells[3].innerText;
+
+    document.getElementById('bookTitle').innerText = title;
+    document.getElementById('bookAuthor').innerText = author;
+    document.getElementById('bookRating').innerText = rating;
+
+    document.getElementById('bookInfo').style.display = 'block';
+}

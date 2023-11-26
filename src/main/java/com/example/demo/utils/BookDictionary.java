@@ -1,11 +1,10 @@
-package com.example.demo;
+package com.example.demo.utils;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BookDictionary {
-    private Map<Integer, BookEntry > bookInfo = new HashMap<>();
+    private Map<Integer, BookEntry> bookInfo = new HashMap<>();
 
     public static BookDictionary createBookDictionaryWithInitialData() {
         BookDictionary bookDictionary = new BookDictionary();

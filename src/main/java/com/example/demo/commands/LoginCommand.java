@@ -1,5 +1,10 @@
-package com.example.demo;
+package com.example.demo.commands;
 
+import com.example.demo.CommandUtils.ActionCommand;
+import com.example.demo.utils.ConfigurationManager;
+import com.example.demo.utils.MessageManager;
+import com.example.demo.sessionUtils.SessionManager;
+import com.example.demo.utils.UserDictionary;
 import com.example.demo.roles.RoleType;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,15 +25,8 @@ public class LoginCommand implements ActionCommand {
         String storedPassword = UserDictionary.getUserPassword(login);
 
         if (storedPassword != null && storedPassword.equals(pass)) {
-            // Проверка роли пользователя и установка соответствующей страницы
-            if (userRole == RoleType.USER) {
-                page = ConfigurationManager.getProperty("path.page.user");
-            } else if (userRole == RoleType.MODERATOR) {
-                page = ConfigurationManager.getProperty("path.page.moderator");
-            } else if (userRole == RoleType.ADMIN) {
-                page = ConfigurationManager.getProperty("path.page.admin");
-            }
-
+            SessionManager.setUserRole(request, userRole);
+            page = ConfigurationManager.getProperty("path.page.menu");
             request.setAttribute("user", login);
         } else {
             request.setAttribute("errorLoginPassMessage",

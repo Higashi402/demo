@@ -1,4 +1,6 @@
-package com.example.demo;
+package com.example.demo.CommandUtils;
+
+import com.example.demo.commands.*;
 
 public enum CommandEnum {
     LOGIN {
@@ -37,7 +39,7 @@ public enum CommandEnum {
     },
     VIEWBOOKS {
         {
-            this.command = new ViewBooksCommand();
+            this.command = new viewbooksuniversalcommand();
         }
     },
     CLOSE {

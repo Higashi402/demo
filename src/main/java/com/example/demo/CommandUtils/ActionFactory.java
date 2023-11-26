@@ -1,4 +1,7 @@
-package com.example.demo;
+package com.example.demo.CommandUtils;
+
+import com.example.demo.commands.EmptyCommand;
+import com.example.demo.utils.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 

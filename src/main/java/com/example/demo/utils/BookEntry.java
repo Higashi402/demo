@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.utils;
 
 public class BookEntry {
     private String title;
