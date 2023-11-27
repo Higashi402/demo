@@ -20,6 +20,7 @@
             <button id="button-hover" class="close-button"></button>
         </form>
 
+
         <div class = "head">
             <h2 style="text-align: center; font-size: 40px; margin-bottom: 10px;">Каталог книг</h2>
             <% if (request.getAttribute("resMessage") != null) { %>
