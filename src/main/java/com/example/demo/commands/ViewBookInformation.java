@@ -19,8 +19,19 @@ public class ViewBookInformation extends Command{
     }
 
     @Override
-    public void process() throws ServletException, IOException {
+    public void send() throws ServletException, IOException {
+        String bookId = request.getParameter("id");
+        String bookTitle = request.getParameter("title");
+        String bookAuthor = request.getParameter("author");
+        String bookRating = request.getParameter("rating");
+        System.out.println("Есть запрос" + bookId + bookTitle + bookAuthor + bookRating);
+        // Устанавливаем атрибуты для использования в JSP
+        request.setAttribute("bookId", bookId);
+        request.setAttribute("bookTitle", bookTitle);
+        request.setAttribute("bookAuthor", bookAuthor);
+        request.setAttribute("bookRating", bookRating);
 
+        // Перенаправляем на страницу с информацией о книге
         forward(ConfigurationManager.getProperty("path.page.bookinfo"));
     }
 }

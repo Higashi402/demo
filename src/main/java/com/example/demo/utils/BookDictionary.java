@@ -8,7 +8,7 @@ public class BookDictionary {
 
     public static BookDictionary createBookDictionaryWithInitialData() {
         BookDictionary bookDictionary = new BookDictionary();
-        bookDictionary.addBook(1, "Мастер и маргарита", "М. Булгаков", 10, 3);
+        bookDictionary.addBook(1, "Master and Margaret", "M. Bulgakov", 10, 3);
         bookDictionary.addBook(2, "Война и мир", "Л. Толстой", 3, 5);
         bookDictionary.addBook(3, "О дивный новый мир", "О. Хаксли", 3, 5);
         bookDictionary.addBook(4, "Гарри Поттер и узник Азкабана", "Д. Роулинг", 3, 5);

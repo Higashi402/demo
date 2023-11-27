@@ -44,7 +44,7 @@ public class BookRequestAddCommand extends Command {
         request.setAttribute("bookDictionary", bookDictionary);
 
         System.out.println("Запрос выполнен");
-        forward(ConfigurationManager.getProperty("path.page.catalog"));
+        forward(ConfigurationManager.getProperty("path.page.bookinfo"));
     }
 
 

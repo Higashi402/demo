@@ -20,33 +20,85 @@ function closeMyForm(formId) {
 }
 
 
-    function displayBookInfo(element) {
+/*function displayBookInfo(element) {
+        var bookTitle = element.dataset.title;
+        var bookAuthor = element.dataset.author;
+        var bookRating = element.dataset.rating;
+        var bookId = element.dataset.id;
+        var messageContainer = document.getElementById('message-container');
+        var resMessage = (messageContainer.getAttribute('data-res-message') !== null) ? messageContainer.getAttribute('data-res-message') : '';
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+        var form = document.createElement('div');
+        form.classList.add('book-form');
+        form.innerHTML = `
+        <button class="close-button" onclick="closeForm()"></button>
+        <h2>${bookTitle}</h2>
+        <p>Автор тест: ${bookAuthor}</p>
+        <p>Рейтинг: ${bookRating}</p>
+        <form id="book-request-form" action="controller" method="POST">
+            <input type="hidden" name="command" value="bookrequestaddcommand">
+            <input type="hidden" name="id" value="${bookId}">
+            <button id="button-hover" >Сделать заявку</button>
+        </form>
+    `;
+        document.body.appendChild(form);
+}*/
+function submitForm(element) {
+    var parentRow = element.closest('.book-row');
+    var bookId = parentRow.getAttribute('data-id');
+    var bookTitle = parentRow.getAttribute('data-title');
+    var bookAuthor = parentRow.getAttribute('data-author');
+    var bookRating = parentRow.getAttribute('data-rating');
+
+    document.getElementById('bookId').value = bookId;
+    document.getElementById('bookTitle').value = bookTitle;
+    document.getElementById('bookAuthor').value = bookAuthor;
+    document.getElementById('bookRating').value = bookRating;
+
+    document.getElementById('book-request-form').submit();
+}
+/*
+function sendRequest(element) {
+    var bookId = element.dataset.id;
     var bookTitle = element.dataset.title;
     var bookAuthor = element.dataset.author;
     var bookRating = element.dataset.rating;
-    var bookId = element.dataset.id;
-    var overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    document.body.appendChild(overlay);
-    var form = document.createElement('div');
-    form.classList.add('book-form');
-        form.innerHTML = `
-               <button class="close-button" onclick="closeForm()"></button>
-                <h2>${bookTitle}</h2>
-                <p>Автор тест: ${bookAuthor}</p>
-                <p>Рейтинг: ${bookRating}</p>
-                <form action="controller" method="POST">
-                    <input type="hidden" name="command" value="bookrequestaddcommand">
-                    <input type="hidden" name="id" value="${bookId}">
-                    <button  id="button-hover" onclick="submitForm()" >Сделать заявку</button>
-                </form>
-            `;
 
-        // Добавляем форму к телу документа
-        document.body.appendChild(form);
+    // Формируем строку с параметрами запроса
+    var params = new URLSearchParams();
+    params.append('command', 'VIEWBOOKINFORMATION');
+    params.append('id', bookId);
+    params.append('title', bookTitle);
+    params.append('author', bookAuthor);
+    params.append('rating', bookRating);
+
+    // Отправляем запрос на сервер
+    fetch('controller?' + params, {
+        method: 'POST'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Произошла ошибка: ' + response.status);
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Обработка успешного ответа от сервера
+            console.log('Запрос успешно выполнен:', data);
+
+            // Перенаправление на другую страницу (например, 'bookinfo.jsp')
+            window.location.href = 'jsp/bookinfo.jsp';
+        })
+        .catch(error => {
+            // Обработка ошибки при выполнении запроса
+            console.error('Произошла ошибка при выполнении запроса:', error);
+        });
 }
+*/
 
-function submitForm() {
+/*function submitForm() {
     // Получение формы и ее данных
     var form = document.querySelector('.book-form form');
     var formData = new FormData(form);
@@ -73,6 +125,6 @@ function submitForm() {
             console.error('Произошла ошибка при отправке формы');
         }
     };
-}
+}*/
 
 
