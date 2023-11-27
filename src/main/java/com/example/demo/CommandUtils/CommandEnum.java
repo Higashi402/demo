@@ -44,22 +44,22 @@ public enum CommandEnum {
     },
     REDIRECTTOADDBOOKPAGECOMMAND {
         {
-            this.command = new RedirectToAddBookPageCommand();
+            //this.command = new RedirectToAddBookPageCommand();
         }
     },
     ADDBOOKSCOMMAND {
         {
-            this.command = new AddBooksCommand();
+            //this.command = new AddBooksCommand();
         }
     },
     REDIRECTTOUPDATEBOOKCOMMAND {
         {
-            this.command = new RedirectToUpdateBookCommand();
+            //this.command = new RedirectToUpdateBookCommand();
         }
     },
     UPDATEBOOKCOMMAND {
         {
-            this.command = new UpdateBookCommand();
+            //this.command = new UpdateBookCommand();
         }
     },
     CLOSE {
