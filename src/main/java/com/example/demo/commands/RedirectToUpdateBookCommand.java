@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class RedirectToUpdateBookCommand implements ActionCommand {
     @Override
+
     public String execute(HttpServletRequest request) {
         String id = request.getParameter("bookId");
         System.out.println("Запрос есть" + id);
