@@ -1,8 +1,14 @@
-<%@ page pageEncoding="UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.google.gson.Gson" %>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        <%@include file='/css/style.css' %>
+    </style>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/scripts.js"></script>
 </head>
 <body>
 <div class="black-line-container">
@@ -12,17 +18,22 @@
     <c:choose>
         <c:when test="${sessionScope.userRole eq 'USER'}">
             <div class = "user-buttons">
-                <form action="controller" method="get">
+                <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="viewbooks">
                     <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
                 </form>
 
-                <form action="controller" method="get">
-                    <input type="hidden" name="command" value="bookrequestviewcommand">
+                <form action="/demo/controller" method="GET">
+                    <input type="hidden" name="command" value="viewrequests">
                     <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
                 </form>
 
-                <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
+                <form action="/demo/controller" method="GET">
+                    <input type="hidden" name="command" value="logout">
+                    <button type="submit" id="button-hover" class="user-buttons-exit"></button>
+                </form>
+
+
             </div>
         </c:when>
         <c:when test="${sessionScope.userRole eq 'ADMIN'}">

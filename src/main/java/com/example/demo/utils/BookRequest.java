@@ -7,13 +7,9 @@ public class BookRequest {
 
 
     public BookRequest(String bookTitle, String bookAuthor) {
-
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
-
     }
-
-
 
     public String getBookTitle() {
         return bookTitle;

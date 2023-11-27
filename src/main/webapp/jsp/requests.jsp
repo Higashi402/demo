@@ -16,7 +16,7 @@
 <div id="requestsForm" class="modal common-form-style">
     <div class="modal-content-catalog" style="display: flex; flex-direction: column; align-items: center;">
 
-        <form action="controller" method="get">
+        <form action="controller" method="POST">
             <input type="hidden" name="command" value="close">
             <button id="button-hover" class="close-button"></button>
         </form>

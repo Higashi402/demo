@@ -12,7 +12,7 @@ public class BookRequestManager {
     private static Map<Integer, BookRequest> bookRequests = new HashMap<>();
 
     private BookRequestManager() {
-        // Конструктор оставлен пустым
+
     }
 
     public static void addBookRequest(Map<Integer, BookRequest> bookRequests, BookDictionary bookDictionary, int bookId) {

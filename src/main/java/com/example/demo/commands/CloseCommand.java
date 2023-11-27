@@ -1,14 +1,22 @@
 package com.example.demo.commands;
 
-import com.example.demo.CommandUtils.ActionCommand;
-import com.example.demo.utils.ConfigurationManager;
-
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class CloseCommand implements ActionCommand {
+public class CloseCommand extends Command {
+
     @Override
-    public String execute(HttpServletRequest request) {
-        String page = ConfigurationManager.getProperty("path.page.user");
-        return page;
+    public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+        super.init(servletContext, servletRequest, servletResponse);
+
+    }
+
+
+    @Override
+    public void send() throws ServletException, IOException {
+        redirect("jsp/menu.jsp");
     }
 }

@@ -9,16 +9,10 @@
     <title>Пользователь</title>
     <style>
         <%@include file='/css/style.css' %>
-        body {
-            background-image: url('/img/background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
     </style>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/scripts.js"></script>
 </head>
 <body>
-
-<%@include file="header.jsp" %>
+    <%@include file="header.jsp" %>
+</body>
+</html>
