@@ -2,6 +2,8 @@ package com.example.demo.commands;
 
 import com.example.demo.utils.ConfigurationManager;
 import com.example.demo.sessionUtils.SessionManager;
+import com.example.demo.utils.User;
+import com.example.demo.utils.UserContainer;
 import com.example.demo.utils.UserDictionary;
 import com.example.demo.roles.RoleType;
 
@@ -27,15 +29,15 @@ public class LoginCommand extends Command {
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String pass = request.getParameter(PARAM_NAME_PASSWORD);
 
-        RoleType userRole = UserDictionary.getUserRole(login);
-        String storedPassword = UserDictionary.getUserPassword(login);
+        User user = UserContainer.users.get(login);
 
-        if (storedPassword != null && storedPassword.equals(pass)) {
-            SessionManager.setUserRole(request, userRole);
-            request.setAttribute("user", login);
-            redirect("jsp/menu.jsp");
+        if (user != null && user.getPassword().equals(pass)) {
+            request.getSession().setAttribute("user", user);
+            User userOut = (User) request.getSession().getAttribute("user");
+            System.out.println("В сессию зашел" + userOut.getUsername());
+            request.getRequestDispatcher("jsp/menu.jsp").forward(request, response);
         } else {
-            forward(ConfigurationManager.getProperty("path.page.login"));
+            request.getRequestDispatcher(ConfigurationManager.getProperty("path.page.login")).forward(request, response);
         }
     }
 }

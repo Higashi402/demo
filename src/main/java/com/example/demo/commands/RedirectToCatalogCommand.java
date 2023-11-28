@@ -25,6 +25,6 @@ public class RedirectToCatalogCommand extends Command {
         BookDictionary iniBooks =  BookDictionary.createBookDictionaryWithInitialData();
         Map<Integer, BookEntry> bookDictionary = iniBooks.getAllBooks();
         request.setAttribute("bookDictionary", bookDictionary);
-        forward(ConfigurationManager.getProperty("path.page.catalog"));
+        forward(ConfigurationManager.getProperty("path.page.menu"));
     }
 }

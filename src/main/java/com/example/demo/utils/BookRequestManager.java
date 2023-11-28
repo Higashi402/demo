@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class BookRequestManager {
 
-    private static Map<Integer, BookRequest> bookRequests = new HashMap<>();
+    /*private static Map<Integer, BookRequest> bookRequests = new HashMap<>();
 
     private BookRequestManager() {
 
@@ -28,5 +28,5 @@ public class BookRequestManager {
 
     public static Map<Integer, BookRequest> getAllBookRequests(Map<Integer, BookRequest> bookRequests) {
         return new HashMap<>(bookRequests);
-    }
+    }*/
 }

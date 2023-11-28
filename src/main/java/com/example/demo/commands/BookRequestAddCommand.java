@@ -1,6 +1,7 @@
 package com.example.demo.commands;
 
 import com.example.demo.CommandUtils.ActionCommand;
+import com.example.demo.roles.RoleType;
 import com.example.demo.utils.*;
 
 import javax.servlet.ServletContext;
@@ -19,27 +20,33 @@ public class BookRequestAddCommand extends Command {
     }
 
     public void send() throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        User user = (User) request.getSession().getAttribute("user");
 
-        if (!BookRequestsContainer.bookRequests.containsKey(id)) {
-            try {
-                BookRequestManager.addBookRequest(BookRequestsContainer.bookRequests, BookDictionary.createBookDictionaryWithInitialData(), id);
-                request.setAttribute("resMessage",
-                        MessageManager.getProperty("message.addingrequestsucces"));
-                System.out.println("Книга добавлена");
-                System.out.println(BookRequestsContainer.bookRequests.get(id));
-                // Ваша логика добавления книги в заявки
-            } catch (IllegalArgumentException e) {
-                request.setAttribute("resMessage",
-                        MessageManager.getProperty("message.existserror"));
+        // Проверка наличия пользователя и его роли
+        if (user != null && user.getRole() == RoleType.USER) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            RegularUser regularUser = (RegularUser) user;
+            if (!regularUser.getApplications().containsKey(id)) {
+                try {
+                    // Добавление заявки пользователю в его словарь
+                    UserContainer.addBookRequestToUser(regularUser, id, new BookRequest(BookContainer.bookInfo.getBookById(id), "Отправлена"));
+                    request.getSession().setAttribute("user", regularUser);// здесь должен быть ваш объект BookRequest
+                    request.setAttribute("resMessage", MessageManager.getProperty("message.addingrequestsucces"));
+                    System.out.println("Заявка добавлена для пользователя: " + regularUser.getUsername());
+                } catch (Exception e) {
+                    request.setAttribute("resMessage", MessageManager.getProperty("message.existserror"));
+                }
+            } else {
+                request.setAttribute("resMessage", MessageManager.getProperty("message.existserror"));
+                System.out.println("Заявка уже существует для пользователя: " + regularUser.getUsername());
             }
         } else {
-            request.setAttribute("resMessage",
-                    MessageManager.getProperty("message.existserror"));
-            System.out.println("Книга уже есть");// Устанавливаем сообщение об ошибке, что книга с таким ID уже существует
+            request.setAttribute("resMessage", MessageManager.getProperty("message.permissionerror"));
+            System.out.println("Недостаточно прав для добавления заявки");
         }
 
-        BookDictionary iniBooks =  BookDictionary.createBookDictionaryWithInitialData();
+        // Остальная часть вашего кода (получение данных и перенаправление)
+        BookDictionary iniBooks = BookDictionary.createBookDictionaryWithInitialData();
         Map<Integer, BookEntry> bookDictionary = iniBooks.getAllBooks();
         request.setAttribute("bookDictionary", bookDictionary);
 

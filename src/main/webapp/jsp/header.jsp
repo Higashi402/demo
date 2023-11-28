@@ -15,8 +15,11 @@
     <hr class="user-black-line">
     <div class="user-centered-text">E-Book</div>
 </div>
-    <c:choose>
-        <c:when test="${sessionScope.userRole eq 'USER'}">
+<c:choose>
+    <c:when test="${not empty sessionScope.user}">
+        <c:set var="user" value="${sessionScope.user}" />
+        <c:choose>
+            <c:when test="${user.role == 'USER'}">
             <div class = "user-buttons">
                 <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="viewbooks">
@@ -34,7 +37,7 @@
                 </form>
             </div>
         </c:when>
-        <c:when test="${sessionScope.userRole eq 'ADMIN'}">
+            <c:when test="${user.role == 'ADMIN'}">
             <div class = "user-buttons">
                 <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="viewbooks">
@@ -48,10 +51,9 @@
 
                 <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
             </div>
-        </c:when>
-        <c:when test="${sessionScope.userRole eq 'MODERATOR'}">
-            <!-- Код для пользователя с ролью 'user' -->
-        </c:when>
+            </c:when>
+        </c:choose>
+    </c:when>
         <c:otherwise>
             <!-- Код для других пользователей или обработка ошибки -->
         </c:otherwise>

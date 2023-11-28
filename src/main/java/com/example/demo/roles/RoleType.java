@@ -2,7 +2,7 @@ package com.example.demo.roles;
 
 public enum RoleType {
     USER(1),
-    SYS_ADMIN(2),
+    LIBRARIAN(2),
     MODERATOR(3),
     ADMIN(4);
 
@@ -12,11 +12,8 @@ public enum RoleType {
         this.id = id;
     }
 
-    public Role getRole() {
-        return getRole(id);
+    public Role getRole(int id) {
+        return getRole(this.id);
     }
 
-    public static Role getRole(int id) {
-        return null;
-    }
 }

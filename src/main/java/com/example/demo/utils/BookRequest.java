@@ -2,21 +2,21 @@ package com.example.demo.utils;
 
 public class BookRequest {
 
-    private String bookTitle;
-    private String bookAuthor;
+    private BookEntry book;
+    private String status;
 
 
-    public BookRequest(String bookTitle, String bookAuthor) {
-        this.bookTitle = bookTitle;
-        this.bookAuthor = bookAuthor;
+    public BookRequest(BookEntry book, String status) {
+        this.book = book;
+        this.status = status;
     }
 
     public String getBookTitle() {
-        return bookTitle;
+        return book.getTitle();
     }
 
     public String getBookAuthor() {
-        return bookAuthor;
+        return book.getAuthor();
     }
 
 }

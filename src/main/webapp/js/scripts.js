@@ -46,12 +46,10 @@ function submitForm(element) {
     var bookTitle = parentRow.getAttribute('data-title');
     var bookAuthor = parentRow.getAttribute('data-author');
     var bookRating = parentRow.getAttribute('data-rating');
-
     document.getElementById('bookId').value = bookId;
     document.getElementById('bookTitle').value = bookTitle;
     document.getElementById('bookAuthor').value = bookAuthor;
     document.getElementById('bookRating').value = bookRating;
-
     document.getElementById('book-request-form').submit();
 }
 /*

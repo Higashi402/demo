@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ViewRequestsCommand extends Command {
@@ -19,9 +20,11 @@ public class ViewRequestsCommand extends Command {
     @Override
     public void process() throws ServletException, IOException {
         System.out.println("VIEWREQUESTSCOMMAND");
-        request.setAttribute("requestDictionary", BookRequestsContainer.bookRequests);
-        BookRequestsContainer.bookRequests.forEach((key, value) -> {
-            System.out.println("Key: " + key + ", Value: " + value.getBookAuthor());
+        RegularUser user = (RegularUser) request.getSession().getAttribute("user");
+        HashMap<Integer, BookRequest> userRequests = user.getApplications();
+        request.setAttribute("requestDictionary", userRequests);
+        userRequests.forEach((key, value) -> {
+            System.out.println(user.getUsername() + " " + key + ", Value: " + value.getBookAuthor());
         });
         forward(ConfigurationManager.getProperty("path.page.requests"));
     }
