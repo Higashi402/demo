@@ -49,7 +49,7 @@ public enum CommandEnum {
     },
     ADDBOOKSCOMMAND {
         {
-            //this.command = new AddBooksCommand();
+            this.command = new AddBooksCommand();
         }
     },
     REDIRECTTOUPDATEBOOKCOMMAND {

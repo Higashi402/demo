@@ -46,9 +46,4 @@ public class BookRequestAddCommand extends Command {
         System.out.println("Запрос выполнен");
         forward(ConfigurationManager.getProperty("path.page.bookinfo"));
     }
-
-
-
-
-
 }

@@ -455,6 +455,19 @@ tr.data-row-index {
     z-index: 9998; /* Ниже z-index формы, но выше затемнения */
 }
 
-.head {
-
+.bookInfoForm {
+    top: 200px;
+    left: 35%;
+    position: fixed;
+    width: 500px;
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 1200px;
+    border-radius: 5px;
 }
+
+

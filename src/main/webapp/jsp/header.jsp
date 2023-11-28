@@ -32,23 +32,16 @@
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
-
-
             </div>
         </c:when>
         <c:when test="${sessionScope.userRole eq 'ADMIN'}">
             <div class = "user-buttons">
-                <form action="controller" method="get">
+                <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="viewbooks">
                     <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
                 </form>
 
-                <form action="controller" method="get">
-                    <input type="hidden" name="command" value="bookrequestviewcommand">
-                    <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
-                </form>
-
-                <form action="controller" method="get">
+                <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="userviewcommand">
                     <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
                 </form>

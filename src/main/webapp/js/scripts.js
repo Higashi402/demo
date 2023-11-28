@@ -14,11 +14,6 @@ function closeForm() {
     }
 }
 
-function closeMyForm(formId) {
-    var form = document.getElementById(formId);
-    form.style.display = 'none';
-}
-
 
 /*function displayBookInfo(element) {
         var bookTitle = element.dataset.title;
