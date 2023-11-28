@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class CloseCommand extends Command {
+public class RedirectToMainMenuCommand extends Command{
 
     @Override
     public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
@@ -19,12 +19,8 @@ public class CloseCommand extends Command {
 
     }
 
-
     @Override
-    public void process() throws ServletException, IOException {
-        BookDictionary iniBooks =  BookDictionary.createBookDictionaryWithInitialData();
-        Map<Integer, BookEntry> bookDictionary = iniBooks.getAllBooks();
-        request.setAttribute("bookDictionary", bookDictionary);
-        forward(ConfigurationManager.getProperty("path.page.catalog"));
+    public void send() throws ServletException, IOException {
+        redirect("jsp/menu.jsp");
     }
 }

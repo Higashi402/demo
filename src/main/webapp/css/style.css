@@ -146,22 +146,7 @@ input[type="password"] {
     user-select: none;
 }
 
-.modal-content-catalog {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(152, 251, 152,0.8);
-    border: 1px solid #3CB371;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 
 .modal-content-request {
     position: absolute;
@@ -344,7 +329,14 @@ input[type="password"] {
     border: 1px solid #888;
     width: 100%;
     max-width: 1200px;
-    border-radius: 5px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    display: block;
+    justify-content: center;
 }
 
 /* Стиль для таблицы */
@@ -386,11 +378,13 @@ th {
     color: white;
 }
 
-#requestsForm {
-    position: absolute; /* Используйте 'absolute' или 'fixed' в зависимости от ваших потребностей */
-    top: 0;
-    left: 30%;
+.requestsForm {
+    position: absolute;
+    top: 400px;
+    left: 50%;
     width: 800px;
+    display: block;
+    transform: translate(-50%, -50%);
 }
 
 /* Стили для контейнера формы */
@@ -401,16 +395,18 @@ th {
 }
 
 /* Стили для таблицы */
-#requestsTableContainer {
-    max-height: 80vh; /* Задайте максимальную высоту для таблицы */
-    font-size: 30px; /* Размер текста в ячейках таблицы */
+.requestsTableContainer {
+    overflow: auto; /* Добавляет полосы прокрутки, если содержимое превышает размер контейнера */
+    max-height: 600px; /* Устанавливает максимальную высоту контейнера, при которой появляются полосы прокрутки */
+    font-size: 35px;
 }
 
 .viewBooksForm {
     position: absolute;
     top: 400px;
-    left: 30%;
+    left: 50%;
     width: 800px;
+    transform: translate(-50%, -50%);
 }
 
 #viewBooksForm .modal-content-catalog {
@@ -420,7 +416,7 @@ th {
 }
 
 
-#booksContainer {
+.booksContainer {
     overflow: auto; /* Добавляет полосы прокрутки, если содержимое превышает размер контейнера */
     max-height: 600px; /* Устанавливает максимальную высоту контейнера, при которой появляются полосы прокрутки */
     font-size: 35px; /* Размер текста в ячейках таблицы */

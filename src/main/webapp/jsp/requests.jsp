@@ -13,17 +13,16 @@
 <body>
 <%@include file="header.jsp" %>
 
-<div id="requestsForm" class="modal common-form-style">
-    <div class="modal-content-catalog" style="display: flex; flex-direction: column; align-items: center;">
+<div class="requestsForm">
+    <div class="modal-content-catalog">
+
+        <p style="font-size: 40px">Ваши заявки</p>
 
         <form action="controller" method="POST">
-            <input type="hidden" name="command" value="close">
+            <input type="hidden" name="command" value="redirecttomainmenu">
             <button id="button-hover" class="close-button"></button>
         </form>
-
-        <h2 style="text-align: center; font-size: 40px;">Ваши заявки</h2>
-
-        <div id="requestsTableContainer">
+        <div class="requestsTableContainer">
             <table id = "requestTable">
 
                 <tbody id="requestTableBody">

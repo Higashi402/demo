@@ -13,13 +13,15 @@
 <body>
 <%@include file="header.jsp" %>
 
-<div class="viewBooksForm" class="modal">
+<div class="viewBooksForm">
     <div class="modal-content-catalog">
-        <p style="font-size: 40px">Каталог книг</p>
+
+        <p style="font-size: 40px; align-content: center">Каталог книг</p>
         <form action="controller" method="POST">
-            <input type="hidden" name="command" value="close">
+            <input type="hidden" name="command" value="redirecttomainmenu">
             <button id="button-hover" class="close-button"></button>
         </form>
+
         <form id="book-request-form" action="controller" method="POST" accept-charset="UTF-8" style="display: none;">
             <input type="hidden" name="command" value="viewbookinformation">
             <input type="hidden" name="id" id="bookId">
@@ -40,7 +42,7 @@
                 <!-- Кнопка скрыта для других ролей -->
             </c:otherwise>
         </c:choose>
-        <div id="booksContainer">
+        <div class="booksContainer">
             <table style="width: 700px; font-size: 20px; ">
                 <thead>
                 <tr style="font-size: 30px;">
@@ -49,35 +51,33 @@
                     <th style="width: 200px;">Рейтинг</th>
                 </tr>
                 </thead>
-<c:choose>
-    <c:when test="${sessionScope.userRole eq 'USER'}">
+        <c:choose>
+            <c:when test="${sessionScope.userRole eq 'USER'}">
                 <tbody class="tableBody">
-                <c:forEach var="bookEntry" items="${bookDictionary}">
-                    <tr class='book-row' onclick="submitForm(this);" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
-                        <td>${bookEntry.value.title}</td>
-                        <td>${bookEntry.value.author}</td>
-                        <td>${bookEntry.value.rating}</td>
-                    </tr>
-                    <!-- Форма JSP для отправки запроса -->
-                </c:forEach></c:when>
-    <c:when test="${sessionScope.userRole eq 'ADMIN'}">
-        <tbody class="tableBody">
-        <c:forEach var="bookEntry" items="${bookDictionary}">
-            <tr class='book-row' onclick="displayBookInfoForAdmin(this)" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
-                <td hidden>${bookEntry.key}</td>
-                <td>${bookEntry.value.title}</td>
-                <td>${bookEntry.value.author}</td>
-                <td>${bookEntry.value.rating}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </c:when>
-    <c:otherwise>
-        <!-- Код для других пользователей или обработка ошибки -->
-    </c:otherwise>
-</c:choose>
+                    <c:forEach var="bookEntry" items="${bookDictionary}">
+                        <tr class='book-row' onclick="submitForm(this);" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
+                            <td>${bookEntry.value.title}</td>
+                            <td>${bookEntry.value.author}</td>
+                            <td>${bookEntry.value.rating}</td>
+                        </tr>
+                        <!-- Форма JSP для отправки запроса -->
+                    </c:forEach></c:when>
+            <c:when test="${sessionScope.userRole eq 'ADMIN'}">
+                <tbody class="tableBody">
+                    <c:forEach var="bookEntry" items="${bookDictionary}">
+                        <tr class='book-row' onclick="displayBookInfoForAdmin(this)" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
+                            <td hidden>${bookEntry.key}</td>
+                            <td>${bookEntry.value.title}</td>
+                            <td>${bookEntry.value.author}</td>
+                            <td>${bookEntry.value.rating}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
-
+            </c:when>
+            <c:otherwise>
+                <!-- Код для других пользователей или обработка ошибки -->
+        </c:otherwise>
+    </c:choose>
             </table>
         </div>
     </div>

@@ -12,10 +12,11 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
+<%@include file="catalog.jsp" %>
 <div class = "bookInfoForm" class="modal">
 
         <form action="controller" method="GET">
-            <input type="hidden" name="command" value="close">
+            <input type="hidden" name="command" value="redirectToCatalog">
             <button id="button-hover" class="close-button"></button>
         </form>
         <c:choose>

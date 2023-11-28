@@ -47,6 +47,11 @@ public enum CommandEnum {
             //this.command = new RedirectToAddBookPageCommand();
         }
     },
+    REDIRECTTOMAINMENU {
+        {
+            this.command = new RedirectToMainMenuCommand();
+        }
+    },
     ADDBOOKSCOMMAND {
         {
             this.command = new AddBooksCommand();
@@ -62,9 +67,9 @@ public enum CommandEnum {
             //this.command = new UpdateBookCommand();
         }
     },
-    CLOSE {
+    REDIRECTTOCATALOG {
         {
-            this.command = new CloseCommand();
+            this.command = new RedirectToCatalogCommand();
         }
     },
     VIEWBOOKINFORMATION {
