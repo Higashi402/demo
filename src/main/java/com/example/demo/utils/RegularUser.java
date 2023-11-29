@@ -3,14 +3,17 @@ package com.example.demo.utils;
 import com.example.demo.roles.RoleType;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class RegularUser extends User {
     private HashMap<Integer, BookRequest> bookRequests = new HashMap<>();
 
-    public RegularUser(String username, String password) {
+    private boolean isBlocked;
+
+    public RegularUser(String username, String password, boolean isBlocked) {
         super(username, password, RoleType.USER);
         this.bookRequests = new HashMap<>();
+        this.isBlocked = isBlocked;
+
     }
 
     // Геттер и сеттер для applications
@@ -18,6 +21,13 @@ public class RegularUser extends User {
         return bookRequests;
     }
 
+    public boolean getBlocked() {
+        return this.isBlocked;
+    }
+
+    public void setBlocked(boolean isBlocked) {
+        this.isBlocked = isBlocked;
+    }
     public void setApplications(HashMap<Integer, BookRequest> bookRequests) {
         this.bookRequests = bookRequests;
     }
