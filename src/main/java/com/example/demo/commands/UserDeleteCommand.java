@@ -27,7 +27,10 @@ public class UserDeleteCommand extends Command {
             forward(ConfigurationManager.getProperty("path.page.usercatalog"));
         }
         else {
+            request.setAttribute("userDictionary", UserContainer.users);
             request.setAttribute("errorDeleteMessage", "У вас недостаточно прав для этого действия!");
+            request.setAttribute("userRole", user.getRole());
+            request.setAttribute("username", username);
             forward(ConfigurationManager.getProperty("path.page.userinfo"));
         }
     }

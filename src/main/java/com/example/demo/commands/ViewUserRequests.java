@@ -30,6 +30,9 @@ public class ViewUserRequests extends Command{
             forward(ConfigurationManager.getProperty("path.page.userrequests"));
         } else {
             request.setAttribute("errorMessage", "Заявки могут быть только у пользователей!");
+            request.setAttribute("userRole", user.getRole());
+            request.setAttribute("username", username);
+            request.setAttribute("userDictionary", UserContainer.users);
             forward(ConfigurationManager.getProperty("path.page.userinfo"));
         }
     }

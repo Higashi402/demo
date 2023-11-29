@@ -19,7 +19,7 @@
     <p style="font-size: 40px">Заявки пользователя ${username}</p>
 
     <form action="controller" method="POST">
-      <input type="hidden" name="command" value="redirecttomainmenu">
+      <input type="hidden" name="command" value="redirecttousercatalog">
       <button id="button-hover" class="close-button"></button>
     </form>
 
