@@ -27,16 +27,10 @@ public class EditBookCommand extends Command {
         String author = request.getParameter("authorValue");
         String amount = request.getParameter("amountValue");
         String rating = request.getParameter("rating");
-        System.out.println(id);
-        System.out.println(title);
-        System.out.println(author);
-        System.out.println(amount);
-        System.out.println(rating);
         // Проверяем, не являются ли атрибуты пустыми
         if (title != null && !title.isEmpty() && author != null && !author.isEmpty() && amount != null &&
                 !amount.isEmpty() && rating != null && !rating.isEmpty() && id != null && !id.isEmpty()) {
             try {
-                System.out.println("123");
                 // Парсим значение рейтинга в число
                 int intamount = Integer.parseInt(amount);
                 int intid = Integer.parseInt(id);

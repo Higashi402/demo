@@ -358,13 +358,6 @@ th {
     transform: translate(-50%, -50%);
 }
 
-#viewBooksForm .modal-content-catalog {
-    padding: 20px;
-    margin: 0;
-    overflow-y: auto; /* Добавьте полосу прокрутки, если содержимое превысит максимальную высоту */
-}
-
-
 .booksContainer {
     overflow: auto; /* Добавляет полосы прокрутки, если содержимое превышает размер контейнера */
     max-height: 600px; /* Устанавливает максимальную высоту контейнера, при которой появляются полосы прокрутки */
@@ -475,6 +468,20 @@ tr.data-row-index {
 
 .catalog-header {
     display: flex;
+}
+
+.viewUsersForm {
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    width: 800px;
+    transform: translate(-50%, -50%);
+}
+
+.userContainer {
+    overflow: auto; /* Добавляет полосы прокрутки, если содержимое превышает размер контейнера */
+    max-height: 600px; /* Устанавливает максимальную высоту контейнера, при которой появляются полосы прокрутки */
+    font-size: 35px;
 }
 
 

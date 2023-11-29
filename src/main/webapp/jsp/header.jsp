@@ -44,7 +44,7 @@
                     </form>
 
                     <form action="/demo/controller" method="GET">
-                        <input type="hidden" name="command" value="userviewcommand">
+                        <input type="hidden" name="command" value="viewusers">
                         <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
                     </form>
                 </div>

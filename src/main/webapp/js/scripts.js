@@ -54,6 +54,15 @@ function submitForm(element) {
 
     document.getElementById('book-request-form').submit();
 }
+
+function submitUserForm(element) {
+    var parentRow = element.closest('.book-row');
+    var username = parentRow.getAttribute('data-user');
+    var userRole = parentRow.getAttribute('data-role');
+    document.getElementById('Username').value = username;
+    document.getElementById('UserRole').value = userRole;
+    document.getElementById('user-request-form').submit();
+}
 /*
 function sendRequest(element) {
     var bookId = element.dataset.id;
