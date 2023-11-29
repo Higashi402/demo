@@ -1,7 +1,10 @@
 package com.example.demo.commands;
 
-import com.example.demo.utils.*;
+import com.example.demo.utils.BookRequestsContainer;
 import com.example.demo.CommandUtils.ActionCommand;
+import com.example.demo.utils.ConfigurationManager;
+import com.example.demo.utils.RegularUser;
+import com.example.demo.utils.UserContainer;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+public class BookRequestDeleteCommand extends Command {
 
-public class BoookRequestDeleteCommand extends Command{
     @Override
     public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         super.init(servletContext, servletRequest, servletResponse);

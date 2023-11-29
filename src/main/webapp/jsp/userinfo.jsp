@@ -29,9 +29,9 @@
         <input type="hidden" name="username" value="${username}">
         <button type="submit" id = "button-hover" class = "user-button-submit">Посмотреть заявки пользователя</button>
       </form>
-      <form action="controller" method="POST">
-        <input type="hidden" name="command" value="deleteuser">
-        <input type="hidden" name="id" value="${username}">
+      <form action="controller" method="GET">
+        <input type="hidden" name="command" value="userdelete">
+        <input type="hidden" name="username" value="${username}">
         <button type="submit" id = "button-hover" class = "user-button-submit">Удалить пользователя</button>
       </form>
     </div>
@@ -39,6 +39,10 @@
     <!-- Проверяем наличие атрибута errorMessage и выводим его -->
     <c:if test="${not empty errorMessage}">
       <p style="color: red;">${errorMessage}</p>
+    </c:if>
+
+    <c:if test="${not empty errorDeleteMessage}">
+      <p style="color: red;">${errorDeleteMessage}</p>
     </c:if>
   </div>
 </div>

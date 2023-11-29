@@ -19,9 +19,21 @@
     <p style="font-size: 40px">Заявки пользователя ${username}</p>
 
     <form action="controller" method="POST">
-      <input type="hidden" name="command" value="redirecttousercatalog">
+      <input type="hidden" name="command" value="redirecttomainmenu">
       <button id="button-hover" class="close-button"></button>
     </form>
+
+    <form id="request-form" action="controller" method="POST" accept-charset="UTF-8" style="display: none;">
+      <input type="hidden" name="command" value="viewuserrequestinformation">
+      <input type="hidden" name="id" id="requestId">
+      <input type="hidden" name="username" id="username">
+      <input type="hidden" name="title" id="requestTitle">
+      <input type="hidden" name="author" id="requestAuthor">
+      <input type="hidden" name="status" id="requestStatus">
+
+      <input type="submit" id="submitBtn" style="display: none;">
+    </form>
+
     <div class="requestsTableContainer">
       <table id = "requestTable">
 
@@ -39,14 +51,17 @@
           <th>Статус заявки
         </tr>
         </thead>
+        <tbody class="tableBody">
         <c:forEach var="requestEntry" items="${requestDictionary}">
-          <tr>
+          <tr class='book-row' onclick="submitUserRequest(this)" data-user="${username}" data-id="${requestEntry.key}" data-author="${requestEntry.value.bookAuthor}"
+              data-title="${requestEntry.value.bookTitle}" data_status="${requestEntry.value.requestStatus}">
             <td>${requestEntry.key}</td>
             <td>${requestEntry.value.bookAuthor}</td>
             <td>${requestEntry.value.bookTitle}</td>
             <td>${requestEntry.value.requestStatus}</td>
           </tr>
         </c:forEach>
+        </tbody>
         </c:otherwise>
         </c:choose>
         </tbody>

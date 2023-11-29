@@ -92,6 +92,29 @@ public enum CommandEnum {
             this.command = new ViewUserRequests();
         }
     },
+    USERDELETE {
+        {
+            this.command = new UserDeleteCommand();
+        }
+    },
+
+    VIEWUSERREQUESTINFORMATION {
+        {
+            this.command = new ViewUsersRequestInformationCommand();
+        }
+    },
+
+    UPDATEREQUESTSTATUS{
+        {
+            this.command = new UpdateRequestStatusCommand();
+        }
+    },
+
+    BOOKREQUESTDELETE{
+        {
+            this.command = new BookRequestDeleteCommand();
+        }
+    },
     VIEWBOOKINFORMATION {
         {
             this.command = new ViewBookInformation();
