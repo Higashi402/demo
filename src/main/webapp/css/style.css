@@ -484,6 +484,27 @@ tr.data-row-index {
     font-size: 35px;
 }
 
+.requestEditForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: auto;
+    padding: 20px;
+    background-color: rgba(152, 251, 152,0.8);
+    border: 1px solid #3CB371;
+    border-radius: 10px;
+}
+
+.edit-request-buttons {
+    display: flex;
+    float: left;
+}
+
+.request-edit-text {
+    font-size: 25px;
+}
+
 
 
 

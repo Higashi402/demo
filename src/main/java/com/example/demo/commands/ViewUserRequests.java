@@ -13,7 +13,6 @@ public class ViewUserRequests extends Command{
     @Override
     public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         super.init(servletContext, servletRequest, servletResponse);
-        System.out.println("Заявки пользователя инит");
     }
     @Override
     public void process() throws ServletException, IOException {

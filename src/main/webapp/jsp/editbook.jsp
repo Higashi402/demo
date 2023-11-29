@@ -36,7 +36,7 @@
         <label for="amount">Количество:</label><br>
         <input type="number" id="amount" name="amount" min="1" max="10" required oninput="document.getElementById('amountValue').value = this.value;"><br><br>
 
-        <input type="submit" value="Редактировать книгу">
+        <input type="submit" id="button-hover" class = "user-button-submit"  value="Редактировать книгу">
     </form>
 </div>
 </body>

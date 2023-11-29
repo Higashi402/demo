@@ -44,6 +44,5 @@ public class EditBookCommand extends Command {
                 e.printStackTrace(); // или другая логика обработки ошибки
             }
         }
-        System.out.println("Не изменилось");
     }
 }

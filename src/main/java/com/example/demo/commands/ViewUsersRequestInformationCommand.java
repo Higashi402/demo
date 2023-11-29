@@ -23,6 +23,7 @@ public class ViewUsersRequestInformationCommand extends Command{
         request.setAttribute("requestAuthor", request.getParameter("author"));
         request.setAttribute("requestStatus", request.getParameter("status"));
 
+
         forward(ConfigurationManager.getProperty("path.page.requsetinfo"));
     }
 }

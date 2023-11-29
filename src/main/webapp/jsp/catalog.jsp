@@ -19,6 +19,7 @@
             <input type="hidden" name="command" value="redirecttomainmenu">
             <button id="button-hover" class="close-button"></button>
         </form>
+
         <c:set var="user" value="${sessionScope.user}" />
         <c:choose>
             <c:when test="${user.role == 'ADMIN'}">
@@ -60,6 +61,7 @@
                 </thead>
         <c:choose>
             <c:when test="${user.role ==  'USER'}">
+                <p style="font-size: 40px; margin-top: 5px">Каталог книг</p>
                 <tbody class="tableBody">
                         <c:forEach var="bookEntry" items="${bookDictionary}">
                             <tr class='book-row' onclick="submitForm(this);" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
