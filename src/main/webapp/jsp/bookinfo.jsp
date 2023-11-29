@@ -13,9 +13,9 @@
 <body>
 <%@include file="header.jsp" %>
 <div class = "bookInfoForm" class="modal">
-
-        <form action="controller" method="POST">
-            <input type="hidden" name="command" value="close">
+    <div class="modal-content-catalog">
+        <form action="controller" method="GET">
+            <input type="hidden" name="command" value="redirecttocatalog">
             <button id="button-hover" class="close-button"></button>
         </form>
         <c:choose>

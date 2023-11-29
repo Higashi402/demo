@@ -17,9 +17,10 @@
     <div class="modal-content-catalog">
         <p style="font-size: 40px">Каталог книг</p>
         <form action="controller" method="POST">
-            <input type="hidden" name="command" value="close">
+            <input type="hidden" name="command" value="redirecttomainmenu">
             <button id="button-hover" class="close-button"></button>
         </form>
+
         <form id="book-request-form" action="controller" method="POST" accept-charset="UTF-8" style="display: none;">
             <input type="hidden" name="command" value="viewbookinformation">
             <input type="hidden" name="id" id="bookId">
@@ -28,6 +29,7 @@
             <input type="hidden" name="rating" id="bookRating">
             <input type="submit" id="submitBtn" style="display: none;" formenctype="application/x-www-form-urlencoded;charset=UTF-8">
         </form>
+
         <c:set var="user" value="${sessionScope.user}" />
         <c:choose>
             <c:when test="${user.role == 'ADMIN'}">
@@ -59,7 +61,8 @@
                         <td>${bookEntry.value.rating}</td>
                     </tr>
                     <!-- Форма JSP для отправки запроса -->
-                </c:forEach></c:when>
+                </c:forEach>
+    </c:when>
     <c:when test="${user.role ==  'ADMIN'}">
         <tbody class="tableBody">
         <c:forEach var="bookEntry" items="${bookDictionary}">
@@ -76,7 +79,6 @@
         <!-- Код для других пользователей или обработка ошибки -->
     </c:otherwise>
 </c:choose>
-                </tbody>
 
             </table>
         </div>

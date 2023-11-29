@@ -15,7 +15,7 @@ public enum CommandEnum {
     },
     VIEWUSERS {
         {
-            //this.command = new ViewUsersCommand();
+            this.command = new ViewUsersCommand();
         }
 
     },
@@ -70,6 +70,16 @@ public enum CommandEnum {
     REDIRECTTOCATALOG {
         {
             this.command = new RedirectToCatalogCommand();
+        }
+    },
+    VIEWUSERINFORMATION {
+        {
+            this.command = new ViewUserInformationCommand();
+        }
+    },
+    VIEWUSERREQUESTS {
+        {
+            this.command = new ViewUserRequests();
         }
     },
     VIEWBOOKINFORMATION {

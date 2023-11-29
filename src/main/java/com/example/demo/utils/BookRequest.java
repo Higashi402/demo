@@ -18,5 +18,9 @@ public class BookRequest {
     public String getBookAuthor() {
         return book.getAuthor();
     }
+    public String getRequestStatus() {
+        return status;
+    }
+
 
 }

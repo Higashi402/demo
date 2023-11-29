@@ -45,11 +45,16 @@
                 </form>
 
                 <form action="/demo/controller" method="GET">
-                    <input type="hidden" name="command" value="userviewcommand">
+                    <input type="hidden" name="command" value="viewusers">
                     <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
                 </form>
 
-                <button id="button-hover" onclick="openForm('confirmExitForm')" class = "user-buttons-exit"></button>
+                <form action="/demo/controller" method="GET">
+                    <input type="hidden" name="command" value="logout">
+                    <button type="submit" id="button-hover" class="user-buttons-exit"></button>
+                </form>
+
+
             </div>
             </c:when>
         </c:choose>
