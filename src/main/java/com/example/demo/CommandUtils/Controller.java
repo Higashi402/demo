@@ -2,6 +2,7 @@ package com.example.demo.CommandUtils;
 
 import com.example.demo.commands.EmptyCommand;
 import com.example.demo.commands.Command;
+import com.example.demo.utils.BookDictionary;
 import com.example.demo.utils.MessageManager;
 
 import javax.servlet.ServletException;

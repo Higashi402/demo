@@ -20,49 +20,45 @@
         <c:set var="user" value="${sessionScope.user}" />
         <c:choose>
             <c:when test="${user.role == 'USER'}">
-            <div class = "user-buttons">
-                <form action="/demo/controller" method="GET">
-                    <input type="hidden" name="command" value="viewbooks">
-                    <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
-                </form>
+                <div class = "user-buttons">
+                    <form action="/demo/controller" method="GET">
+                        <input type="hidden" name="command" value="viewbooks">
+                        <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
+                    </form>
 
-                <form action="/demo/controller" method="GET">
-                    <input type="hidden" name="command" value="viewrequests">
-                    <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
-                </form>
-
+                    <form action="/demo/controller" method="GET">
+                        <input type="hidden" name="command" value="viewrequests">
+                        <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
+                    </form>
+                </div>
                 <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
-            </div>
-        </c:when>
+            </c:when>
             <c:when test="${user.role == 'ADMIN'}">
-            <div class = "user-buttons">
-                <form action="/demo/controller" method="GET">
-                    <input type="hidden" name="command" value="viewbooks">
-                    <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
-                </form>
+                <div class = "user-buttons">
+                    <form action="/demo/controller" method="GET">
+                        <input type="hidden" name="command" value="viewbooks">
+                        <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
+                    </form>
 
-                <form action="/demo/controller" method="GET">
-                    <input type="hidden" name="command" value="viewusers">
-                    <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
-                </form>
-
+                    <form action="/demo/controller" method="GET">
+                        <input type="hidden" name="command" value="userviewcommand">
+                        <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
+                    </form>
+                </div>
                 <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
-
-
-            </div>
             </c:when>
         </c:choose>
     </c:when>
-        <c:otherwise>
-            <!-- Код для других пользователей или обработка ошибки -->
-        </c:otherwise>
-    </c:choose>
+    <c:otherwise>
+        <!-- Код для других пользователей или обработка ошибки -->
+    </c:otherwise>
+</c:choose>
 
 </body>
 </html>

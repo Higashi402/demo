@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alexa
-  Date: 26.11.2023
-  Time: 17:29
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.google.gson.Gson" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,26 +11,33 @@
     </style>
 </head>
 <body>
-<%--<%@include file="header.jsp" %>--%>
+<%@include file="header.jsp" %>
+<%@include file="catalog.jsp"%>
 
 <h2>Добавление книги</h2>
-<div class = loginForm>
-    <form action="controller" method="post">
-        <input type="hidden" name="command" value="addbookscommand">
+<div class = adminAddBookForm>
+    <form action="/demo/controller" method="GET">
+        <input type="hidden" name="command" value="viewbooks">
+        <button id="button-hover" class="close-button"></button>
+    </form>
+    <form action="/demo/controller" method="POST">
+        <input type="hidden" name="command" value="addbook">
         <input type="hidden" id="titleValue" name="titleValue" value="">
         <input type="hidden" id="authorValue" name="authorValue" value="">
         <input type="hidden" id="amountValue" name="amountValue" value="">
 
-        <label for="title">Название книги:</label><br>
-        <input type="text" id="title" name="title" required oninput="document.getElementById('titleValue').value = this.value;"><br><br>
+        <div class = "add-book-text-box">
+            <label for="title" style="font-size: 20px; margin-bottom: 20px">Название книги:</label>
+            <input type="text" id="title" name="title" required oninput="document.getElementById('titleValue').value = this.value;">
 
-        <label for="author">Автор книги:</label><br>
-        <input type="text" id="author" name="author" required oninput="document.getElementById('authorValue').value = this.value;"><br><br>
+            <label for="author" style="font-size: 20px; margin-bottom: 20px">Автор книги:</label>
+            <input type="text" id="author" name="author" required oninput="document.getElementById('authorValue').value = this.value;">
 
-        <label for="amount">Количество:</label><br>
-        <input type="number" id="amount" name="amount" min="1" max="10" required oninput="document.getElementById('amountValue').value = this.value;"><br><br>
+            <label for="amount" style="font-size: 20px; margin-right: 20px">Количество:</label>
+            <input type="number" id="amount" name="amount" min="1" max="10" required oninput="document.getElementById('amountValue').value = this.value;">
+        </div>
 
-        <input type="submit" value="Добавить книгу">
+        <input type="submit" class = "admin-add-book" id = "button-hover" value="Добавить книгу">
     </form>
 </div>
 </body>

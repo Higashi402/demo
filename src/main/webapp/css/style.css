@@ -117,7 +117,7 @@ body {
 input[type="text"],
 input[type="password"] {
     width: 100%;
-    height: 40px;
+    height: 50px;
     padding: 10px;
     margin-bottom: 0px;
     font-family:Gabriola;
@@ -208,11 +208,22 @@ input[type="password"] {
     cursor: pointer;
 }
 
-.user-buttons {
-    position: relative;
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
+.user-buttons button {
+    position: absolute;
+    padding: 10px; /* Добавим отступы вокруг текста кнопки */
+    background-color: #4CAF50; /* Задаем цвет фона кнопки */
+    color: white; /* Задаем цвет текста на кнопке */
+    border: none; /* Убираем границу кнопки */
+    border-radius: 5px; /* Добавим закругление углов кнопки */
+    cursor: pointer; /* Указываем, что это интерактивный элемент */
+    float: left; /* Float the buttons side by side */
+    margin: 25px 20px 20px 20px;
+
+    width: 280px;
+    height: 50px;
+    text-transform: uppercase;
+    font-size: .8em;
+    letter-spacing: 2px;
 }
 
 .close-button{
@@ -225,45 +236,23 @@ input[type="password"] {
     height: 15px;
     background-size: cover;
     cursor: pointer;
+    display: table;
 }
 
 .user-buttons-catalog{
     position: absolute;
-    top: 5px;
     left: 10%;
-    width: 280px;
-    height: 50px;
-    border: 2px solid #FFA07A;
-    margin: 20px 20px 20px 20px;
-    background-color: #FFDAB9;
-    color: #FFA07A;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: .8em;
-    letter-spacing: 2px;
-    overflow: hidden;
-    user-select: none;
 }
 
 .user-buttons-users{
     position: absolute;
-    top: 5px;
     left: 50%;
-    width: 280px;
-    height: 50px;
-    border: 2px solid #FFA07A;
-    margin: 20px 20px 20px 20px;
-    background-color: #FFDAB9;
-    color: #FFA07A;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: .8em;
-    letter-spacing: 2px;
-    overflow: hidden;
-    user-select: none;
 }
 
-
+.user-buttons-request{
+    position: absolute;
+    left: 30%;
+}
 
 .user-buttons-exit{
     position: absolute;
@@ -274,48 +263,8 @@ input[type="password"] {
     background-image: url('/demo/img/exit.png');
     background-color: transparent;
     background-size: cover;
-    background-repeat: no-repeat;
     border: none;
     cursor: pointer;
-    margin-top: 0;
-}
-
-.user-buttons-request{
-    position: absolute;
-    top: 5px;
-    left: 30%;
-    width: 280px;
-    height: 50px;
-    border: 2px solid #FFA07A;
-    margin: 20px 20px 20px 20px;
-    background-color: #FFDAB9;
-    color: #FFA07A;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: .8em;
-    letter-spacing: 2px;
-    overflow: hidden;
-    user-select: none;
-}
-
-.exitForm-label-acception{
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 0;
-    position: relative;
-    text-align: center;
-}
-
-.exitForm-label-quetion{
-    font-size: 25px;
-    margin-bottom: 20px;
-    position: relative;
-    text-align: center;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center; /* Выравнивает кнопки по центру горизонтально */
 }
 
 .tableBody tr:hover {
@@ -452,18 +401,82 @@ tr.data-row-index {
 }
 
 .bookInfoForm {
-    top: 200px;
-    left: 35%;
-    position: fixed;
-    width: 500px;
-    display: block;
-    text-align: center;
-    background-color: #fff;
-    margin: 10% auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: auto;
+    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #888;
-    max-width: 1200px;
-    border-radius: 5px;
+    background-color: rgba(152, 251, 152,0.8);
+    border: 1px solid #3CB371;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
 }
+
+.adminAddBookForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 265px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(152, 251, 152,0.8);
+    border: 1px solid #3CB371;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#title {
+    height: 20px;
+    width: 93%;
+}
+
+#author {
+    height: 20px;
+    width: 93%;
+}
+
+#amount {
+    margin-bottom: 20px;
+    height: 20px;
+}
+
+.admin-add-book {
+    position: absolute;
+    margin-top: 0px;
+    left: 17%;
+
+    display: flex;
+    height: 50px;
+    border: 2px solid #FFA07A;
+    background-color: #FFDAB9;
+    color: #FFA07A;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 6px;
+    overflow: hidden;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-author {
+    font-size: 30px;
+}
+.info-rating {
+    font-size: 30px;
+}
+
+.catalog-header {
+    display: flex;
+}
+
+
 
 

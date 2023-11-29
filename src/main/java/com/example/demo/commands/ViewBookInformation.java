@@ -1,5 +1,6 @@
 package com.example.demo.commands;
 
+import com.example.demo.utils.BookContainer;
 import com.example.demo.utils.BookDictionary;
 import com.example.demo.utils.BookEntry;
 import com.example.demo.utils.ConfigurationManager;
@@ -31,9 +32,7 @@ public class ViewBookInformation extends Command{
         request.setAttribute("bookAuthor", bookAuthor);
         request.setAttribute("bookRating", bookRating);
 
-        BookDictionary iniBooks =  BookDictionary.createBookDictionaryWithInitialData();
-        Map<Integer, BookEntry> bookDictionary = iniBooks.getAllBooks();
-        request.setAttribute("bookDictionary", bookDictionary);
+        request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
 
         // Перенаправляем на страницу с информацией о книге
         forward(ConfigurationManager.getProperty("path.page.bookinfo"));

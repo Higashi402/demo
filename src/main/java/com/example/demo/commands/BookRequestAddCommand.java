@@ -45,10 +45,7 @@ public class BookRequestAddCommand extends Command {
             System.out.println("Недостаточно прав для добавления заявки");
         }
 
-        // Остальная часть вашего кода (получение данных и перенаправление)
-        BookDictionary iniBooks = BookDictionary.createBookDictionaryWithInitialData();
-        Map<Integer, BookEntry> bookDictionary = iniBooks.getAllBooks();
-        request.setAttribute("bookDictionary", bookDictionary);
+        request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
 
         System.out.println("Запрос выполнен");
         forward(ConfigurationManager.getProperty("path.page.bookinfo"));

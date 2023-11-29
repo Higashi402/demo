@@ -4,7 +4,6 @@ import com.example.demo.utils.ConfigurationManager;
 import com.example.demo.sessionUtils.SessionManager;
 import com.example.demo.utils.User;
 import com.example.demo.utils.UserContainer;
-import com.example.demo.utils.UserDictionary;
 import com.example.demo.roles.RoleType;
 
 import javax.servlet.ServletContext;

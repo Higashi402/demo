@@ -24,6 +24,7 @@ public class BookDictionary {
         bookDictionary.addBook(15, "В списках не значился", "Б. Васильев", 3, 5);
         bookDictionary.addBook(16, "В списках не значился", "Б. Васильев", 3, 5);
         bookDictionary.addBook(17, "В списках не значился", "Б. Васильев", 3, 5);
+
         return bookDictionary;
     }
 

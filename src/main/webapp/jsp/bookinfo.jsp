@@ -12,20 +12,20 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<div class = "bookInfoForm" class="modal">
-    <div class="modal-content-catalog">
+<%@include file="catalog.jsp" %>
+<div class = "bookInfoForm">
         <form action="controller" method="GET">
-            <input type="hidden" name="command" value="redirecttocatalog">
+            <input type="hidden" name="command" value="redirectToCatalog">
             <button id="button-hover" class="close-button"></button>
         </form>
         <c:choose>
             <c:when test="${not empty resMessage}">
                 <p style="font-size: 35px">${resMessage}</p>
             </c:when>
-            <c:otherwise>
-                <div class = "bookInfo"> </div>
-                    <h2>${bookTitle}</h2>
-                    <p class="info-author">Автор тест: ${bookAuthor}</p>
+            <c:when test="${user.role ==  'USER'}">
+                <div class = "bookInfo">
+                    <h2 style="font-size: 40px">${bookTitle}</h2>
+                    <p class="info-author">Автор книги: ${bookAuthor}</p>
                     <p class="info-rating">Рейтинг: ${bookRating}</p>
                     <div class="info-makeRequest">
                         <form action="controller" method="POST">
@@ -35,6 +35,30 @@
                         </form>
                     </div>
                 </div>
+            </c:when>
+            <c:when test="${user.role == 'ADMIN'}">
+                <div class = "bookInfo">
+                    <h2 style="font-size: 40px">${bookTitle}</h2>
+                    <p class="info-author">Автор книги: ${bookAuthor}</p>
+                    <p class="info-rating">Рейтинг: ${bookRating}</p>
+                    <div class="info-makeRequest">
+                        <form action="controller" method="POST">
+                            <input type="hidden" name="command" value="deletebook">
+                            <input type="hidden" name="id" value="${bookId}">
+                            <button id="button-hover" class="user-button-submit">Удалить книгу</button>
+                        </form>
+                        <form action="controller" method="POST">
+                            <input type="hidden" name="command" value="redirecttoeditbook">
+                            <input type="hidden" name="id" value="${bookId}">
+                            <input type="hidden" name="bookTitle" value="${bookTitle}">
+                            <input type="hidden" name="bookAuthor" value="${bookAuthor}">
+                            <input type="hidden" name="bookRating" value="${bookRating}">
+                            <button id="button-hover" class="user-button-submit">Изменить информацию</button>
+                        </form>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
             </c:otherwise>
         </c:choose>
 </div>

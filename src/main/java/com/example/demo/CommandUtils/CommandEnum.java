@@ -15,7 +15,7 @@ public enum CommandEnum {
     },
     VIEWUSERS {
         {
-            this.command = new ViewUsersCommand();
+            //this.command = new ViewUsersCommand();
         }
 
     },
@@ -42,9 +42,19 @@ public enum CommandEnum {
             this.command = new ViewBooksCommand();
         }
     },
+    DELETEBOOK {
+        {
+            this.command = new DeleteBookCommand();
+        }
+    },
+    EDITBOOK {
+        {
+            this.command = new EditBookCommand();
+        }
+    },
     REDIRECTTOADDBOOKPAGECOMMAND {
         {
-            //this.command = new RedirectToAddBookPageCommand();
+            this.command = new RedirectToAddBookPageCommand();
         }
     },
     REDIRECTTOMAINMENU {
@@ -52,34 +62,19 @@ public enum CommandEnum {
             this.command = new RedirectToMainMenuCommand();
         }
     },
-    ADDBOOKSCOMMAND {
+    ADDBOOK {
         {
             this.command = new AddBooksCommand();
         }
     },
-    REDIRECTTOUPDATEBOOKCOMMAND {
+    REDIRECTTOEDITBOOK {
         {
-            //this.command = new RedirectToUpdateBookCommand();
-        }
-    },
-    UPDATEBOOKCOMMAND {
-        {
-            //this.command = new UpdateBookCommand();
+            this.command = new RedirectToEditBookCommand();
         }
     },
     REDIRECTTOCATALOG {
         {
             this.command = new RedirectToCatalogCommand();
-        }
-    },
-    VIEWUSERINFORMATION {
-        {
-            this.command = new ViewUserInformationCommand();
-        }
-    },
-    VIEWUSERREQUESTS {
-        {
-            this.command = new ViewUserRequests();
         }
     },
     VIEWBOOKINFORMATION {

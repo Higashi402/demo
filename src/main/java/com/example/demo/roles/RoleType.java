@@ -15,5 +15,4 @@ public enum RoleType {
     public Role getRole(int id) {
         return getRole(this.id);
     }
-
 }

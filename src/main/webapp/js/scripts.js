@@ -46,20 +46,13 @@ function submitForm(element) {
     var bookTitle = parentRow.getAttribute('data-title');
     var bookAuthor = parentRow.getAttribute('data-author');
     var bookRating = parentRow.getAttribute('data-rating');
+
     document.getElementById('bookId').value = bookId;
     document.getElementById('bookTitle').value = bookTitle;
     document.getElementById('bookAuthor').value = bookAuthor;
     document.getElementById('bookRating').value = bookRating;
-    document.getElementById('book-request-form').submit();
-}
 
-function submitUserForm(element) {
-    var parentRow = element.closest('.book-row');
-    var username = parentRow.getAttribute('data-user');
-    var userRole = parentRow.getAttribute('data-role');
-    document.getElementById('Username').value = username;
-    document.getElementById('UserRole').value = userRole;
-    document.getElementById('user-request-form').submit();
+    document.getElementById('book-request-form').submit();
 }
 /*
 function sendRequest(element) {
