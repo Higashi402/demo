@@ -15,7 +15,7 @@ public enum CommandEnum {
     },
     VIEWUSERS {
         {
-            //this.command = new ViewUsersCommand();
+            this.command = new ViewUsersCommand();
         }
 
     },
@@ -42,19 +42,9 @@ public enum CommandEnum {
             this.command = new ViewBooksCommand();
         }
     },
-    DELETEBOOK {
-        {
-            this.command = new DeleteBookCommand();
-        }
-    },
-    EDITBOOK {
-        {
-            this.command = new EditBookCommand();
-        }
-    },
     REDIRECTTOADDBOOKPAGECOMMAND {
         {
-            this.command = new RedirectToAddBookPageCommand();
+            //this.command = new RedirectToAddBookPageCommand();
         }
     },
     REDIRECTTOMAINMENU {
@@ -62,19 +52,58 @@ public enum CommandEnum {
             this.command = new RedirectToMainMenuCommand();
         }
     },
-    ADDBOOK {
+    ADDBOOKSCOMMAND {
         {
             this.command = new AddBooksCommand();
         }
     },
-    REDIRECTTOEDITBOOK {
+    REDIRECTTOUPDATEBOOKCOMMAND {
         {
-            this.command = new RedirectToEditBookCommand();
+            //this.command = new RedirectToUpdateBookCommand();
+        }
+    },
+    UPDATEBOOKCOMMAND {
+        {
+            //this.command = new UpdateBookCommand();
         }
     },
     REDIRECTTOCATALOG {
         {
             this.command = new RedirectToCatalogCommand();
+        }
+    },
+
+    USERDELETE {
+        {
+            this.command = new UserDeleteCommand();
+        }
+    },
+    VIEWUSERINFORMATION {
+        {
+            this.command = new ViewUserInformationCommand();
+        }
+    },
+
+    VIEWUSERREQUESTINFORMATION {
+        {
+            this.command = new ViewUsersRequestInformationCommand();
+        }
+    },
+
+    UPDATEREQUESTSTATUS{
+        {
+            this.command = new UpdateRequestStatusCommand();
+        }
+    },
+
+    BOOKREQUESTDELETE{
+        {
+            this.command = new BoookRequestDeleteCommand();
+        }
+    },
+    VIEWUSERREQUESTS {
+        {
+            this.command = new ViewUserRequests();
         }
     },
     VIEWBOOKINFORMATION {

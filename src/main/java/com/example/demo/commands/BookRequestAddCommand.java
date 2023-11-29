@@ -29,7 +29,7 @@ public class BookRequestAddCommand extends Command {
             if (!regularUser.getApplications().containsKey(id)) {
                 try {
                     // Добавление заявки пользователю в его словарь
-                    UserContainer.addBookRequestToUser(regularUser, id, new BookRequest(BookContainer.bookInfo.getBookById(id), "Отправлена"));
+                    UserContainer.addBookRequestToUser(regularUser, id, new BookRequest(BookContainer.bookInfo.getBookById(id), RequestStatus.INPROCESSING));
                     request.getSession().setAttribute("user", regularUser);// здесь должен быть ваш объект BookRequest
                     request.setAttribute("resMessage", MessageManager.getProperty("message.addingrequestsucces"));
                     System.out.println("Заявка добавлена для пользователя: " + regularUser.getUsername());

@@ -54,6 +54,21 @@ function submitForm(element) {
 
     document.getElementById('book-request-form').submit();
 }
+
+function submitUserRequest(element) {
+    var parentRow = element.closest('.book-row');
+    var username = parentRow.getAttribute('data-user');
+    var requestId = parentRow.getAttribute('data-id');
+    var requestTitle = parentRow.getAttribute('data-title');
+    var requestAuthor = parentRow.getAttribute('data-author');
+    var requestStatus = parentRow.getAttribute('data_status');
+    document.getElementById('requestId').value = requestId;
+    document.getElementById('username').value = username;
+    document.getElementById('requestTitle').value = requestTitle;
+    document.getElementById('requestAuthor').value = requestAuthor;
+    document.getElementById('requestStatus').value = requestStatus;
+    document.getElementById('request-form').submit();
+}
 /*
 function sendRequest(element) {
     var bookId = element.dataset.id;

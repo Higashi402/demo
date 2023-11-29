@@ -3,12 +3,12 @@ package com.example.demo.utils;
 public class BookRequest {
 
     private BookEntry book;
-    private String status;
+    private RequestStatus requestStatus;
 
 
-    public BookRequest(BookEntry book, String status) {
+    public BookRequest(BookEntry book, RequestStatus requestStatus) {
         this.book = book;
-        this.status = status;
+        this.requestStatus = requestStatus;
     }
 
     public String getBookTitle() {
@@ -18,5 +18,14 @@ public class BookRequest {
     public String getBookAuthor() {
         return book.getAuthor();
     }
+
+    public void setRequestStatus(RequestStatus status)
+    {
+        this.requestStatus = status;
+    }
+    public RequestStatus getRequestStatus() {
+        return requestStatus;
+    }
+
 
 }
