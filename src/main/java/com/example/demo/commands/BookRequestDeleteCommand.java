@@ -1,10 +1,7 @@
 package com.example.demo.commands;
 
-import com.example.demo.utils.BookRequestsContainer;
 import com.example.demo.CommandUtils.ActionCommand;
 import com.example.demo.utils.ConfigurationManager;
-import com.example.demo.utils.RegularUser;
-import com.example.demo.utils.UserContainer;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -22,9 +19,9 @@ public class BookRequestDeleteCommand extends Command {
     @Override
     public void send() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
-        RegularUser user = (RegularUser) UserContainer.users.get(request.getParameter("username"));
-        user.getApplications().remove(id);
-        request.setAttribute("requestDictionary", user.getApplications());
+        //RegularUser user = (RegularUser) UserContainer.users.get(request.getParameter("username"));
+        //user.getApplications().remove(id);
+       // request.setAttribute("requestDictionary", user.getApplications());
         request.setAttribute("username", request.getParameter("username"));
         forward(ConfigurationManager.getProperty("path.page.userrequests"));
     }

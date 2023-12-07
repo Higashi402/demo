@@ -115,6 +115,11 @@ public enum CommandEnum {
             this.command = new BookRequestDeleteCommand();
         }
     },
+    BLOCKUNBLOCKUSER{
+        {
+            this.command = new BlockUnblockUserCommand();
+        }
+    },
     VIEWBOOKINFORMATION {
         {
             this.command = new ViewBookInformation();

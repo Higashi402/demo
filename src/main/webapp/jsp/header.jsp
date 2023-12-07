@@ -53,6 +53,18 @@
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
+            <c:when test="${user.role == 'MODERATOR'}">
+                <div class = "user-buttons">
+                    <form action="/demo/controller" method="GET">
+                        <input type="hidden" name="command" value="viewusers">
+                        <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
+                    </form>
+                </div>
+                <form action="/demo/controller" method="GET">
+                    <input type="hidden" name="command" value="logout">
+                    <button type="submit" id="button-hover" class="user-buttons-exit"></button>
+                </form>
+            </c:when>
         </c:choose>
     </c:when>
     <c:otherwise>

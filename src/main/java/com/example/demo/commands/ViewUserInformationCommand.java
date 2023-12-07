@@ -1,9 +1,6 @@
 package com.example.demo.commands;
 
-import com.example.demo.utils.BookDictionary;
-import com.example.demo.utils.BookEntry;
-import com.example.demo.utils.ConfigurationManager;
-import com.example.demo.utils.UserContainer;
+import com.example.demo.utils.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,9 +18,14 @@ public class ViewUserInformationCommand extends Command {
     @Override
     public void send() throws ServletException, IOException {
         System.out.println("User info command" + request.getParameter("name"));
+        User user = null;
+        //if (user instanceof RegularUser) {
+           //boolean banFlag = ((RegularUser) user).getBlocked();
+            //request.setAttribute("userBlock", banFlag);
+        //}
         request.setAttribute("username", request.getParameter("name"));
         request.setAttribute("userRole", request.getParameter("role"));
-        request.setAttribute("userDictionary", UserContainer.users);
+        //request.setAttribute("userDictionary", UserContainer.users);
         forward(ConfigurationManager.getProperty("path.page.userinfo"));
     }
 }

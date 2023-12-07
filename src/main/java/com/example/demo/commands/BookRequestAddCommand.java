@@ -23,29 +23,29 @@ public class BookRequestAddCommand extends Command {
         User user = (User) request.getSession().getAttribute("user");
 
         // Проверка наличия пользователя и его роли
-        if (user != null && user.getRole() == RoleType.USER) {
+        //if (user != null && user.getRole() == RoleType.USER) {
             int id = Integer.parseInt(request.getParameter("id"));
-            RegularUser regularUser = (RegularUser) user;
-            if (!regularUser.getApplications().containsKey(id)) {
+            //RegularUser regularUser = (RegularUser) user;
+            //if (!regularUser.getApplications().containsKey(id)) {
                 try {
                     // Добавление заявки пользователю в его словарь
-                    UserContainer.addBookRequestToUser(regularUser, id, new BookRequest(BookContainer.bookInfo.getBookById(id), RequestStatus.INPROCESSING));
-                    request.getSession().setAttribute("user", regularUser);// здесь должен быть ваш объект BookRequest
+                    //UserContainer.addBookRequestToUser(regularUser, id, new BookRequest(BookContainer.bookInfo.getBookById(id), RequestStatus.INPROCESSING));
+                    //request.getSession().setAttribute("user", regularUser);// здесь должен быть ваш объект BookRequest
                     request.setAttribute("resMessage", MessageManager.getProperty("message.addingrequestsucces"));
-                    System.out.println("Заявка добавлена для пользователя: " + regularUser.getUsername());
+                   // System.out.println("Заявка добавлена для пользователя: " + regularUser.getUsername());
                 } catch (Exception e) {
                     request.setAttribute("resMessage", MessageManager.getProperty("message.existserror"));
                 }
-            } else {
+            //} else {
                 request.setAttribute("resMessage", MessageManager.getProperty("message.existserror"));
-                System.out.println("Заявка уже существует для пользователя: " + regularUser.getUsername());
-            }
-        } else {
+                //System.out.println("Заявка уже существует для пользователя: " + regularUser.getUsername());
+            //}
+       // } else {
             request.setAttribute("resMessage", MessageManager.getProperty("message.permissionerror"));
             System.out.println("Недостаточно прав для добавления заявки");
-        }
+        //}
 
-        request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
+        //request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
 
         System.out.println("Запрос выполнен");
         forward(ConfigurationManager.getProperty("path.page.bookinfo"));

@@ -1,7 +1,6 @@
 package com.example.demo.commands;
 
 import com.example.demo.CommandUtils.ActionCommand;
-import com.example.demo.utils.BookContainer;
 import com.example.demo.utils.ConfigurationManager;
 
 import javax.servlet.ServletContext;
@@ -23,7 +22,7 @@ public class RedirectToEditBookCommand extends Command {
         String id = request.getParameter("id");
         request.setAttribute("id", id);
         System.out.println(id);
-        request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
+        //request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
         forward(ConfigurationManager.getProperty("path.page.editbook"));
     }
 }

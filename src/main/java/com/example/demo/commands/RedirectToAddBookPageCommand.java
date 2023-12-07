@@ -20,7 +20,7 @@ public class RedirectToAddBookPageCommand extends Command {
 
     @Override
     public void send() throws ServletException, IOException {
-        request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
+        //request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
         forward(ConfigurationManager.getProperty("path.page.addbook"));
     }
 }

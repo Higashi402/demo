@@ -69,7 +69,6 @@
                                 <td>${bookEntry.value.author}</td>
                                 <td>${bookEntry.value.rating}</td>
                             </tr>
-                            <!-- Форма JSP для отправки запроса -->
                         </c:forEach></c:when>
             <c:when test="${user.role ==  'ADMIN'}">
                 <tbody class="tableBody">

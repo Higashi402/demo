@@ -1,6 +1,5 @@
 package com.example.demo.commands;
 
-import com.example.demo.utils.BookContainer;
 import com.example.demo.utils.BookEntry;
 import com.example.demo.utils.ConfigurationManager;
 
@@ -22,9 +21,9 @@ public class DeleteBookCommand extends Command {
     public void send() throws ServletException, IOException {
         int bookId = Integer.parseInt(request.getParameter("id"));
         try {
-            BookContainer.bookInfo.removeBook(bookId);
-            Map<Integer, BookEntry> bookDictionary =  BookContainer.bookInfo.getAllBooks();
-            request.setAttribute("bookDictionary", bookDictionary);
+            //BookContainer.bookInfo.removeBook(bookId);
+            //Map<Integer, BookEntry> bookDictionary =  BookContainer.bookInfo.getAllBooks();
+            //request.setAttribute("bookDictionary", bookDictionary);
             forward(ConfigurationManager.getProperty("path.page.catalog"));
         } catch (NumberFormatException e) {
             e.printStackTrace();

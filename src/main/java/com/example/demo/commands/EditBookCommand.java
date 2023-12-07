@@ -1,7 +1,6 @@
 package com.example.demo.commands;
 
 import com.example.demo.CommandUtils.ActionCommand;
-import com.example.demo.utils.BookContainer;
 import com.example.demo.utils.BookEntry;
 import com.example.demo.utils.ConfigurationManager;
 
@@ -35,8 +34,8 @@ public class EditBookCommand extends Command {
                 int intamount = Integer.parseInt(amount);
                 int intid = Integer.parseInt(id);
                 double doublerating = Double.parseDouble(rating);
-                BookContainer.bookInfo.updateBookById(intid, title, author, intamount, doublerating);
-                request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
+                //BookContainer.bookInfo.updateBookById(intid, title, author, intamount, doublerating);
+                //request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
                 forward(ConfigurationManager.getProperty("path.page.catalog"));
             } catch (NumberFormatException e) {
                 forward(ConfigurationManager.getProperty("path.page.catalog"));

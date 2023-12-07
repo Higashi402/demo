@@ -27,13 +27,13 @@
         <input type="hidden" id="amountValue" name="amountValue" value="">
 
         <div class = "add-book-text-box">
-            <label for="title" style="font-size: 20px; margin-bottom: 20px">Название книги:</label>
+            <label for="title" style="font-size: 25px; margin-bottom: 20px">Название книги:</label>
             <input type="text" id="title" name="title" required oninput="document.getElementById('titleValue').value = this.value;">
 
-            <label for="author" style="font-size: 20px; margin-bottom: 20px">Автор книги:</label>
+            <label for="author" style="font-size: 25px; margin-bottom: 20px">Автор книги:</label>
             <input type="text" id="author" name="author" required oninput="document.getElementById('authorValue').value = this.value;">
 
-            <label for="amount" style="font-size: 20px; margin-right: 20px">Количество:</label>
+            <label for="amount" style="font-size: 25px; margin-right: 20px">Количество:</label>
             <input type="number" id="amount" name="amount" min="1" max="10" required oninput="document.getElementById('amountValue').value = this.value;">
         </div>
 

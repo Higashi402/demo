@@ -1,7 +1,6 @@
 package com.example.demo.commands;
 
 import com.example.demo.utils.ConfigurationManager;
-import com.example.demo.utils.UserContainer;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ public class RedirectToUserCatalogCommand extends Command{
 
     @Override
     public void send() throws ServletException, IOException {
-        request.setAttribute("userDictionary", UserContainer.users);
+        //request.setAttribute("userDictionary", UserContainer.users);
         forward(ConfigurationManager.getProperty("path.page.usercatalog"));
     }
 }

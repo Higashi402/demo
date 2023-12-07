@@ -20,7 +20,7 @@ public class ViewUsersCommand extends Command  {
     @Override
     public void process() throws ServletException, IOException {
         System.out.println("VIEWUSERS");
-        request.setAttribute("userDictionary", UserContainer.users);
+        //request.setAttribute("userDictionary", UserContainer.users);
         forward(ConfigurationManager.getProperty("path.page.usercatalog"));
     }
 

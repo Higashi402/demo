@@ -1,20 +1,40 @@
 package com.example.demo.utils;
 
+import com.example.demo.roles.Role;
 import com.example.demo.roles.RoleType;
 
-public abstract class User {
+public class User {
+    private int id;
     private String username;
     private String password;
-    private RoleType role;
+    private Role role;
+    private int blocked;
 
-    // Конструктор класса User
-    public User(String username, String password, RoleType role) {
+    public User(){}
+
+    public User(int id, String username, String password, Role role, int blocked) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.blocked = blocked;
     }
 
-    // Геттеры и сеттеры для атрибутов
+    public User(String username, String password, Role role, int blocked) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.blocked = blocked;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -31,14 +51,19 @@ public abstract class User {
         this.password = password;
     }
 
-    public RoleType getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String RoleType) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
-    // Абстрактный метод для отображения роли пользователя
-    public abstract void displayRole();
+    public int getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(int blocked) {
+        this.blocked = blocked;
+    }
 }

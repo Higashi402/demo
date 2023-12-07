@@ -20,12 +20,12 @@ public class ViewRequestsCommand extends Command {
     @Override
     public void process() throws ServletException, IOException {
         System.out.println("VIEWREQUESTSCOMMAND");
-        RegularUser user = (RegularUser) request.getSession().getAttribute("user");
-        HashMap<Integer, BookRequest> userRequests = user.getApplications();
-        request.setAttribute("requestDictionary", userRequests);
-        userRequests.forEach((key, value) -> {
-            System.out.println(user.getUsername() + " " + key + ", Value: " + value.getBookAuthor());
-        });
+        //RegularUser user = (RegularUser) request.getSession().getAttribute("user");
+        //HashMap<Integer, BookRequest> userRequests = user.getApplications();
+        //request.setAttribute("requestDictionary", userRequests);
+        //userRequests.forEach((key, value) -> {
+           // System.out.println(user.getUsername() + " " + key + ", Value: " + value.getBookAuthor());
+        //});
         forward(ConfigurationManager.getProperty("path.page.requests"));
     }
 

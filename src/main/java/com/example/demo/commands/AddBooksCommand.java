@@ -25,9 +25,9 @@ public class AddBooksCommand extends Command {
         if (title != null && !title.isEmpty() && author != null && !author.isEmpty() && amount != null && !amount.isEmpty()) {
             try {
                 int intamount = Integer.parseInt(amount);
-                int newBookId = generateNewBookId(BookContainer.bookInfo);
-                BookContainer.bookInfo.addBook(newBookId, title, author, intamount, 0);
-                request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
+                //int newBookId = generateNewBookId(BookContainer.bookInfo);
+                //BookContainer.bookInfo.addBook(newBookId, title, author, intamount, 0);
+                //request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
                 forward(ConfigurationManager.getProperty("path.page.catalog"));
             } catch (NumberFormatException e) {
                 e.printStackTrace();

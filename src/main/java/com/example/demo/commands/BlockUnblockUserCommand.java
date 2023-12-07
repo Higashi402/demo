@@ -9,30 +9,35 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ViewUserRequests extends Command{
+public class BlockUnblockUserCommand extends Command{
+
     @Override
     public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         super.init(servletContext, servletRequest, servletResponse);
+
     }
+
     @Override
-    public void process() throws ServletException, IOException {
+    public void send() throws ServletException, IOException {
         String username = request.getParameter("username");
         User user = null;
         //if (user instanceof RegularUser) {
-            //RegularUser regularUser = (RegularUser) user;
-            //HashMap<Integer, BookRequest> userRequests = regularUser.getApplications();
-            //request.setAttribute("requestDictionary", userRequests);
+            //request.setAttribute("userDictionary", UserContainer.users);
             request.setAttribute("username", username);
-           // userRequests.forEach((key, value) -> {
-             //   System.out.println(user.getUsername() + " " + key + ", Value: " + value.getRequestStatus());
-            //});
-            forward(ConfigurationManager.getProperty("path.page.userrequests"));
-        //} else {
+            //boolean banFlag = ((RegularUser) user).getBlocked();
+            //if (banFlag){
+             //   ((RegularUser) user).setBlocked(false);
+            //}
+            //else {
+            //    ((RegularUser) user).setBlocked(true);
+            //}
+            //forward(ConfigurationManager.getProperty("path.page.usercatalog"));
+       // } else {
             request.setAttribute("errorMessage", "Заявки могут быть только у пользователей!");
             request.setAttribute("userRole", user.getRole());
             request.setAttribute("username", username);
             //request.setAttribute("userDictionary", UserContainer.users);
-            forward(ConfigurationManager.getProperty("path.page.userinfo"));
-        //}
+            forward(ConfigurationManager.getProperty("path.page.usercatalog"));
+
     }
 }

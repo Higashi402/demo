@@ -1,6 +1,5 @@
 package com.example.demo.commands;
 
-import com.example.demo.utils.BookContainer;
 import com.example.demo.utils.BookDictionary;
 import com.example.demo.utils.BookEntry;
 import com.example.demo.utils.ConfigurationManager;
@@ -22,7 +21,7 @@ public class RedirectToCatalogCommand extends Command {
 
     @Override
     public void process() throws ServletException, IOException {
-        request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
+        //request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
         forward(ConfigurationManager.getProperty("path.page.catalog"));
     }
 }
