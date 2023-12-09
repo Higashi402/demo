@@ -2,8 +2,10 @@ package com.example.demo.db.dao;
 
 import com.example.demo.roles.Role;
 
+import java.sql.SQLException;
+
 public interface RoleDAO {
 
-    Role getRoleById(int id);
+    Role getRoleByTitle(String title) throws SQLException;
 
 }

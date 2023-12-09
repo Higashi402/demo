@@ -5,9 +5,9 @@ import com.example.demo.db.dao.DAOFactory;
 
 public enum RoleType {
     USER(1),
-    LIBRARIAN(2),
+    ADMIN(2),
     MODERATOR(3),
-    ADMIN(4);
+    LIBRARIAN(4);
 
     private final int id;
 
@@ -15,11 +15,12 @@ public enum RoleType {
         this.id = id;
     }
 
-    public Role getRole() {
-        return getRole(id);
-    }
-
-    public static Role getRole(int id) {
-        return DAOFactory.getInstance(DBType.ORACLE).getRoleDAO().getRoleById(id);
+    public static Role getById(int id) {
+        for (RoleType roleType : values()) {
+            if (roleType.id == id) {
+                return new Role(roleType.name());
+            }
+        }
+        return null;
     }
 }

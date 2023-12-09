@@ -1,7 +1,5 @@
 package com.example.demo.commands;
 
-import com.example.demo.CommandUtils.ActionCommand;
-import com.example.demo.utils.BookEntry;
 import com.example.demo.utils.ConfigurationManager;
 
 import javax.servlet.ServletContext;
@@ -9,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 public class EditBookCommand extends Command {
 

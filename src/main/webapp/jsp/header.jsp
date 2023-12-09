@@ -19,7 +19,7 @@
     <c:when test="${not empty sessionScope.user}">
         <c:set var="user" value="${sessionScope.user}" />
         <c:choose>
-            <c:when test="${user.role == 'USER'}">
+            <c:when test="${user.roleName == 'USER'}">
                 <div class = "user-buttons">
                     <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">
@@ -36,7 +36,7 @@
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
-            <c:when test="${user.role == 'ADMIN'}">
+            <c:when test="${user.roleName == 'ADMIN'}">
                 <div class = "user-buttons">
                     <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">

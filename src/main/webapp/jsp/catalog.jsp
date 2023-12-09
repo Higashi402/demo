@@ -22,7 +22,7 @@
 
         <c:set var="user" value="${sessionScope.user}" />
         <c:choose>
-            <c:when test="${user.role == 'ADMIN'}">
+            <c:when test="${user.roleName == 'ADMIN'}">
                 <div class = "catalog-header" >
                     <p style="font-size: 40px; margin-top: 5px">Каталог книг</p>
                     <form action="/demo/controller" method="post">
@@ -59,25 +59,25 @@
                     <th style="width: 200px;">Рейтинг</th>
                 </tr>
                 </thead>
+                <p style="font-size: 40px; margin-top: 0px">Каталог книг</p>
         <c:choose>
-            <c:when test="${user.role ==  'USER'}">
-                <p style="font-size: 40px; margin-top: 5px">Каталог книг</p>
+            <c:when test="${user.roleName == 'USER'}">
                 <tbody class="tableBody">
-                        <c:forEach var="bookEntry" items="${bookDictionary}">
-                            <tr class='book-row' onclick="submitForm(this);" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
-                                <td>${bookEntry.value.title}</td>
-                                <td>${bookEntry.value.author}</td>
-                                <td>${bookEntry.value.rating}</td>
+                        <c:forEach var="book" items="${books}">
+                            <tr class='book-row' onclick="submitForm(this);" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-rating="${book.rating}">
+                                <td>${book.title}</td>
+                                <td>${book.author}</td>
+                                <td>${book.rating}</td>
                             </tr>
                         </c:forEach></c:when>
-            <c:when test="${user.role ==  'ADMIN'}">
+            <c:when test="${user.roleName ==  'ADMIN'}">
                 <tbody class="tableBody">
-                    <c:forEach var="bookEntry" items="${bookDictionary}">
-                        <tr class='book-row' onclick="submitForm(this)" data-id="${bookEntry.key}" data-title="${bookEntry.value.title}" data-author="${bookEntry.value.author}" data-rating="${bookEntry.value.rating}">
-                            <td hidden>${bookEntry.key}</td>
-                            <td>${bookEntry.value.title}</td>
-                            <td>${bookEntry.value.author}</td>
-                            <td>${bookEntry.value.rating}</td>
+                    <c:forEach var="book" items="${books}">
+                        <tr class='book-row' onclick="submitForm(this)" data-id="${book.key}" data-title="${book.value.title}" data-author="${book.value.author}" data-rating="${book.value.rating}">
+                            <td hidden>${book.key}</td>
+                            <td>${book.value.title}</td>
+                            <td>${book.value.author}</td>
+                            <td>${book.value.rating}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

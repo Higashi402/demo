@@ -2,40 +2,22 @@ package com.example.demo.roles;
 
 import java.util.Objects;
 
-public class Role extends Entity {
-    private String title;
+public class Role{
+    private String roleName;
 
-    public Role(int id, String title) {
-        super(id);
-        this.title = title;
+    public Role() {}
+
+    public Role(String roleName) {
+        this.roleName = roleName;
     }
 
-    public String getTitle() {
-        return title;
+    // Геттер для получения имени роли
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Role)) return false;
-        if (!super.equals(o)) return false;
-        Role role = (Role) o;
-        return Objects.equals(title, role.title);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), title);
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "title='" + title + '\'' +
-                '}';
+    // Сеттер для установки имени роли (если необходимо)
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

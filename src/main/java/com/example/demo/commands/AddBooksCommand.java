@@ -36,8 +36,8 @@ public class AddBooksCommand extends Command {
         }
     }
 
-    private int generateNewBookId(BookDictionary bookDictionary) {
-        return bookDictionary.getDictionarySize() + 1;
-    }
+    //private int generateNewBookId(BookDictionary bookDictionary) {
+        //return bookDictionary.getDictionarySize() + 1;
+   // }
 }
 

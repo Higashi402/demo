@@ -2,11 +2,11 @@ package com.example.demo.utils;
 
 public class BookRequest {
 
-    private BookEntry book;
+    private Book book;
     private RequestStatus requestStatus;
 
 
-    public BookRequest(BookEntry book, RequestStatus requestStatus) {
+    public BookRequest(Book book, RequestStatus requestStatus) {
         this.book = book;
         this.requestStatus = requestStatus;
     }

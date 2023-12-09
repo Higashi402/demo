@@ -1,18 +1,30 @@
 package com.example.demo.utils;
 
-public class BookEntry {
+public class Book {
+    private int id;
     private String title;
     private String author;
-
+    private float rating;
     private int amount;
+    private int voters;
 
-    private double rating;
 
-    public BookEntry(String title, String author, int amount, double rating) {
+    public Book(){}
+
+    public Book(String title, String author, float rating, int amount, int voters) {
         this.title = title;
         this.author = author;
         this.amount = amount;
         this.rating = rating;
+        this.voters = voters;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -39,13 +51,17 @@ public class BookEntry {
         this.amount = amount;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
+
+    public int getVoters() {return this.voters;}
+
+    public void setVoters(int voters) {this.voters = voters;}
 
 
 

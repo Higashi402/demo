@@ -55,6 +55,10 @@ public class User {
         return role;
     }
 
+    public String getRoleName() {
+        return role.getRoleName();
+    }
+
     public void setRole(Role role) {
         this.role = role;
     }
@@ -66,4 +70,5 @@ public class User {
     public void setBlocked(int blocked) {
         this.blocked = blocked;
     }
+
 }

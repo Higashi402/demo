@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public abstract class Command {
     protected ServletContext context;
@@ -21,11 +22,10 @@ public abstract class Command {
         this.response = servletResponse;
     }
 
-    public void process() throws ServletException, IOException {
-
+    public void process() throws ServletException, IOException, SQLException {
     }
 
-    public void send() throws ServletException, IOException {
+    public void send() throws ServletException, IOException, SQLException {
     }
 
     protected void forward(String target) throws ServletException, IOException {
