@@ -16,11 +16,11 @@
 
 <h2>Добавление книги</h2>
 <div class = loginForm>
-    <form action="/demo/controller" method="GET">
+    <form action="controller" method="GET">
         <input type="hidden" name="command" value="viewbooks">
         <button id="button-hover" class="close-button"></button>
     </form>
-    <form action="/demo/controller" method="POST">
+    <form action="controller" method="POST">
         <input type="hidden" name="command" value="editbook">
         <input type="hidden" id="titleValue" name="titleValue" value="">
         <input type="hidden" id="authorValue" name="authorValue" value="">

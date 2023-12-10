@@ -16,6 +16,6 @@ public class RedirectToMainMenuCommand extends Command{
 
     @Override
     public void send() throws ServletException, IOException {
-        redirect("jsp/menu.jsp");
+        forward("/jsp/menu.jsp");
     }
 }

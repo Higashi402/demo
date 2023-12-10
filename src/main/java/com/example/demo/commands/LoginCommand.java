@@ -48,6 +48,7 @@ public class LoginCommand extends Command {
             System.out.println("В сессию зашел " + userOut.getUsername());
             request.getRequestDispatcher("jsp/menu.jsp").forward(request, response);
         } else {
+            request.setAttribute("errormsg", ConfigurationManager.getProperty("message.loginerror"));
             request.getRequestDispatcher(ConfigurationManager.getProperty("path.page.login")).forward(request, response);
         }
     }

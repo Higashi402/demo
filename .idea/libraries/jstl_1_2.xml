@@ -1,9 +1,8 @@
 <component name="libraryTable">
   <library name="jstl-1.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/jstl-1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/jstl-api-1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jstl-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jstl-api-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

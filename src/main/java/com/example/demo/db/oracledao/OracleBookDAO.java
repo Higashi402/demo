@@ -6,10 +6,7 @@ import com.example.demo.utils.Book;
 import com.example.demo.utils.ConfigurationManager;
 import com.example.demo.utils.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,4 +52,26 @@ public class OracleBookDAO implements BookDAO {
         Statement statement = this.getConnection().createStatement();
         statement.executeQuery("DELETE FROM BOOKS WHERE BOOKID =" + bookId);
     }
+
+    @Override
+    public void updateBook(int bookId, String title, String author, int amount) throws SQLException {
+        Connection connection = this.getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            String sql = "UPDATE BOOKS SET TITLE = ?, AUTHOR = ?, AMOUNT = ? WHERE BOOKID = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, author);
+            preparedStatement.setInt(3, amount);
+            preparedStatement.setInt(4, bookId);
+
+            // Выполнение запроса на обновление
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+        }
+    }
+
 }
