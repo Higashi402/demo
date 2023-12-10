@@ -22,23 +22,24 @@
             <c:when test="${not empty resMessage}">
                 <p style="font-size: 35px">${resMessage}</p>
             </c:when>
-            <c:when test="${user.role ==  'USER'}">
+            <c:when test="${user.roleName == 'USER'}">
                 <div class = "bookInfo">
                     <h2 style="font-size: 35px">${bookTitle}</h2>
                     <p class="info-author">Автор книги: ${bookAuthor}</p>
                     <p class="info-rating">Рейтинг: ${bookRating}</p>
                     <div class="info-makeRequest">
-                        <form action="controller" method="POST">
+                        <form display = "none" action="controller" method="POST">
                             <input type="hidden" name="command" value="bookrequestaddcommand">
                             <input type="hidden" name="id" value="${bookId}">
+                            <input type="hidden" name="user" value="${user.id}">
                             <button id="button-hover" class="user-button-submit">Сделать заявку</button>
                         </form>
                     </div>
                 </div>
             </c:when>
-            <c:when test="${user.role == 'ADMIN'}">
+            <c:when test="${user.roleName == 'ADMIN'}">
                 <div class = "bookInfo">
-                    <h2 style="font-size: 40px">${bookTitle}</h2>
+                    <h2 style=" font-size: 40px">${bookTitle}</h2>
                     <p class="info-author">Автор книги: ${bookAuthor}</p>
                     <p class="info-rating">Рейтинг: ${bookRating}</p>
                     <div class="info-makeRequest">

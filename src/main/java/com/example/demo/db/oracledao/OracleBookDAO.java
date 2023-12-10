@@ -25,8 +25,6 @@ public class OracleBookDAO implements BookDAO {
         return this.connection;
     }
 
-    private static final String SELECT_WORKER_BY_LOGIN = ConfigurationManager.getProperty("query.select.worker.by.login");
-
     @Override
     public List<Book> getAllBooks() throws SQLException {
         List<Book> books = new ArrayList<>();
@@ -44,5 +42,17 @@ public class OracleBookDAO implements BookDAO {
             books.add(book);
         }
         return books;
+    }
+
+    @Override
+    public void addBook(String title, String author, int amount) throws SQLException {
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery("INSERT INTO BOOKS(TITLE,AUTHOR,RATING,AMOUNT,VOTERS) VALUES(" + "'" + title + "'" + ",'" + author + "', 0," + amount + ",0)");
+    }
+
+    @Override
+    public void deleteBook(int bookId) throws SQLException {
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery("DELETE FROM BOOKS WHERE BOOKID =" + bookId);
     }
 }

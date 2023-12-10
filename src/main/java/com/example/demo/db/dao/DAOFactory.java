@@ -15,4 +15,6 @@ public abstract class DAOFactory {
     public abstract RoleDAO getRoleDAO();
 
     public abstract BookDAO getBookDAO();
+
+    public abstract ProposalDAO getProposalDAO();
 }

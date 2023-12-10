@@ -59,10 +59,10 @@
                     <th style="width: 200px;">Рейтинг</th>
                 </tr>
                 </thead>
-                <p style="font-size: 40px; margin-top: 0px">Каталог книг</p>
         <c:choose>
             <c:when test="${user.roleName == 'USER'}">
                 <tbody class="tableBody">
+                <p style="font-size: 40px; margin-top: 0px">Каталог книг</p>
                         <c:forEach var="book" items="${books}">
                             <tr class='book-row' onclick="submitForm(this);" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-rating="${book.rating}">
                                 <td>${book.title}</td>
@@ -73,11 +73,11 @@
             <c:when test="${user.roleName ==  'ADMIN'}">
                 <tbody class="tableBody">
                     <c:forEach var="book" items="${books}">
-                        <tr class='book-row' onclick="submitForm(this)" data-id="${book.key}" data-title="${book.value.title}" data-author="${book.value.author}" data-rating="${book.value.rating}">
-                            <td hidden>${book.key}</td>
-                            <td>${book.value.title}</td>
-                            <td>${book.value.author}</td>
-                            <td>${book.value.rating}</td>
+                        <tr class='book-row' onclick="submitForm(this)" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-rating="${book.rating}">
+                            <td hidden>${book.id}</td>
+                            <td>${book.title}</td>
+                            <td>${book.author}</td>
+                            <td>${book.rating}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

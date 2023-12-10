@@ -4,6 +4,7 @@ import com.example.demo.db.dao.DAOFactory;
 import com.example.demo.db.dao.RoleDAO;
 import com.example.demo.db.dao.UserDAO;
 import com.example.demo.db.dao.BookDAO;
+import com.example.demo.db.dao.ProposalDAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -62,4 +63,7 @@ public class OracleDAOFactory extends DAOFactory {
     public BookDAO getBookDAO() {
         return new OracleBookDAO(connection);
     }
+
+    @Override
+    public ProposalDAO getProposalDAO() {return new OracleProposalDAO(connection);}
 }

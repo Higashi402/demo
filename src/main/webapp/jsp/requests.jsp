@@ -27,7 +27,7 @@
 
                 <tbody id="requestTableBody">
                 <c:choose>
-                <c:when test="${empty requestDictionary}">
+                <c:when test="${empty proposals}">
                 <p>Заявок нет</p>
                 </c:when>
                 <c:otherwise>
@@ -36,13 +36,15 @@
                     <th>Номер заявки</th>
                     <th>Автор</th>
                     <th>Название книги</th>
+                    <th>Статус</th>
                 </tr>
                 </thead>
-                <c:forEach var="requestEntry" items="${requestDictionary}">
+                <c:forEach var="proposal" items="${proposals}">
                     <tr>
-                        <td>${requestEntry.key}</td>
-                        <td>${requestEntry.value.bookAuthor}</td>
-                        <td>${requestEntry.value.bookTitle}</td>
+                        <td>${proposal.id}</td>
+                        <td>${proposal.bookTitle}</td>
+                        <td>${proposal.author}</td>
+                        <td>${proposal.proposalStatus}</td>
                     </tr>
                 </c:forEach>
                 </c:otherwise>

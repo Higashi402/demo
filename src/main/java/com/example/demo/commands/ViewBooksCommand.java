@@ -39,8 +39,6 @@ public class ViewBooksCommand extends Command {
         System.out.println(user.getRoleName());
         request.setAttribute("user",user);
         request.setAttribute("books", books);
-        //forward(ConfigurationManager.getProperty("path.page.catalog"));
-        //request.getRequestDispatcher("jsp/catalog.jsp").forward(request, response);
         forward(ConfigurationManager.getProperty("path.page.catalog"));
     }
 }
