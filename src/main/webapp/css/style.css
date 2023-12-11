@@ -439,6 +439,22 @@ tr.data-row-index {
     height: 20px;
 }
 
+.adminAddUserForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(152, 251, 152,0.8);
+    border: 1px solid #3CB371;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    height: 600px;
+}
+
 .admin-add-book {
     position: absolute;
     margin-top: 0px;
@@ -446,6 +462,25 @@ tr.data-row-index {
 
     display: flex;
     height: 50px;
+    border: 2px solid #FFA07A;
+    background-color: #FFDAB9;
+    color: #FFA07A;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 6px;
+    overflow: hidden;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-add-user {
+    position: absolute;
+    margin-top: 0px;
+    left: 17%;
+
+    display: flex;
+    height: 100px;
     border: 2px solid #FFA07A;
     background-color: #FFDAB9;
     color: #FFA07A;

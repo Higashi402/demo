@@ -1,6 +1,10 @@
 package com.example.demo.commands;
 
 import com.example.demo.CommandUtils.ActionCommand;
+import com.example.demo.db.DBType;
+import com.example.demo.db.dao.BookDAO;
+import com.example.demo.db.dao.DAOFactory;
+import com.example.demo.db.dao.UserDAO;
 import com.example.demo.utils.*;
 import com.example.demo.roles.RoleType;
 
@@ -9,18 +13,30 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 public class ViewUsersCommand extends Command  {
+
+    private static DAOFactory daoFactory = null;
+
+    public UserDAO userDAO;
+
+    static {
+        daoFactory = DAOFactory.getInstance(DBType.ORACLE);
+    }
     @Override
     public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         super.init(servletContext, servletRequest, servletResponse);
+        userDAO = daoFactory.getUserDAO();
     }
 
     @Override
-    public void process() throws ServletException, IOException {
+    public void process() throws ServletException, IOException, SQLException {
         System.out.println("VIEWUSERS");
-        //request.setAttribute("userDictionary", UserContainer.users);
+        List<User> users = this.userDAO.getAllUsers();
+        request.setAttribute("users", users);
         forward(ConfigurationManager.getProperty("path.page.usercatalog"));
     }
 

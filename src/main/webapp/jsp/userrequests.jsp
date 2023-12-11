@@ -16,10 +16,11 @@
 <div class="requestsForm">
   <div class="modal-content-catalog">
 
-    <p style="font-size: 40px">Заявки пользователя ${username}</p>
+    <p style="font-size: 40px">Заявки пользователя ${requestedUser.username}</p>
 
-    <form action="controller" method="POST">
-      <input type="hidden" name="command" value="redirecttousercatalog">
+    <form action="controller" method="GET">
+      <input type="hidden" name="command" value="viewuserinformation">
+      <input type="hidden" name="name" value="${requestedUser.username}">
       <button id="button-hover" class="close-button"></button>
     </form>
 
@@ -39,7 +40,7 @@
 
         <tbody id="requestTableBody">
         <c:choose>
-        <c:when test="${empty requestDictionary}">
+        <c:when test="${empty proposals}">
         <p>Заявок нет</p>
         </c:when>
         <c:otherwise>
@@ -52,13 +53,12 @@
         </tr>
         </thead>
         <tbody class="tableBody">
-        <c:forEach var="requestEntry" items="${requestDictionary}">
-          <tr class='book-row' onclick="submitUserRequest(this)" data-user="${username}" data-id="${requestEntry.key}" data-author="${requestEntry.value.bookAuthor}"
-              data-title="${requestEntry.value.bookTitle}" data_status="${requestEntry.value.requestStatus}">
-            <td>${requestEntry.key}</td>
-            <td>${requestEntry.value.bookAuthor}</td>
-            <td>${requestEntry.value.bookTitle}</td>
-            <td>${requestEntry.value.requestStatus}</td>
+        <c:forEach var="proposal" items="${proposals}">
+          <tr class='book-row' onclick="submitUserRequest(this)" data-user="${user.username}" data-id="${proposal.id}" >
+          <td>${proposal.id}</td>
+          <td>${proposal.bookTitle}</td>
+          <td>${proposal.author}</td>
+          <td>${proposal.proposalStatus}</td>
           </tr>
         </c:forEach>
         </tbody>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -18,10 +18,24 @@
             <button id="button-hover" class="close-button"></button>
         </form>
 
-        <form id="user-request-form" action="controller" method="POST" accept-charset="UTF-8" style="display: none;">
+    <c:set var="user" value="${sessionScope.user}" />
+    <c:choose>
+        <c:when test="${user.roleName == 'ADMIN'}">
+            <div class = "catalog-header" >
+            <p style="font-size: 40px; margin-top: 5px">Список пользователей</p>
+            <form action="controller" method="post">
+            <input type="hidden" name="command" value="redirecttoadduserpage">
+            <button type="submit" id="button-hover" class = "user-button-submit">Добавить пользователя</button>
+            </form>
+            </div>
+        </c:when>
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
+
+        <form id="user-request-form" action="controller" method="GET" accept-charset="UTF-8" style="display: none;">
             <input type="hidden" name="command" value="viewuserinformation">
             <input type="hidden" name="name" id="Username">
-            <input type="hidden" name="role" id="UserRole">
             <input type="submit" id="submitBtn" style="display: none;">
         </form>
 
@@ -35,10 +49,10 @@
                 </tr>
                 </thead>
                 <tbody class="tableBody">
-                <c:forEach var="userEntry" items="${userDictionary}">
-                    <tr class='book-row' onclick="submitUserForm(this)"  data-user="${userEntry.value.username}" data-role="${userEntry.value.role}">
-                        <td>${userEntry.value.username}</td>
-                        <td>${userEntry.value.role}</td>
+                <c:forEach var="userEntry" items="${users}">
+                    <tr class='book-row' onclick="submitUserForm(this)"  data-user="${userEntry.username}">
+                        <td>${userEntry.username}</td>
+                        <td>${userEntry.roleName}</td>
                     </tr>
                     <!-- Форма JSP для отправки запроса -->
                 </c:forEach>

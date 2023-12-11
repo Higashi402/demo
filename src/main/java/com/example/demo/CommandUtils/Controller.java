@@ -15,6 +15,7 @@ public class Controller extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Command command = getCommand(request);
         command.init(getServletContext(),request,response);
         try {

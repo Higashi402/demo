@@ -57,6 +57,18 @@ public enum CommandEnum {
             this.command = new RedirectToAddBookPageCommand();
         }
     },
+    ADDUSER {
+        {
+            this.command = new AddUserCommand();
+        }
+    },
+
+
+    REDIRECTTOADDUSERPAGE {
+        {
+            this.command = new RedirectToAddUserPageCommand();
+        }
+    },
     REDIRECTTOMAINMENU {
         {
             this.command = new RedirectToMainMenuCommand();
@@ -67,6 +79,7 @@ public enum CommandEnum {
             this.command = new AddBooksCommand();
         }
     },
+
     REDIRECTTOEDITBOOK {
         {
             this.command = new RedirectToEditBookCommand();
