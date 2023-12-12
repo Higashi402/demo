@@ -32,12 +32,17 @@
       <!— Код для администратора —>
       <form action="controller" method="GET">
         <input type="hidden" name="command" value="viewuserrequests">
-        <input type="hidden" name="username" value="${requesteduser.username}">
+        <input type="hidden" name="id" value="${requesteduser.id}">
         <button type="submit" id="button-hover" class="user-button-submit">Посмотреть заявки пользователя</button>
       </form> <form action="controller" method="POST">
       <input type="hidden" name="command" value="userdelete">
-      <input type="hidden" name="username" value="${requesteduser.username}">
+      <input type="hidden" name="id" value="${requesteduser.id}">
       <button type="submit" id="button-hover" class="user-button-submit">Удалить пользователя</button>
+    </form>
+      </form> <form action="controller" method="POST">
+      <input type="hidden" name="command" value="redirecttoedituser">
+      <input type="hidden" name="id" value="${requesteduser.id}">
+      <button type="submit" id="button-hover" class="user-button-submit">Редактировать пользователя</button>
     </form>
     </c:when>
     <c:when test="${user.roleName == 'MODERATOR'}">
@@ -50,8 +55,7 @@
     </c:when>
   </c:choose> </div>
   <!— Проверяем наличие атрибута errorMessage и выводим его —>
-  <c:if test="${not empty errorMessage}"><p style="color: red;">${errorMessage}</p>
-  </c:if> <c:if test="${not empty errorDeleteMessage}"> <p style="color: red;">${errorDeleteMessage}</p>
+  <c:if test="${not empty errorDeleteMessage}"> <p style="color: red;">${errorDeleteMessage}</p>
   </c:if>
 </div>
 </div>
