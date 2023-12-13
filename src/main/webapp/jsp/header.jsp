@@ -20,7 +20,7 @@
         <c:set var="user" value="${sessionScope.user}" />
         <c:choose>
             <c:when test="${user.roleName == 'USER'}">
-                <div class = "user-buttons">
+                <div class = "header-buttons">
                     <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">
                         <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
@@ -37,7 +37,7 @@
                 </form>
             </c:when>
             <c:when test="${user.roleName == 'ADMIN'}">
-                <div class = "user-buttons">
+                <div class = "header-buttons">
                     <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">
                         <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
@@ -53,8 +53,8 @@
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
-            <c:when test="${user.role == 'MODERATOR'}">
-                <div class = "user-buttons">
+            <c:when test="${user.roleName == 'MODERATOR'}">
+                <div class = "header-buttons">
                     <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewusers">
                         <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>

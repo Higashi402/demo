@@ -11,7 +11,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/scripts.js"></script>
 </head>
 <body>
-<%@include file="header.jsp" %>
 <%@include file="catalog.jsp" %>
 <div class = "bookInfoForm">
         <form action="controller" method="GET">

@@ -1,5 +1,8 @@
 package com.example.demo.commands;
 
+import com.example.demo.db.DBType;
+import com.example.demo.db.dao.DAOFactory;
+import com.example.demo.db.dao.UserDAO;
 import com.example.demo.utils.*;
 
 import javax.servlet.ServletContext;
@@ -7,37 +10,39 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 public class BlockUnblockUserCommand extends Command{
+
+    public UserDAO userDAO;
+    private static DAOFactory daoFactory = null;
+
+    static {
+        daoFactory = DAOFactory.getInstance(DBType.ORACLE);
+    }
 
     @Override
     public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         super.init(servletContext, servletRequest, servletResponse);
-
+        userDAO = daoFactory.getUserDAO();
     }
 
     @Override
-    public void send() throws ServletException, IOException {
+    public void send() throws ServletException, IOException, SQLException {
         String username = request.getParameter("username");
-        User user = null;
-        //if (user instanceof RegularUser) {
-            //request.setAttribute("userDictionary", UserContainer.users);
-            request.setAttribute("username", username);
-            //boolean banFlag = ((RegularUser) user).getBlocked();
-            //if (banFlag){
-             //   ((RegularUser) user).setBlocked(false);
-            //}
-            //else {
-            //    ((RegularUser) user).setBlocked(true);
-            //}
-            //forward(ConfigurationManager.getProperty("path.page.usercatalog"));
-       // } else {
-            request.setAttribute("errorMessage", "Заявки могут быть только у пользователей!");
-            request.setAttribute("userRole", user.getRole());
-            request.setAttribute("username", username);
-            //request.setAttribute("userDictionary", UserContainer.users);
-            forward(ConfigurationManager.getProperty("path.page.usercatalog"));
+        User user = this.userDAO.getUserByLogin(username);
+        if (username != null) {
+            if(user.getBlocked() == 0) {
+                this.userDAO.blockUser(user.getId());
+            } else {
+                this.userDAO.unBlockUser(user.getId());
+            }
+        }
+        List <User> users= userDAO.getAllUsers();
+        request.setAttribute("users", users);
+        forward(ConfigurationManager.getProperty("path.page.usercatalog"));
 
     }
 }

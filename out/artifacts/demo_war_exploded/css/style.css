@@ -208,8 +208,13 @@ input[type="password"] {
     cursor: pointer;
 }
 
-.user-buttons button {
-    position: absolute;
+.header-buttons {
+    position: relative;
+    left: 200px;
+    display:inline;
+}
+
+.header-buttons button {
     padding: 10px; /* Добавим отступы вокруг текста кнопки */
     background-color: #4CAF50; /* Задаем цвет фона кнопки */
     color: white; /* Задаем цвет текста на кнопке */
@@ -236,21 +241,6 @@ input[type="password"] {
     background-size: cover;
     cursor: pointer;
     display: table;
-}
-
-.user-buttons-catalog{
-    position: absolute;
-    left: 10%;
-}
-
-.user-buttons-users{
-    position: absolute;
-    left: 50%;
-}
-
-.user-buttons-request{
-    position: absolute;
-    left: 30%;
 }
 
 .user-buttons-exit{
@@ -420,8 +410,7 @@ tr.data-row-index {
     border: 1px solid #3CB371;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
-    height: 300px;
+    height: auto;
 }
 
 #title {
@@ -439,19 +428,18 @@ tr.data-row-index {
     height: 20px;
 }
 
-.admin-add-book {
-    position: absolute;
-    margin-top: 0px;
-    left: 17%;
-
-    display: flex;
+.admin-add-book-button {
+    width: 90%;
+    left: 14%;
+    margin-top: 10px;
+    position: relative;
     height: 50px;
     border: 2px solid #FFA07A;
     background-color: #FFDAB9;
     color: #FFA07A;
     text-transform: uppercase;
     font-size: 15px;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
     overflow: hidden;
     border-radius: 5px;
     justify-content: center;

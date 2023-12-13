@@ -11,7 +11,6 @@
     </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
 <%@include file="catalog.jsp"%>
 
 <h2>Добавление книги</h2>
@@ -27,17 +26,17 @@
         <input type="hidden" id="amountValue" name="amountValue" value="">
 
         <div class = "add-book-text-box">
-            <label for="title" style="font-size: 25px; margin-bottom: 20px">Название книги:</label>
-            <input type="text" id="title" name="title" required oninput="document.getElementById('titleValue').value = this.value;">
+            <label for="title" style="font-size: 30px;">Название книги:</label>
+            <input style="width: 100%" type="text" id="title" name="title" required oninput="document.getElementById('titleValue').value = this.value;">
 
-            <label for="author" style="font-size: 25px; margin-bottom: 20px">Автор книги:</label>
-            <input type="text" id="author" name="author" required oninput="document.getElementById('authorValue').value = this.value;">
+            <label for="author" style="font-size: 30px;">Автор книги:</label>
+            <input style="width: 100%" type="text" id="author" name="author" required oninput="document.getElementById('authorValue').value = this.value;">
 
-            <label for="amount" style="font-size: 25px; margin-right: 20px">Количество:</label>
-            <input type="number" id="amount" name="amount" min="1" max="10" required oninput="document.getElementById('amountValue').value = this.value;">
+            <label for="amount" style="font-size: 30px;">Количество:</label>
+            <input style="width: 20%; height: 25px; font-size: 20px" type="number" id="amount" name="amount" min="1" max="10" required oninput="document.getElementById('amountValue').value = this.value;">
         </div>
 
-        <input type="submit" class = "admin-add-book" id = "button-hover" value="Добавить книгу">
+        <input type="submit" class = "admin-add-book-button" id = "button-hover" value="Добавить книгу">
     </form>
 </div>
 </body>

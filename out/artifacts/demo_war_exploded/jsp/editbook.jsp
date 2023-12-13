@@ -11,7 +11,6 @@
     </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
 <%@include file="catalog.jsp" %>
 
 <h2>Добавление книги</h2>

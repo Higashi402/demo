@@ -64,6 +64,18 @@ public class OracleUserDAO implements UserDAO {
     }
 
     @Override
+    public void blockUser(int userId) throws SQLException {
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery("UPDATE LIBRARYUSERS SET ISBANED = 1 WHERE USERID = " + userId);
+    }
+
+    @Override
+    public void unBlockUser(int userId) throws SQLException {
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery("UPDATE LIBRARYUSERS SET ISBANED = 0 WHERE USERID = " + userId);
+    }
+
+    @Override
     public void addUser(String fio, String userDOB, String login, String userPassword, int appointment) throws SQLException {
         Statement statement = this.getConnection().createStatement();
         statement.executeQuery( "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES ('" + fio + "', TO_DATE('" + userDOB + "', 'YYYY-MM-DD'), '" + login + "', '" + userPassword + "', " + appointment + ")");
@@ -89,5 +101,7 @@ public class OracleUserDAO implements UserDAO {
         }
         return users;
     }
+
+
 
 }

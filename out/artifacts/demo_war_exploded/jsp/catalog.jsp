@@ -62,7 +62,6 @@
         <c:choose>
             <c:when test="${user.roleName == 'USER'}">
                 <tbody class="tableBody">
-                <p style="font-size: 40px; margin-top: 0px">Каталог книг</p>
                         <c:forEach var="book" items="${books}">
                             <tr class='book-row' onclick="submitForm(this);" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-rating="${book.rating}">
                                 <td>${book.title}</td>

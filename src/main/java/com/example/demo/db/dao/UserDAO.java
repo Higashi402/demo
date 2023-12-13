@@ -14,4 +14,8 @@ public interface UserDAO {
     List <User> getAllUsers() throws SQLException;
 
     User getUserByID(int userID) throws SQLException;
+
+    void blockUser(int userId) throws SQLException;
+
+    void unBlockUser(int userId) throws SQLException;
 }

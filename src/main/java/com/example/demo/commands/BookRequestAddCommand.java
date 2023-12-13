@@ -37,6 +37,7 @@ public class BookRequestAddCommand extends Command {
 
     public void send() throws ServletException, IOException, SQLException {
         User user = (User) request.getSession().getAttribute("user");
+        String pathPage = null;
         List<Book> books = this.bookDAO.getAllBooks();
         System.out.println(user.getRoleName());
         request.setAttribute("user",user);
@@ -53,7 +54,12 @@ public class BookRequestAddCommand extends Command {
         }
         if(!cancel) {
             this.proposalDAO.addProposal(user.getId(),Integer.parseInt(bookId));
+            pathPage = ConfigurationManager.getProperty("path.page.catalog");
+        } else
+        {
+            request.setAttribute("resMessage", ConfigurationManager.getProperty("message.existserror"));
+            pathPage = ConfigurationManager.getProperty("path.page.bookinfo");
         }
-        forward(ConfigurationManager.getProperty("path.page.catalog"));
+        forward(pathPage);
     }
 }
