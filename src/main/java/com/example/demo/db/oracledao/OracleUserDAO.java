@@ -44,10 +44,10 @@ public class OracleUserDAO implements UserDAO {
     }
 
     @Override
-    public User getUserByID(int userID) throws SQLException {
+    public User getUserById(int id) throws SQLException {
         User user = new User();
         Statement statement = this.getConnection().createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM \"LIBRARYUSERS\" WHERE \"USERID\" = " + "'" + userID + "'");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM \"LIBRARYUSERS\" WHERE \"USERID\" = " + "'" + id + "'");
         if (resultSet.next()) {
             user.setId(resultSet.getInt("USERID"));
             user.setUserFIO(resultSet.getString("FIO"));
@@ -63,23 +63,59 @@ public class OracleUserDAO implements UserDAO {
 
     }
 
-    @Override
-    public void blockUser(int userId) throws SQLException {
-        Statement statement = this.getConnection().createStatement();
-        statement.executeQuery("UPDATE LIBRARYUSERS SET ISBANED = 1 WHERE USERID = " + userId);
-    }
+  /*  @Override
+    public void addUser(String fio, String userDOB, String login, String userPassword, int appointment) throws SQLException {
+        String query = "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES (?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?)";
 
-    @Override
-    public void unBlockUser(int userId) throws SQLException {
-        Statement statement = this.getConnection().createStatement();
-        statement.executeQuery("UPDATE LIBRARYUSERS SET ISBANED = 0 WHERE USERID = " + userId);
-    }
+        try (Connection connection = this.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, fio);
+            preparedStatement.setString(2, userDOB);
+            preparedStatement.setString(3, login);
+            preparedStatement.setString(4, userPassword);
+            preparedStatement.setInt(5, appointment);
+            preparedStatement.executeQuery();
+        }
+    }*/
 
     @Override
     public void addUser(String fio, String userDOB, String login, String userPassword, int appointment) throws SQLException {
+       /* String query = "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES ('" + fio + "', TO_DATE('" + userDOB + "', 'YYYY-MM-DD'), '" + login + "', '" + userPassword + "', " + appointment + ")";
+
+        try (Connection connection = this.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(query);
+        }*/
         Statement statement = this.getConnection().createStatement();
         statement.executeQuery( "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES ('" + fio + "', TO_DATE('" + userDOB + "', 'YYYY-MM-DD'), '" + login + "', '" + userPassword + "', " + appointment + ")");
 
+    }
+
+    @Override
+    public void updateUser(int userID, String fio, String userDOB, String login, String userPassword, int appointment) throws SQLException {
+       /* String query = "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES ('" + fio + "', TO_DATE('" + userDOB + "', 'YYYY-MM-DD'), '" + login + "', '" + userPassword + "', " + appointment + ")";
+
+        try (Connection connection = this.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(query);
+        }*/
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery( "UPDATE \"LIBRARYUSERS\" SET " +
+                "FIO = '" + fio + "', " +
+                "USERDOB = TO_DATE('" + userDOB + "', 'YYYY-MM-DD'), " +
+                "LOGIN = '" + login + "', " +
+                "USERPASSWORD = '" + userPassword + "', " +
+                "APPOINTMENT = " + appointment +
+                " WHERE USERID = " + userID);
+
+    }
+
+    @Override
+    public void deleteUser(int id) throws SQLException {
+        Statement statement = this.getConnection().createStatement();
+        Statement statement1 = this.getConnection().createStatement();
+        statement1.executeQuery("DELETE FROM BOOKPROPOSAL WHERE LIBRARYUSER =" + id);
+        statement.executeQuery("DELETE FROM LIBRARYUSERS WHERE USERID =" + id);
     }
 
     @Override
@@ -101,7 +137,5 @@ public class OracleUserDAO implements UserDAO {
         }
         return users;
     }
-
-
 
 }

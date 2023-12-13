@@ -35,7 +35,7 @@
 
         <form id="user-request-form" action="controller" method="GET" accept-charset="UTF-8" style="display: none;">
             <input type="hidden" name="command" value="viewuserinformation">
-            <input type="hidden" name="name" id="Username">
+            <input type="hidden" name="userId" id="userId">
             <input type="submit" id="submitBtn" style="display: none;">
         </form>
 
@@ -50,7 +50,7 @@
                 </thead>
                 <tbody class="tableBody">
                 <c:forEach var="userEntry" items="${users}">
-                    <tr class='book-row' onclick="submitUserForm(this)"  data-user="${userEntry.username}">
+                    <tr class='book-row' onclick="submitUserForm(this);"  user-id="${userEntry.id}">
                         <td>${userEntry.username}</td>
                         <td>${userEntry.roleName}</td>
                         <td>${userEntry.userFIO}</td>

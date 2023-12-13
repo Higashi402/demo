@@ -57,6 +57,18 @@ public enum CommandEnum {
             this.command = new RedirectToAddBookPageCommand();
         }
     },
+
+    REDIRECTTOEDITUSER {
+        {
+            this.command = new RedirectToUserEditCommand();
+        }
+    },
+
+    EDITUSER {
+        {
+            this.command = new EditUserCommand();
+        }
+    },
     ADDUSER {
         {
             this.command = new AddUserCommand();
