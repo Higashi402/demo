@@ -45,6 +45,8 @@ public class LoginCommand extends Command {
         if (user != null && user.getPassword().equals(pass)) {
             request.getSession().setAttribute("user", user);
             User userOut = (User) request.getSession().getAttribute("user");
+            System.out.println(userOut.getRoleName());
+            System.out.println(userOut.getId());
             System.out.println("В сессию зашел " + userOut.getUsername());
             request.getRequestDispatcher("jsp/menu.jsp").forward(request, response);
         } else {

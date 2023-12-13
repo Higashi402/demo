@@ -50,8 +50,6 @@ public class OracleBookDAO implements BookDAO {
     @Override
     public void deleteBook(int bookId) throws SQLException {
         Statement statement = this.getConnection().createStatement();
-        Statement statement1= this.getConnection().createStatement();
-        statement1.executeQuery("DELETE FROM BOOKPROPOSAL WHERE BOOK =" + bookId);
         statement.executeQuery("DELETE FROM BOOKS WHERE BOOKID =" + bookId);
     }
 

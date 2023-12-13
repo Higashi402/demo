@@ -33,10 +33,10 @@ public class ViewUserRequests extends Command{
     @Override
     public void process() throws ServletException, IOException, SQLException {
         System.out.println("Заявки для пользователея");
-        int id = Integer.parseInt(request.getParameter("id"));
-        User user = userDAO.getUserById(id);
-        if (user != null) {
+        String username = request.getParameter("username");
+        if (username != null) {
             List <User> users= userDAO.getAllUsers();
+            User user = userDAO.getUserByLogin(username);
             request.setAttribute("requestedUser",user);
             List<Proposal> proposals = this.proposalDAO.getProposalsOfUser(user.getId());
             request.setAttribute("proposals", proposals);

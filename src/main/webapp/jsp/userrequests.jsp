@@ -20,7 +20,7 @@
 
     <form action="controller" method="GET">
       <input type="hidden" name="command" value="viewuserinformation">
-      <input type="hidden" name="userId" value="${requestedUser.id}">
+      <input type="hidden" name="name" value="${requestedUser.username}">
       <button id="button-hover" class="close-button"></button>
     </form>
 

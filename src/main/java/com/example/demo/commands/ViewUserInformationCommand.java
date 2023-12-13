@@ -31,11 +31,10 @@ public class ViewUserInformationCommand extends Command {
 
     @Override
     public void process() throws ServletException, IOException, SQLException {
-        String username = request.getParameter("userId");
-        int userId = Integer.parseInt(username);
+        String username = request.getParameter("name");
         if (username != null) {
             List <User> users= userDAO.getAllUsers();
-            User user = userDAO.getUserById(userId);
+            User user = userDAO.getUserByLogin(username);
             request.setAttribute("requesteduser", user);
             request.setAttribute("users", users);
         }

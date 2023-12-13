@@ -50,6 +50,7 @@
                 </form>
             </c:otherwise>
         </c:choose>
+
         <div class="booksContainer">
             <table style="width: 700px; font-size: 20px; ">
                 <thead>
@@ -61,6 +62,7 @@
                 </thead>
         <c:choose>
             <c:when test="${user.roleName == 'USER'}">
+                <p style="font-size: 40px; margin-top: 0px">Каталог книг</p>
                 <tbody class="tableBody">
                         <c:forEach var="book" items="${books}">
                             <tr class='book-row' onclick="submitForm(this);" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-rating="${book.rating}">
