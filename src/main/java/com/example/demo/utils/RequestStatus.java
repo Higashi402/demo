@@ -1,10 +1,23 @@
 package com.example.demo.utils;
 
 public enum RequestStatus {
-    INPROCESSING(1),
-    READYFORPICKUP(2),
-    ISSUED(3);
+    INPROCESSING(1, "В рассмотрении"),
+    READYFORPICKUP(2, "Готова к выдаче"),
+    ISSUED(3, "Выдана");
 
-    RequestStatus(int i) {
+    private final int code;
+    private final String description;
+
+    RequestStatus(int code, String description) {
+        this.code = code;
+        this.description = description;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

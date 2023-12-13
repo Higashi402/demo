@@ -34,7 +34,7 @@ public class OracleDAOFactory extends DAOFactory {
         Locale.setDefault(Locale.ENGLISH);
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
         String user = "sys as sysdba";
-        String password = "1234";
+        String password = "12345";
         Class.forName("oracle.jdbc.OracleDriver");
 
         connection = DriverManager.getConnection(url, user, password);

@@ -43,29 +43,28 @@ public class OracleUserDAO implements UserDAO {
 
     }
 
-  /*  @Override
-    public void addUser(String fio, String userDOB, String login, String userPassword, int appointment) throws SQLException {
-        String query = "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES (?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?)";
-
-        try (Connection connection = this.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, fio);
-            preparedStatement.setString(2, userDOB);
-            preparedStatement.setString(3, login);
-            preparedStatement.setString(4, userPassword);
-            preparedStatement.setInt(5, appointment);
-            preparedStatement.executeQuery();
+    @Override
+    public User getUserByID(int userID) throws SQLException {
+        User user = new User();
+        Statement statement = this.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM \"LIBRARYUSERS\" WHERE \"USERID\" = " + "'" + userID + "'");
+        if (resultSet.next()) {
+            user.setId(resultSet.getInt("USERID"));
+            user.setUserFIO(resultSet.getString("FIO"));
+            user.setUserDOB(resultSet.getDate("USERDOB"));
+            user.setUsername(resultSet.getString("LOGIN"));
+            user.setPassword(resultSet.getString("USERPASSWORD"));
+            user.setBlocked(resultSet.getInt("ISBANED"));
+            user.setRole(RoleType.getById(resultSet.getInt("APPOINTMENT")));
+            return user;
+        } else {
+            return null;
         }
-    }*/
+
+    }
 
     @Override
     public void addUser(String fio, String userDOB, String login, String userPassword, int appointment) throws SQLException {
-       /* String query = "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES ('" + fio + "', TO_DATE('" + userDOB + "', 'YYYY-MM-DD'), '" + login + "', '" + userPassword + "', " + appointment + ")";
-
-        try (Connection connection = this.getConnection();
-             Statement statement = connection.createStatement()) {
-            statement.executeUpdate(query);
-        }*/
         Statement statement = this.getConnection().createStatement();
         statement.executeQuery( "INSERT INTO \"LIBRARYUSERS\" (FIO, USERDOB, LOGIN, USERPASSWORD, APPOINTMENT) VALUES ('" + fio + "', TO_DATE('" + userDOB + "', 'YYYY-MM-DD'), '" + login + "', '" + userPassword + "', " + appointment + ")");
 

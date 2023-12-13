@@ -41,8 +41,6 @@ public class ViewUserRequests extends Command{
             List<Proposal> proposals = this.proposalDAO.getProposalsOfUser(user.getId());
             request.setAttribute("proposals", proposals);
         }
-
         forward(ConfigurationManager.getProperty("path.page.userrequests"));
-        //}
     }
 }

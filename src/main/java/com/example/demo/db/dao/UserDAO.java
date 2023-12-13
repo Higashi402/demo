@@ -12,4 +12,6 @@ public interface UserDAO {
     void addUser(String fio, String userDOB, String login, String userPassword, int appointment) throws SQLException;
 
     List <User> getAllUsers() throws SQLException;
+
+    User getUserByID(int userID) throws SQLException;
 }

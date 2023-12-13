@@ -56,6 +56,7 @@ function submitForm(element) {
 }
 
 function submitUserForm(element) {
+
     var parentRow = element.closest('.book-row');
     var username = parentRow.getAttribute('data-user');
     document.getElementById('Username').value = username;
@@ -68,83 +69,13 @@ function submitUserForm(element) {
 function submitUserRequest(element) {
     var parentRow = element.closest('.book-row');
     var username = parentRow.getAttribute('data-user');
-    var requestId = parentRow.getAttribute('data-id');
-    var requestTitle = parentRow.getAttribute('data-title');
-    var requestAuthor = parentRow.getAttribute('data-author');
-    var requestStatus = parentRow.getAttribute('data_status');
+    var requestId = parentRow.getAttribute('data-request-id');
+
     document.getElementById('requestId').value = requestId;
     document.getElementById('username').value = username;
-    document.getElementById('requestTitle').value = requestTitle;
-    document.getElementById('requestAuthor').value = requestAuthor;
-    document.getElementById('requestStatus').value = requestStatus;
+
     document.getElementById('request-form').submit();
 }
-/*
-function sendRequest(element) {
-    var bookId = element.dataset.id;
-    var bookTitle = element.dataset.title;
-    var bookAuthor = element.dataset.author;
-    var bookRating = element.dataset.rating;
 
-    // Формируем строку с параметрами запроса
-    var params = new URLSearchParams();
-    params.append('command', 'VIEWBOOKINFORMATION');
-    params.append('id', bookId);
-    params.append('title', bookTitle);
-    params.append('author', bookAuthor);
-    params.append('rating', bookRating);
-
-    // Отправляем запрос на сервер
-    fetch('controller?' + params, {
-        method: 'POST'
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Произошла ошибка: ' + response.status);
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Обработка успешного ответа от сервера
-            console.log('Запрос успешно выполнен:', data);
-
-            // Перенаправление на другую страницу (например, 'bookinfo.jsp')
-            window.location.href = 'jsp/bookinfo.jsp';
-        })
-        .catch(error => {
-            // Обработка ошибки при выполнении запроса
-            console.error('Произошла ошибка при выполнении запроса:', error);
-        });
-}
-*/
-
-/*function submitForm() {
-    // Получение формы и ее данных
-    var form = document.querySelector('.book-form form');
-    var formData = new FormData(form);
-
-    // Создание объекта XMLHttpRequest
-    var xhr = new XMLHttpRequest();
-
-    // Настройка запроса
-    xhr.open('POST', form.action, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    // Отправка данных формы
-    xhr.send(new URLSearchParams(formData));
-
-    // Обработка ответа
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // Успешный ответ, обработайте его, как вам необходимо
-            var messageContainer = document.getElementById('message-container');
-            messageContainer.innerHTML = '<p>Заявка успешно отправлена!</p>';
-            // Теперь можно добавить логику для обновления словаря на клиентской стороне (если необходимо)
-        } else {
-            // Обработка ошибки
-            console.error('Произошла ошибка при отправке формы');
-        }
-    };
-}*/
 
 

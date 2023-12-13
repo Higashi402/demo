@@ -8,12 +8,12 @@ public class Proposal {
     private int bookId;
     private String bookTitle;
     private String proposalStatus;
-    private Date returningDate;
+    private String returningDate;
     private String author;
 
     public Proposal() {}
 
-    public Proposal(int id,int libraryUserId, String proposalStatus, int bookId, Date returningDate, String bookTitle,String author) {
+    public Proposal(int id,int libraryUserId, String proposalStatus, int bookId, String returningDate, String bookTitle,String author) {
         this.libraryUserId = libraryUserId;
         this.bookId = bookId;
         this.returningDate = returningDate;
@@ -31,9 +31,9 @@ public class Proposal {
 
     public void setBookId(int bookId) {this.bookId = bookId;}
 
-    public Date getReturningDate() {return returningDate;}
+    public String getReturningDate() {return returningDate;}
 
-    public void setReturningDate(Date returningDate) {this.returningDate = returningDate;}
+    public void setReturningDate(String returningDate) {this.returningDate = returningDate;}
 
     public int getId() {return this.id;}
 

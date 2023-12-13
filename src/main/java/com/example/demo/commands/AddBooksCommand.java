@@ -35,11 +35,10 @@ public class AddBooksCommand extends Command {
         String title = request.getParameter("titleValue");
         String author = request.getParameter("authorValue");
         String amount = request.getParameter("amountValue");
-        List<Book> books = this.bookDAO.getAllBooks();
         if (title != null && !title.isEmpty() && author != null && !author.isEmpty() && amount != null && !amount.isEmpty()) {
             try {
                 this.bookDAO.addBook(title,author,Integer.parseInt(amount));
-                books = this.bookDAO.getAllBooks();
+                List<Book> books = this.bookDAO.getAllBooks();
                 request.setAttribute("books", books);
                 forward(ConfigurationManager.getProperty("path.page.catalog"));
             } catch (NumberFormatException e) {

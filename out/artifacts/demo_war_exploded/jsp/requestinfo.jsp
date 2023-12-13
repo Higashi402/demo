@@ -19,7 +19,7 @@
 
 <div class=requestEditForm>
 
-    <div class = "request-edit-text">
+    <div class = "request-edit-text" style="font-size: 30px">
         <h2>Информация о заявке</h2>
         <p>Имя пользователя: ${username}</p>
         <p>Id заявки: ${requestId}</p>
@@ -33,11 +33,11 @@
                 <input type="hidden" name="command" value="updaterequeststatus">
                 <input type="hidden" name="id" value="${requestId}">
                 <input type="hidden" name="username" value="${username}">
-                <label style="font-size: 25px" for="status">Изменить статус заявки:</label>
-            <select name="status" id="status">
-                <option value="${status_INPROCESSING}" ${requestStatus == 'INPROCESSING' ? 'selected' : ''}>INPROCESSING</option>
-                <option value="${status_READYFORPICKUP}" ${requestStatus == 'READYFORPICKUP' ? 'selected' : ''}>READYFORPICKUP</option>
-                <option value="${status_ISSUED}" ${requestStatus == 'ISSUED' ? 'selected' : ''}>ISSUED</option>
+                <label style="font-size: 30px" for="status">Изменить статус заявки:</label>
+            <select name="status" id="status" style="font-size: 20px">
+                <option value="${status_INPROCESSING}" ${requestStatus == 'INPROCESSING' ? 'selected' : ''}>В рассмотрении</option>
+                <option value="${status_READYFORPICKUP}" ${requestStatus == 'READYFORPICKUP' ? 'selected' : ''}>Готова к выдаче</option>
+                <option value="${status_ISSUED}" ${requestStatus == 'ISSUED' ? 'selected' : ''}>Выдана</option>
             </select>
             <input type="submit" id="button-hover" class = "user-button-submit" value="Изменить статус">
         </form>

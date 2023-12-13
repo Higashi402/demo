@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.google.gson.Gson" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,46 +21,46 @@
         <c:choose>
             <c:when test="${user.roleName == 'USER'}">
                 <div class = "user-buttons">
-                    <form action="controller" method="GET">
+                    <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">
                         <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
                     </form>
 
-                    <form action="controller" method="GET">
+                    <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewrequests">
                         <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
                     </form>
                 </div>
-                <form action="controller" method="GET">
+                <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
             <c:when test="${user.roleName == 'ADMIN'}">
                 <div class = "user-buttons">
-                    <form action="controller" method="GET">
+                    <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">
                         <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
                     </form>
 
-                    <form action="controller" method="GET">
+                    <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewusers">
                         <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
                     </form>
                 </div>
-                <form action="controller" method="GET">
+                <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
             <c:when test="${user.role == 'MODERATOR'}">
                 <div class = "user-buttons">
-                    <form action="controller" method="GET">
+                    <form action="/demo/controller" method="GET">
                         <input type="hidden" name="command" value="viewusers">
                         <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
                     </form>
                 </div>
-                <form action="controller" method="GET">
+                <form action="/demo/controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>

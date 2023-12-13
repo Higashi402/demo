@@ -54,7 +54,7 @@
         </thead>
         <tbody class="tableBody">
         <c:forEach var="proposal" items="${proposals}">
-          <tr class='book-row' onclick="submitUserRequest(this)" data-user="${user.username}" data-id="${proposal.id}" >
+          <tr class='book-row' onclick="submitUserRequest(this)" data-user="${user.username}" data-request-id="${proposal.id}" >
           <td>${proposal.id}</td>
           <td>${proposal.bookTitle}</td>
           <td>${proposal.author}</td>

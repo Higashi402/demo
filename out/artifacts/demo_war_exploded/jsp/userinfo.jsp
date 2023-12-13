@@ -10,7 +10,8 @@
 <div class="bookInfoForm"> <form action="controller" method="GET">
   <input type="hidden" name="command" value="viewusers">
   <button id="button-hover" class="close-button"></button>
-</form> <div class="content"> <p style="font-size: 30px"><strong>Имя пользователя:</strong> ${requesteduser.username}</p>
+</form> <div class="content"> <p style="font-size: 30px">
+  <strong>Логин пользователя:</strong> ${requesteduser.username}</p>
   <p style="font-size: 30px"><strong>Роль:</strong> ${requesteduser.roleName}</p>
   <p style="font-size: 30px"> <strong> Ф.И.О:</strong> ${requesteduser.userFIO}</p>
   <p style="font-size: 30px"> <strong> Дата рождения:</strong> ${requesteduser.userDOB}</p>
@@ -41,7 +42,7 @@
     </form>
     </c:when>
     <c:when test="${user.roleName == 'MODERATOR'}">
-    <!— Код для модератора —>
+
     <form action="controller" method="POST">
       <input type="hidden" name="command" value="blockunblockuser">
       <input type="hidden" name="username" value="${username}">
@@ -49,9 +50,10 @@
     </form>
     </c:when>
   </c:choose> </div>
-  <!— Проверяем наличие атрибута errorMessage и выводим его —>
+
   <c:if test="${not empty errorMessage}"><p style="color: red;">${errorMessage}</p>
-  </c:if> <c:if test="${not empty errorDeleteMessage}"> <p style="color: red;">${errorDeleteMessage}</p>
+  </c:if>
+  <c:if test="${not empty errorDeleteMessage}"> <p style="color: red;">${errorDeleteMessage}</p>
   </c:if>
 </div>
 </div>

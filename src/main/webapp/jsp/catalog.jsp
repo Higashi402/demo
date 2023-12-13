@@ -25,7 +25,7 @@
             <c:when test="${user.roleName == 'ADMIN'}">
                 <div class = "catalog-header" >
                     <p style="font-size: 40px; margin-top: 5px">Каталог книг</p>
-                    <form action="controller" method="post">
+                    <form action="/demo/controller" method="post">
                         <input type="hidden" name="command" value="redirecttoaddbookpagecommand">
                         <button type="submit" id="button-hover" class = "user-button-submit">Добавить книгу</button>
                     </form>

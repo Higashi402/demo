@@ -9,4 +9,10 @@ public interface ProposalDAO {
     void addProposal(int userId, int bookId) throws SQLException;
 
     List<Proposal> getProposalsOfUser(int userId) throws SQLException;
+
+    Proposal getProposalById(int proposalId) throws SQLException;
+
+    void deleteProposalById(int proposalId) throws SQLException;
+
+    void changeProposalStatus(String status, int proposalID) throws SQLException;
 }

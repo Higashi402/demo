@@ -3,11 +3,9 @@ package com.example.demo.db.oracledao;
 import com.example.demo.db.dao.ProposalDAO;
 import com.example.demo.utils.Book;
 import com.example.demo.utils.Proposal;
+import com.example.demo.utils.RequestStatus;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +23,8 @@ public class OracleProposalDAO implements ProposalDAO {
 
     @Override
     public void addProposal(int userId, int bookId) throws SQLException {
-        Proposal proposal = new Proposal();
         Statement statement = this.getConnection().createStatement();
-        statement.executeQuery("INSERT INTO BookProposal (LibraryUser, Book, Status, ReturningDate) VALUES (" + userId + ", " + bookId + ", 'Approved', TO_DATE('2023/05/23', 'yyyy/mm/dd'))");
+        statement.executeQuery("INSERT INTO BookProposal (LibraryUser, Book, Status, ReturningDate) VALUES (" + userId + ", " + bookId + ", 'В рассмотрении', TO_DATE('2023/05/23', 'yyyy/mm/dd'))");
     }
 
     @Override
@@ -48,5 +45,45 @@ public class OracleProposalDAO implements ProposalDAO {
         }
 
         return proposals;
+    }
+
+    @Override
+    public Proposal getProposalById(int proposalId) throws SQLException {
+        Proposal proposal = new Proposal();
+        Statement statement = this.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKPROPOSAL JOIN BOOKS ON bookproposal.book = books.bookid \n" +
+                "WHERE PROPOSALID =" + proposalId);
+        if (resultSet.next()) {
+            proposal = new Proposal();
+            proposal.setId(resultSet.getInt("PROPOSALID"));
+            proposal.setLibraryUserId(resultSet.getInt("LIBRARYUSER"));
+            proposal.setBookTitle(resultSet.getString("TITLE"));
+            proposal.setProposalStatus(resultSet.getString("STATUS"));
+            proposal.setAuthor(resultSet.getString("AUTHOR"));
+        }
+        return proposal;
+    }
+
+    @Override
+    public void deleteProposalById(int proposalId) throws SQLException {
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery("DELETE FROM BOOKPROPOSAL WHERE PROPOSALID =" + proposalId);
+    }
+
+    @Override
+    public void changeProposalStatus(String status, int proposalID) throws SQLException {
+        Connection connection = this.getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            String sql = "UPDATE BOOKPROPOSAL SET STATUS = ? WHERE PROPOSALID = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, status);
+            preparedStatement.setString(2, Integer.toString(proposalID));
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+        }
     }
 }

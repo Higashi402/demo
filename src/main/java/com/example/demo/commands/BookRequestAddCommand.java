@@ -37,7 +37,6 @@ public class BookRequestAddCommand extends Command {
 
     public void send() throws ServletException, IOException, SQLException {
         User user = (User) request.getSession().getAttribute("user");
-        String pathPage = null;
         List<Book> books = this.bookDAO.getAllBooks();
         System.out.println(user.getRoleName());
         request.setAttribute("user",user);
@@ -54,41 +53,7 @@ public class BookRequestAddCommand extends Command {
         }
         if(!cancel) {
             this.proposalDAO.addProposal(user.getId(),Integer.parseInt(bookId));
-            pathPage = ConfigurationManager.getProperty("path.page.catalog");
         }
-        else
-        {
-            request.setAttribute("resMessage", ConfigurationManager.getProperty("message.existserror"));
-            pathPage = ConfigurationManager.getProperty("path.page.bookinfo");
-        }
-        //proposalDAO.addProposal();
-
-        // Проверка наличия пользователя и его роли
-        //if (user != null && user.getRole() == RoleType.USER) {
-            //int id = Integer.parseInt(request.getParameter("id"));
-            //RegularUser regularUser = (RegularUser) user;
-            //if (!regularUser.getApplications().containsKey(id)) {
-                //try {
-                    // Добавление заявки пользователю в его словарь
-                    //UserContainer.addBookRequestToUser(regularUser, id, new BookRequest(BookContainer.bookInfo.getBookById(id), RequestStatus.INPROCESSING));
-                    //request.getSession().setAttribute("user", regularUser);// здесь должен быть ваш объект BookRequest
-                    //request.setAttribute("resMessage", MessageManager.getProperty("message.addingrequestsucces"));
-                   // System.out.println("Заявка добавлена для пользователя: " + regularUser.getUsername());
-                //} catch (Exception e) {
-                    //request.setAttribute("resMessage", MessageManager.getProperty("message.existserror"));
-                //}
-            //} else {
-                //request.setAttribute("resMessage", MessageManager.getProperty("message.existserror"));
-                //System.out.println("Заявка уже существует для пользователя: " + regularUser.getUsername());
-            //}
-       // } else {
-            //request.setAttribute("resMessage", MessageManager.getProperty("message.permissionerror"));
-            //System.out.println("Недостаточно прав для добавления заявки");
-        //}
-
-        //request.setAttribute("bookDictionary", BookContainer.bookInfo.getAllBooks());
-
-        System.out.println("Запрос выполнен");
-        forward(pathPage);
+        forward(ConfigurationManager.getProperty("path.page.catalog"));
     }
 }

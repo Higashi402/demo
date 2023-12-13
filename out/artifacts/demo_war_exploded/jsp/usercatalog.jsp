@@ -39,13 +39,13 @@
             <input type="submit" id="submitBtn" style="display: none;">
         </form>
 
-        <p style="font-size: 40px">Список пользователей</p>
         <div class="userContainer">
             <table style="width: 750px; font-size: 20px; ">
                 <thead>
                 <tr style="font-size: 30px;">
-                    <th style="width: 200px;">Имя пользователя</th>
+                    <th style="width: 200px;">Логин пользователя</th>
                     <th style="width: 200px;">Роль</th>
+                    <th style="width: 200px;">ФИО</th>
                 </tr>
                 </thead>
                 <tbody class="tableBody">
@@ -53,8 +53,9 @@
                     <tr class='book-row' onclick="submitUserForm(this)"  data-user="${userEntry.username}">
                         <td>${userEntry.username}</td>
                         <td>${userEntry.roleName}</td>
+                        <td>${userEntry.userFIO}</td>
                     </tr>
-                    <!-- Форма JSP для отправки запроса -->
+
                 </c:forEach>
                 </tbody>
             </table>

@@ -34,7 +34,7 @@ public class EditBookCommand extends Command {
     }
 
     @Override
-    public void send() throws ServletException, IOException, SQLException {
+    public void send() throws ServletException, IOException {
         String id = request.getParameter("id");
         String title = request.getParameter("titleValue");
         String author = request.getParameter("authorValue");
