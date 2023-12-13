@@ -49,10 +49,28 @@ public class AddUserCommand extends Command{
         if (username != null && userFIO != null && userPassword != null && userPassword != null && dateFormat != null
                 && !username.isEmpty() && userFIO != null && !userPassword.isEmpty())  {
             try {
-                this.userDAO.addUser(userFIO, dateParameter, username, userPassword, roleTypeId);
-               users = userDAO.getAllUsers();
-                request.setAttribute("users", users);
-                forward(ConfigurationManager.getProperty("path.page.usercatalog"));
+                boolean userExists = false;
+                for (User user : users) {
+                    if (user.getUsername().equals(username)) {
+                        userExists = true;
+                        break;
+                    }
+                }
+                if (!userExists) {
+                    this.userDAO.addUser(userFIO, dateParameter, username, userPassword, roleTypeId);
+                    users = userDAO.getAllUsers();
+                    request.setAttribute("users", users);
+                    forward(ConfigurationManager.getProperty("path.page.usercatalog"));
+                }
+                else {
+                    users = userDAO.getAllUsers();
+                    request.setAttribute("users", users);
+                    String message =ConfigurationManager.getProperty("message.userexistsmessage");
+                    request.setAttribute("userexistsmessage", message);
+
+                    forward(ConfigurationManager.getProperty("path.page.adduser"));
+                }
+
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 forward(ConfigurationManager.getProperty("path.page.error"));

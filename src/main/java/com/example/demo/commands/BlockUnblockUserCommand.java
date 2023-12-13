@@ -31,18 +31,25 @@ public class BlockUnblockUserCommand extends Command{
 
     @Override
     public void send() throws ServletException, IOException, SQLException {
-        String username = request.getParameter("username");
-        User user = this.userDAO.getUserByLogin(username);
-        if (username != null) {
-            if(user.getBlocked() == 0) {
-                this.userDAO.blockUser(user.getId());
-            } else {
-                this.userDAO.unBlockUser(user.getId());
-            }
+        int id = Integer.parseInt(this.request.getParameter("id"));
+        User user = this.userDAO.getUserByID(id);
+        List<User> users = userDAO.getAllUsers();
+        if (user.getRole().getRoleName() != "USER") {
+            request.setAttribute("users", users);
+            request.setAttribute("requesteduser", user);
+            this.request.setAttribute("errorDeleteMessage", "У вас недостаточно прав для этого действия!");
+        } else {
+                if(user.getBlocked() == 0) {
+                    this.userDAO.blockUser(user.getId());
+                } else {
+                    this.userDAO.unBlockUser(user.getId());
+                }
+            users = userDAO.getAllUsers();
+            user = this.userDAO.getUserByID(id);
+            request.setAttribute("users", users);
+            request.setAttribute("requesteduser", user);
+            forward(ConfigurationManager.getProperty("path.page.userinfo"));
         }
-        List <User> users= userDAO.getAllUsers();
-        request.setAttribute("users", users);
-        forward(ConfigurationManager.getProperty("path.page.usercatalog"));
-
+        forward(ConfigurationManager.getProperty("path.page.userinfo"));
     }
 }

@@ -33,7 +33,7 @@ public class RedirectToUserEditCommand extends Command{
     public void send() throws ServletException, IOException, SQLException {
        int userId =Integer.parseInt(request.getParameter("id"));
         List<User> users = this.userDAO.getAllUsers();
-        User user = this.userDAO.getUserById(userId);
+        User user = this.userDAO.getUserByID(userId);
         request.setAttribute("requesteduser", user);
         request.setAttribute("users", users);
         forward(ConfigurationManager.getProperty("path.page.edituser"));

@@ -37,6 +37,8 @@ public class DeleteBookCommand extends Command {
         request.setAttribute("books", books);
         try {
             this.bookDAO.deleteBook(bookId);
+            books = this.bookDAO.getAllBooks();
+            request.setAttribute("books", books);
             forward(ConfigurationManager.getProperty("path.page.catalog"));
         } catch (NumberFormatException e) {
             e.printStackTrace();

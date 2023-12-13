@@ -59,7 +59,7 @@
 
       <form action="controller" method="POST">
         <input type="hidden" name="command" value="blockunblockuser">
-        <input type="hidden" name="username" value="${requesteduser.username}">
+        <input type="hidden" name="id" value="${requesteduser.id}">
         <input type="submit" id="button-hover" class="user-button-submit" value="Изменить статус блокировки">
       </form>
       </c:when>

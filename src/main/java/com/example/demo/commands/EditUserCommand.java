@@ -38,14 +38,32 @@ public class EditUserCommand extends Command {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String role = this.request.getParameter("userRole");
         int roleTypeId = RoleType.valueOf(role).ordinal() + 1;
+        List<User> users = this.userDAO.getAllUsers();
         if (username != null && userFIO != null && userPassword != null && userPassword != null && dateFormat != null && !username.isEmpty() && userFIO != null && !userPassword.isEmpty()) {
             try {
-                this.userDAO.updateUser(id, userFIO, dateParameter, username, userPassword, roleTypeId);
-                System.out.println(user.getUserFIO());
-                List<User> users;
-                users = this.userDAO.getAllUsers();
-                this.request.setAttribute("users", users);
-                this.forward(ConfigurationManager.getProperty("path.page.usercatalog"));
+                boolean userExists = false;
+                for (User userfor : users) {
+                    if (userfor.getUsername().equals(username) && userfor.getId() != user.getId()) {
+                        userExists = true;
+                        break;
+                    }
+                }
+                if (!userExists) {
+                    this.userDAO.updateUser(id, userFIO, dateParameter, username, userPassword, roleTypeId);
+                    System.out.println(user.getUserFIO());
+                    users = this.userDAO.getAllUsers();
+                    this.request.setAttribute("users", users);
+                    this.forward(ConfigurationManager.getProperty("path.page.usercatalog"));
+                }
+                else {
+                    user = this.userDAO.getUserByID(id);
+                    request.setAttribute("requesteduser", user);
+                    users = userDAO.getAllUsers();
+                    request.setAttribute("users", users);
+                    String message =ConfigurationManager.getProperty("message.userexistsmessage");
+                    request.setAttribute("userexistsmessage", message);
+                    forward(ConfigurationManager.getProperty("path.page.edituser"));
+                }
             } catch (NumberFormatException var11) {
                 var11.printStackTrace();
                 this.forward(ConfigurationManager.getProperty("path.page.error"));

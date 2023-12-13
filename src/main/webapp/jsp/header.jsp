@@ -21,46 +21,46 @@
         <c:choose>
             <c:when test="${user.roleName == 'USER'}">
                 <div class = "header-buttons">
-                    <form action="/demo/controller" method="GET">
+                    <form action="controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">
                         <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
                     </form>
 
-                    <form action="/demo/controller" method="GET">
+                    <form action="controller" method="GET">
                         <input type="hidden" name="command" value="viewrequests">
                         <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
                     </form>
                 </div>
-                <form action="/demo/controller" method="GET">
+                <form action="controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
             <c:when test="${user.roleName == 'ADMIN'}">
                 <div class = "header-buttons">
-                    <form action="/demo/controller" method="GET">
+                    <form action="controller" method="GET">
                         <input type="hidden" name="command" value="viewbooks">
                         <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
                     </form>
 
-                    <form action="/demo/controller" method="GET">
+                    <form action="controller" method="GET">
                         <input type="hidden" name="command" value="viewusers">
                         <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
                     </form>
                 </div>
-                <form action="/demo/controller" method="GET">
+                <form action="controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
             <c:when test="${user.roleName == 'MODERATOR'}">
                 <div class = "header-buttons">
-                    <form action="/demo/controller" method="GET">
+                    <form action="controller" method="GET">
                         <input type="hidden" name="command" value="viewusers">
                         <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
                     </form>
                 </div>
-                <form action="/demo/controller" method="GET">
+                <form action="controller" method="GET">
                     <input type="hidden" name="command" value="logout">
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>

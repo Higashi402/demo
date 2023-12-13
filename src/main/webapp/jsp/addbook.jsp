@@ -15,11 +15,11 @@
 
 <h2>Добавление книги</h2>
 <div class = adminAddBookForm>
-    <form action="/demo/controller" method="GET">
+    <form action="controller" method="GET">
         <input type="hidden" name="command" value="viewbooks">
         <button id="button-hover" class="close-button"></button>
     </form>
-    <form action="/demo/controller" method="POST">
+    <form action="controller" method="POST">
         <input type="hidden" name="command" value="addbook">
         <input type="hidden" id="titleValue" name="titleValue" value="">
         <input type="hidden" id="authorValue" name="authorValue" value="">
@@ -37,6 +37,8 @@
         </div>
 
         <input type="submit" class = "admin-add-book-button" id = "button-hover" value="Добавить книгу">
+
+
     </form>
 </div>
 </body>

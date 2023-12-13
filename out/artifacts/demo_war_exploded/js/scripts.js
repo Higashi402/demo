@@ -58,22 +58,9 @@ function submitForm(element) {
 function submitUserForm(element) {
 
     var parentRow = element.closest('.book-row');
-    var userId = parentRow.getAttribute('user-id');
-    document.getElementById('userId').value = userId;
+    var username = parentRow.getAttribute('data-user');
+    document.getElementById('Username').value = username;
     document.getElementById('user-request-form').submit();
-}
-
-function checkChanges() {
-
-    var currentUsername = document.getElementById('name').value;
-    var currentUserFIO = document.getElementById('fio').value;
-    var currentUserDOB = document.getElementById('birthdate').value;
-    var currentUserPassword = document.getElementById('password').value;
-    document.getElementById('username').value = currentUsername;
-    document.getElementById('userFIO').value = currentUserFIO;
-    document.getElementById('userDOB').value = currentUserDOB;
-    document.getElementById('userPassword').value = currentUserPassword;
-
 }
 
 
@@ -88,6 +75,19 @@ function submitUserRequest(element) {
     document.getElementById('username').value = username;
 
     document.getElementById('request-form').submit();
+}
+
+function checkChanges() {
+
+    var currentUsername = document.getElementById('name').value;
+    var currentUserFIO = document.getElementById('fio').value;
+    var currentUserDOB = document.getElementById('birthdate').value;
+    var currentUserPassword = document.getElementById('password').value;
+    document.getElementById('username').value = currentUsername;
+    document.getElementById('userFIO').value = currentUserFIO;
+    document.getElementById('userDOB').value = currentUserDOB;
+    document.getElementById('userPassword').value = currentUserPassword;
+
 }
 
 

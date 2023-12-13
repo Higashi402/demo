@@ -29,12 +29,17 @@ public class UserDeleteCommand extends Command {
     public void send() throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(this.request.getParameter("id"));
         User user = this.userDAO.getUserByID(id);
+        List<User> users = this.userDAO.getAllUsers();
         if (user.getRole().getRoleName() == "ADMIN") {
+            users = userDAO.getAllUsers();
+            user = this.userDAO.getUserByID(id);
+            request.setAttribute("users", users);
+            request.setAttribute("requesteduser", user);
             this.request.setAttribute("errorDeleteMessage", "У вас недостаточно прав для этого действия!");
             this.forward(ConfigurationManager.getProperty("path.page.userinfo"));
         } else {
             this.userDAO.deleteUser(user.getId());
-            List<User> users = this.userDAO.getAllUsers();
+            users = this.userDAO.getAllUsers();
             this.request.setAttribute("users", users);
             this.forward(ConfigurationManager.getProperty("path.page.usercatalog"));
         }
