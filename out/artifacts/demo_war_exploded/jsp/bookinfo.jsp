@@ -41,6 +41,7 @@
                     <h2 style=" font-size: 40px">${bookTitle}</h2>
                     <p class="info-author">Автор книги: ${bookAuthor}</p>
                     <p class="info-rating">Рейтинг: ${bookRating}</p>
+                    <p class="info-author">Количество книг в библиотеке: ${bookAmount}</p>
                     <div class="info-makeRequest">
                         <form action="controller" method="POST">
                             <input type="hidden" name="command" value="deletebook">

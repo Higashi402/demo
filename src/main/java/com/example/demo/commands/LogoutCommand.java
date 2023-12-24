@@ -12,10 +12,12 @@ public class LogoutCommand extends Command {
     @Override
     public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         super.init(servletContext, servletRequest, servletResponse);
+        servletRequest.getSession().setAttribute("authorized", false);
     }
 
     @Override
     public void process() throws ServletException, IOException {
+
         forward(ConfigurationManager.getProperty("path.page.login"));
     }
 }

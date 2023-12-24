@@ -1,10 +1,7 @@
 package com.example.demo.db.oracledao;
 
 import com.example.demo.db.dao.BookDAO;
-import com.example.demo.roles.RoleType;
 import com.example.demo.utils.Book;
-import com.example.demo.utils.ConfigurationManager;
-import com.example.demo.utils.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -39,6 +36,31 @@ public class OracleBookDAO implements BookDAO {
             books.add(book);
         }
         return books;
+    }
+
+    @Override
+    public Book getBookById(int bookId) throws SQLException {
+        Book book = null;
+        String query = "SELECT * FROM \"BOOKS\" WHERE BOOKID = " + bookId;
+        Statement statement = this.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        if (resultSet.next()) {
+            book = new Book();
+            book.setId(resultSet.getInt("BOOKID"));
+            book.setTitle(resultSet.getString("TITLE"));
+            book.setAuthor(resultSet.getString("AUTHOR"));
+            book.setRating(resultSet.getFloat("RATING"));
+            book.setAmount(resultSet.getInt("AMOUNT"));
+            book.setVoters(resultSet.getInt("VOTERS"));
+        }
+        return book;
+    }
+
+    @Override
+    public void decreaseBookAmountById(int bookId) throws SQLException {
+        String updateQuery = "UPDATE \"BOOKS\" SET AMOUNT = AMOUNT - 1 WHERE BOOKID = " + bookId;
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery(updateQuery);
     }
 
     @Override

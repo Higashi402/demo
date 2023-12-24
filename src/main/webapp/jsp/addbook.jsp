@@ -38,7 +38,7 @@
 
         <input type="submit" class = "admin-add-book-button" id = "button-hover" value="Добавить книгу">
 
-
+        <p style="font-size: 35px">${resMessage}</p>
     </form>
 </div>
 </body>

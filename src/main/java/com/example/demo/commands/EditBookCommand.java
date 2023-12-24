@@ -39,15 +39,13 @@ public class EditBookCommand extends Command {
         String title = request.getParameter("titleValue");
         String author = request.getParameter("authorValue");
         String amount = request.getParameter("amountValue");
-        String rating = request.getParameter("rating");
         List<Book> books = new ArrayList<>();
         if (title != null && !title.isEmpty() && author != null && !author.isEmpty() && amount != null &&
-                !amount.isEmpty() && rating != null && !rating.isEmpty() && id != null && !id.isEmpty()) {
+                !amount.isEmpty() && id != null && !id.isEmpty()) {
             try {
                 // Парсим значение рейтинга в число
                 int intamount = Integer.parseInt(amount);
                 int intid = Integer.parseInt(id);
-                double doublerating = Double.parseDouble(rating);
                 this.bookDAO.updateBook(intid,title, author, intamount);
                 books = this.bookDAO.getAllBooks();
                 request.setAttribute("books", books);
@@ -59,6 +57,10 @@ public class EditBookCommand extends Command {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+        else {
+            request.setAttribute("resMessage", ConfigurationManager.getProperty("message.inputerror"));
+            forward(ConfigurationManager.getProperty("path.page.editbook"));
         }
     }
 }

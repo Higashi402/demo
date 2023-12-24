@@ -13,6 +13,27 @@
         <servlet-name>controller</servlet-name>
         <url-pattern>/controller/*</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.example.demo.utils.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>BlockFilter</filter-name>
+        <filter-class>com.example.demo.utils.BlockFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BlockFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>com.example.demo.listeners.TimeoutSessionListener</listener-class>
+    </listener>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

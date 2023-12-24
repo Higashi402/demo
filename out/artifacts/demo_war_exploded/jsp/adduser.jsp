@@ -55,7 +55,11 @@
                     });
                 </script>
                 <input type="submit" class = "admin-add-user-button" id = "button-hover"  value="Добавить пользователя">
+             <p style="color: red;">${userexistsmessage}</p>
+                <p style="font-size: 35px">${resMessage}</p>
             </div>
+
+
 
         </form>
     </div>

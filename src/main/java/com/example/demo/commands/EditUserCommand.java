@@ -69,6 +69,10 @@ public class EditUserCommand extends Command {
                 this.forward(ConfigurationManager.getProperty("path.page.error"));
             }
         }
+        else {
+            request.setAttribute("resMessage", ConfigurationManager.getProperty("message.inputerror"));
+            forward(ConfigurationManager.getProperty("path.page.edituser"));
+        }
 
     }
 

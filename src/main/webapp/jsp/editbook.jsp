@@ -23,23 +23,29 @@
         <input type="hidden" name="command" value="editbook">
         <input type="hidden" id="titleValue" name="titleValue" value="">
         <input type="hidden" id="authorValue" name="authorValue" value="">
-        <input type="hidden" id="ratingValue" name="ratingValue" value="">
         <input type="hidden" id="amountValue" name="amountValue" value="">
-        <input type="hidden" name="id" value="${id}">
+        <input type="hidden" name="id" value="${book.id}">
 
         <label for="title" style="font-size: 30px; margin: 0px">Название книги:</label><br>
+<%--
         <input type="text" style="margin: 0px" id="title" name="title" required oninput="document.getElementById('titleValue').value = this.value;"><br><br>
-
+--%>
+        <input type="text" id="title" name="title" value="${empty book ? '' : book.title}" required>
         <label for="author" style="font-size: 30px; margin: 0px">Автор книги:</label><br>
+        <input type="text" id="author" name="author" value="${empty book ? '' : book.author}" required>
+<%--
         <input type="text"  style="margin: 0px" id="author" name="author" required oninput="document.getElementById('authorValue').value = this.value;"><br><br>
-
-        <label for="rating" style="font-size: 30px; margin: 0px">Рейтинг книги:</label><br>
-        <input type="number" style="height: 30px" id="rating" name="rating" min="1" max="10" step="0.1" required oninput="document.getElementById('ratingValue').value = this.value;"><br><br>
+--%>
+        <br>
 
         <label for="amount" style="font-size: 30px; margin: 0px">Количество:</label><br>
-        <input type="number" style="height: 30px" id="amount" name="amount" min="1" max="10" required oninput="document.getElementById('amountValue').value = this.value;"><br><br>
-
+        <input type="number" style="height: 30px" id="amount" name="amount" value="${empty book ? '' : book.amount}" min="1" max="10">
+        <br>
+<%--
         <input type="submit" style="margin: 0px;" id="button-hover" class = "user-button-submit"  value="Редактировать книгу">
+--%>
+        <input type="submit" class="admin-add-book" id="button-hover" value="Изменить данные книги" onclick="checkChangesBook()">
+        <p style="font-size: 35px">${resMessage}</p>
     </form>
 </div>
 </body>

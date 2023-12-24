@@ -34,14 +34,13 @@ public class ViewBookInformation extends Command{
     @Override
     public void send() throws ServletException, IOException, SQLException {
         String bookId = request.getParameter("id");
-        String bookTitle = request.getParameter("title");
-        String bookAuthor = request.getParameter("author");
-        String bookRating = request.getParameter("rating");
+        Book book = this.bookDAO.getBookById(Integer.parseInt(bookId));
 
         request.setAttribute("bookId", bookId);
-        request.setAttribute("bookTitle", bookTitle);
-        request.setAttribute("bookAuthor", bookAuthor);
-        request.setAttribute("bookRating", bookRating);
+        request.setAttribute("bookTitle", book.getTitle());
+        request.setAttribute("bookAuthor", book.getAuthor());
+        request.setAttribute("bookRating", book.getRating());
+        request.setAttribute("bookAmount", book.getAmount());
 
         List<Book> books = this.bookDAO.getAllBooks();
         User user = (User) request.getSession().getAttribute("user");

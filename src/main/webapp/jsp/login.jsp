@@ -29,7 +29,9 @@
         <br>
         <div class="error-wrongLogin">
             ${errormsg}
+            ${sessionScope.blockStatus}
         </div>
+
         ${wrongAction}
         ${nullPage}
         <input type="submit" value="Авторизоваться" class="login-button-submit" id="button-hover">

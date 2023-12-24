@@ -45,6 +45,7 @@ public class BookRequestAddCommand extends Command {
         String bookId = request.getParameter("id");
         System.out.println(bookId);
         List<Proposal> proposals = this.proposalDAO.getProposalsOfUser(user.getId());
+
         boolean cancel = false;
         for(int i = 0;i<proposals.size();i++) {
             if(proposals.get(i).getBookId() == Integer.parseInt(bookId)) {
@@ -53,8 +54,16 @@ public class BookRequestAddCommand extends Command {
             }
         }
         if(!cancel) {
-            this.proposalDAO.addProposal(user.getId(),Integer.parseInt(bookId));
-            pathPage = ConfigurationManager.getProperty("path.page.catalog");
+            if (this.bookDAO.getBookById(Integer.parseInt(bookId)).getAmount() != 0){
+                this.bookDAO.decreaseBookAmountById(Integer.parseInt(bookId));
+                this.proposalDAO.addProposal(user.getId(),Integer.parseInt(bookId));
+                pathPage = ConfigurationManager.getProperty("path.page.catalog");
+            }
+            else {
+                request.setAttribute("resMessage", ConfigurationManager.getProperty("message.notavailablemessage"));
+                pathPage = ConfigurationManager.getProperty("path.page.bookinfo");
+            }
+
         } else
         {
             request.setAttribute("resMessage", ConfigurationManager.getProperty("message.existserror"));

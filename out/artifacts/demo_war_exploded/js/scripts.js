@@ -90,5 +90,15 @@ function checkChanges() {
 
 }
 
+function checkChangesBook() {
+    var currentTitle = document.getElementById('title').value;
+    var currentAuthor = document.getElementById('author').value;
+    var currentAmount = document.getElementById('amount').value;
+    document.getElementById('titleValue').value = currentTitle;
+    document.getElementById('authorValue').value = currentAuthor;
+    document.getElementById('amountValue').value = currentAmount;
+
+}
+
 
 

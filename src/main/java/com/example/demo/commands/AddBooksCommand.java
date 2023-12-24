@@ -46,6 +46,10 @@ public class AddBooksCommand extends Command {
                 forward(ConfigurationManager.getProperty("path.page.error"));
             }
         }
+        else {
+            request.setAttribute("resMessage", ConfigurationManager.getProperty("message.inputerror"));
+            forward(ConfigurationManager.getProperty("path.page.addbook"));
+        }
     }
 
     //private int generateNewBookId(BookDictionary bookDictionary) {

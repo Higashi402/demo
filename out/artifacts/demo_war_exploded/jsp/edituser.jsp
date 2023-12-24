@@ -59,7 +59,8 @@
                 <input type="date" id="birthdate" name="birthdate" value="${empty requesteduser ? '' : requesteduser.userDOB}" required>
 
                 <input type="submit" class="admin-add-book" id="button-hover" value="Изменить данные пользователя" onclick="checkChanges()">
-                <p style="font-size: 35px">${userexistsmessage}</p>
+                <p style="color: red;">${userexistsmessage}</p>
+                <p style="font-size: 35px">${resMessage}</p>
                 <span id="changeStatus" style="color: red; display: none;">Нет изменений для сохранения.</span>
             </form>
         </div>

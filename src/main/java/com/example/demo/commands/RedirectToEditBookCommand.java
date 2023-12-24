@@ -5,6 +5,7 @@ import com.example.demo.db.DBType;
 import com.example.demo.db.dao.BookDAO;
 import com.example.demo.db.dao.DAOFactory;
 import com.example.demo.db.dao.ProposalDAO;
+import com.example.demo.utils.Book;
 import com.example.demo.utils.ConfigurationManager;
 
 import javax.servlet.ServletContext;
@@ -34,7 +35,9 @@ public class RedirectToEditBookCommand extends Command {
     @Override
     public void send() throws ServletException, IOException, SQLException {
         String id = request.getParameter("id");
-        request.setAttribute("id", id);
+        int boookId = Integer.parseInt(id);
+        Book book = this.bookDAO.getBookById(boookId);
+        request.setAttribute("book", book);
         request.setAttribute("books", this.bookDAO.getAllBooks());
         forward(ConfigurationManager.getProperty("path.page.editbook"));
     }
