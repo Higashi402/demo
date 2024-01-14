@@ -1,8 +1,5 @@
 package com.example.demo.roles;
 
-import com.example.demo.db.DBType;
-import com.example.demo.db.dao.DAOFactory;
-
 public enum RoleType {
     USER(1),
     ADMIN(2),

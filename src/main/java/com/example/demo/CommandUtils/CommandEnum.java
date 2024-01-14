@@ -143,6 +143,36 @@ public enum CommandEnum {
             this.command = new RedirectToUserEditCommand();
         }
     },
+    VIEWCOMMONUSERS{
+        {
+            this.command = new ViewCommonUsers();
+        }
+    },
+    VIEWISSUANCES{
+        {
+            this.command = new ViewIssuancesCommand();
+        }
+    },
+    VIEWISSUANCEINFO{
+        {
+            this.command = new ViewIssuanceInformation();
+        }
+    },
+    REDIRECTTOISSUANCES{
+        {
+            this.command = new RedirectToIssuancesCommand();
+        }
+    },
+    EDITISSUANCEDATES{
+        {
+            this.command = new EditIssuanceDatesCommand();
+        }
+    },
+    RATEBOOK{
+        {
+            this.command = new RateBookCommand();
+        }
+    },
     EDITUSER {
         {
             this.command = new EditUserCommand();

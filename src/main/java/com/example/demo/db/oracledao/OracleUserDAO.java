@@ -116,6 +116,23 @@ public class OracleUserDAO implements UserDAO {
         return users;
     }
 
-
-
+    @Override
+    public List<User> getUsers() throws SQLException {
+        List<User> users = new ArrayList<>();
+        Statement statement = this.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM \"LIBRARYUSERS\" WHERE APPOINTMENT = 1 ");
+        User user = new User();
+        while(resultSet.next()) {
+            user = new User();
+            user.setId(resultSet.getInt("USERID"));
+            user.setUserFIO(resultSet.getString("FIO"));
+            user.setUserDOB(resultSet.getDate("USERDOB"));
+            user.setUsername(resultSet.getString("LOGIN"));
+            user.setPassword(resultSet.getString("USERPASSWORD"));
+            user.setBlocked(resultSet.getInt("ISBANED"));
+            user.setRole(RoleType.getById(resultSet.getInt("APPOINTMENT")));
+            users.add(user);
+        }
+        return users;
+    }
 }

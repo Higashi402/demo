@@ -65,6 +65,26 @@
                     <button type="submit" id="button-hover" class="user-buttons-exit"></button>
                 </form>
             </c:when>
+            <c:when test="${user.roleName == 'LIBRARIAN'}">
+                <div class = "header-buttons">
+                    <form action="controller" method="GET">
+                        <input type="hidden" name="command" value="viewbooks">
+                        <button type="submit" id="button-hover" class="user-buttons-catalog">Просмотр каталога книг</button>
+                    </form>
+                    <form action="controller" method="GET">
+                        <input type="hidden" name="command" value="viewcommonusers">
+                        <button type="submit" id="button-hover" class="user-buttons-users">Просмотр пользователей</button>
+                    </form>
+                    <form action="controller" method="GET">
+                        <input type="hidden" name="command" value="VIEWISSUANCES">
+                        <button type="submit" id="button-hover" class="user-buttons-users">Выдачи книг</button>
+                    </form>
+                </div>
+                <form action="controller" method="GET">
+                    <input type="hidden" name="command" value="logout">
+                    <button type="submit" id="button-hover" class="user-buttons-exit"></button>
+                </form>
+            </c:when>
         </c:choose>
     </c:when>
     <c:otherwise>

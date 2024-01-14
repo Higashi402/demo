@@ -3,6 +3,7 @@ package com.example.demo.commands;
 import com.example.demo.db.DBType;
 import com.example.demo.db.dao.DAOFactory;
 import com.example.demo.db.dao.UserDAO;
+import com.example.demo.roles.RoleType;
 import com.example.demo.utils.*;
 
 import javax.servlet.ServletContext;
@@ -32,8 +33,15 @@ public class ViewUserInformationCommand extends Command {
     @Override
     public void process() throws ServletException, IOException, SQLException {
         String username = request.getParameter("name");
+        User currentUser = (User) request.getSession().getAttribute("user");
         if (username != null) {
-            List <User> users= userDAO.getAllUsers();
+            List <User> users;
+            System.out.println(currentUser.getRole().getRoleName());
+            if(currentUser.getRole().getRoleName().equals("ADMIN")) {
+                users= userDAO.getAllUsers();
+            } else {
+                users= userDAO.getUsers();
+            }
             User user = userDAO.getUserByLogin(username);
             request.setAttribute("requesteduser", user);
             request.setAttribute("users", users);

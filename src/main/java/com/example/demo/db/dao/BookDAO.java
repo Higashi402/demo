@@ -17,4 +17,10 @@ public interface BookDAO {
     void deleteBook(int bookId) throws SQLException;
 
     void updateBook(int bookId, String title, String author, int amount) throws SQLException;
+
+    void updateBookRating(int bookId, float rating) throws SQLException;
+
+    void updateBookRatingWithoutVoters(int bookId, float rating) throws SQLException;
+
+    void setAmountOfVoters(int bookId, int amountOfVoters) throws SQLException;
 }

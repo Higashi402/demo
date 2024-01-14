@@ -48,7 +48,7 @@ public class BlockUnblockUserCommand extends Command{
             user = this.userDAO.getUserByID(id);
             request.setAttribute("users", users);
             request.setAttribute("requesteduser", user);
-            forward(ConfigurationManager.getProperty("path.page.userinfo"));
+            //forward(ConfigurationManager.getProperty("path.page.userinfo"));
         }
         forward(ConfigurationManager.getProperty("path.page.userinfo"));
     }

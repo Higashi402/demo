@@ -5,9 +5,7 @@ import com.example.demo.db.dao.DAOFactory;
 import com.example.demo.db.dao.UserDAO;
 import com.example.demo.utils.BlockFilter;
 import com.example.demo.utils.ConfigurationManager;
-import com.example.demo.sessionUtils.SessionManager;
 import com.example.demo.utils.User;
-import com.example.demo.roles.RoleType;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -47,6 +45,7 @@ public class LoginCommand extends Command  {
             if (user.getBlocked() == 1) {
                 session.setAttribute("blockStatus", ConfigurationManager.getProperty("message.blockerror"));
                 request.getRequestDispatcher(ConfigurationManager.getProperty("path.page.login")).forward(request, response);
+                return;
             }
             session.setAttribute("user", user);
             session.setAttribute("authorized", true);

@@ -72,8 +72,8 @@ public class OracleBookDAO implements BookDAO {
     @Override
     public void deleteBook(int bookId) throws SQLException {
         Statement statement = this.getConnection().createStatement();
-        Statement statement1= this.getConnection().createStatement();
-        statement1.executeQuery("DELETE FROM BOOKPROPOSAL WHERE BOOK =" + bookId);
+        //Statement statement1= this.getConnection().createStatement();
+        //statement1.executeQuery("DELETE FROM BOOKPROPOSAL WHERE BOOK =" + bookId);
         statement.executeQuery("DELETE FROM BOOKS WHERE BOOKID =" + bookId);
     }
 
@@ -97,4 +97,28 @@ public class OracleBookDAO implements BookDAO {
             }
         }
     }
+
+    @Override
+    public void updateBookRating(int bookId, float rating) throws SQLException {
+        String updateQuery = "UPDATE \"BOOKS\" SET VOTERS = VOTERS + 1, RATING = " + rating + "  WHERE BOOKID = " + bookId;
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery(updateQuery);
+    }
+
+    @Override
+    public void updateBookRatingWithoutVoters(int bookId, float rating) throws SQLException {
+        String updateQuery = "UPDATE \"BOOKS\" SET RATING = " + rating + "  WHERE BOOKID = " + bookId;
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery(updateQuery);
+    }
+
+    @Override
+    public void setAmountOfVoters(int bookId, int amountOfVoters) throws SQLException {
+        String updateQuery = "UPDATE \"BOOKS\" SET VOTERS = " + amountOfVoters + "  WHERE BOOKID = " + bookId;
+        Statement statement = this.getConnection().createStatement();
+        statement.executeQuery(updateQuery);
+    }
+
+
+
 }

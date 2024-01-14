@@ -1,10 +1,6 @@
 package com.example.demo.db.oracledao;
 
-import com.example.demo.db.dao.DAOFactory;
-import com.example.demo.db.dao.RoleDAO;
-import com.example.demo.db.dao.UserDAO;
-import com.example.demo.db.dao.BookDAO;
-import com.example.demo.db.dao.ProposalDAO;
+import com.example.demo.db.dao.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,7 +30,7 @@ public class OracleDAOFactory extends DAOFactory {
         Locale.setDefault(Locale.ENGLISH);
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
         String user = "sys as sysdba";
-        String password = "1234";
+        String password = "12345";
         Class.forName("oracle.jdbc.OracleDriver");
 
         connection = DriverManager.getConnection(url, user, password);
@@ -66,4 +62,15 @@ public class OracleDAOFactory extends DAOFactory {
 
     @Override
     public ProposalDAO getProposalDAO() {return new OracleProposalDAO(connection);}
+
+    @Override
+    public IssuanceDAO getIssuanceDAO() {
+        return new OracleIssuanceDAO(connection);
+    }
+
+    @Override
+    public UserVoteDAO getUserVoteDAO() {
+        return new OracleUserVoteDAO(connection);
+    }
+
 }

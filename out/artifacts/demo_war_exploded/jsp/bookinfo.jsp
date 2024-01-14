@@ -26,6 +26,7 @@
                     <h2 style="font-size: 35px">${bookTitle}</h2>
                     <p class="info-author">Автор книги: ${bookAuthor}</p>
                     <p class="info-rating">Рейтинг: ${bookRating}</p>
+                    <p class="info-user-rate" style="font-size: 30px">Ваша оценка:</p>
                     <div class="info-makeRequest">
                         <form display = "none" action="controller" method="POST">
                             <input type="hidden" name="command" value="bookrequestaddcommand">
@@ -34,9 +35,18 @@
                             <button id="button-hover" class="user-button-submit">Сделать заявку</button>
                         </form>
                     </div>
+                    <div class="info-makeRequest">
+                        <form display = "none" action="controller" method="POST">
+                            <input type="number" style="height: 25px" id="rate" name="rate" step="0.1"  min="1" max="5">
+                            <input type="hidden" name="command" value="ratebook">
+                            <input type="hidden" name="id" value="${bookId}">
+                            <input type="hidden" name="user" value="${user.id}">
+                            <button id="button-hover" class="user-button-submit">Оставить оценку</button>
+                        </form>
+                    </div>
                 </div>
             </c:when>
-            <c:when test="${user.roleName == 'ADMIN'}">
+            <c:when test="${user.roleName == 'ADMIN' || user.roleName == 'LIBRARIAN'}">
                 <div class = "bookInfo">
                     <h2 style=" font-size: 40px">${bookTitle}</h2>
                     <p class="info-author">Автор книги: ${bookAuthor}</p>

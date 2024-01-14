@@ -100,5 +100,31 @@ function checkChangesBook() {
 
 }
 
+function changeIssuanceDates() {
+    var currentIssuanceDate = document.getElementById('issuancedateField').value;
+    var currentReturningDate = document.getElementById('returningdateField').value;
+    document.getElementById('issuancedate').value = currentIssuanceDate;
+    document.getElementById('returningdate').value = currentReturningDate;
+}
+
+function submitIssuanceForm(element) {
+    var parentRow = element.closest('.issuance-row');
+    var issuanceId = parentRow.getAttribute('data-proposal');
+    var issuanceUserLogin = parentRow.getAttribute('data-login');
+    var issuanceAuthor = parentRow.getAttribute('data-author');
+    var issuanceTitle = parentRow.getAttribute('data-title');
+    var issuanceDate = parentRow.getAttribute('data-issuanceDate');
+    var issuanceActualReturningDate = parentRow.getAttribute('data-actualReturningDate');
+
+    document.getElementById('issuanceId').value = issuanceId;
+    document.getElementById('issuanceUserLogin').value = issuanceUserLogin;
+    document.getElementById('issuanceAuthor').value = issuanceAuthor;
+    document.getElementById('issuanceTitle').value = issuanceTitle;
+    document.getElementById('issuanceDate').value = issuanceDate;
+    document.getElementById('issuanceActualReturningDate').value = issuanceActualReturningDate;
+
+    document.getElementById('book-issuance-form').submit();
+}
+
 
 

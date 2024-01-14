@@ -22,7 +22,7 @@
 
         <c:set var="user" value="${sessionScope.user}" />
         <c:choose>
-            <c:when test="${user.roleName == 'ADMIN'}">
+            <c:when test="${user.roleName == 'ADMIN' || user.roleName == 'LIBRARIAN'}">
                 <div class = "catalog-header" >
                     <p style="font-size: 40px; margin-top: 5px">Каталог книг</p>
                     <form action="controller" method="post">
@@ -55,7 +55,7 @@
             <table style="width: 700px; font-size: 20px; ">
                 <thead>
                 <tr style="font-size: 30px;">
-                    <th>Название книги</th>
+                    <th>Книга</th>
                     <th style="width: 200px;">Автор книги</th>
                     <th style="width: 200px;">Рейтинг</th>
                 </tr>
@@ -71,7 +71,7 @@
                                 <td>${book.rating}</td>
                             </tr>
                         </c:forEach></c:when>
-            <c:when test="${user.roleName ==  'ADMIN'}">
+            <c:when test="${user.roleName ==  'ADMIN' || user.roleName ==  'LIBRARIAN'}">
                 <tbody class="tableBody">
                     <c:forEach var="book" items="${books}">
                         <tr class='book-row' onclick="submitForm(this)" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-rating="${book.rating}">

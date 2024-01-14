@@ -11,8 +11,6 @@
     </style>
 </head>
 <body>
-<%@include file="header.jsp" %>
-<%@include file="usercatalog.jsp"%>
 <%@include file="userinfo.jsp"%>
 
 <h2>Редактирование пользователя</h2>
@@ -58,7 +56,7 @@
                 <label for="" style="font-size: 25px; margin-bottom: 20px">Дата рождения пользователя:</label>
                 <input type="date" id="birthdate" name="birthdate" value="${empty requesteduser ? '' : requesteduser.userDOB}" required>
 
-                <input type="submit" class="admin-add-book" id="button-hover" value="Изменить данные пользователя" onclick="checkChanges()">
+                <input type="submit" class="user-button-submit" style="display: flow; position: relative; left: 10%" id="button-hover" value="Изменить" onclick="checkChanges()">
                 <p style="color: red;">${userexistsmessage}</p>
                 <p style="font-size: 35px">${resMessage}</p>
                 <span id="changeStatus" style="color: red; display: none;">Нет изменений для сохранения.</span>

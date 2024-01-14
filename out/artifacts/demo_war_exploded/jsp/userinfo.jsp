@@ -15,11 +15,27 @@
 
 <%@include file="usercatalog.jsp" %>
 
-<div class="bookInfoForm">
+<div class="bookInfoForm"> <c:set var="user" value="${sessionScope.user}" />
+  <c:choose>
+  <c:when test="${user.roleName == 'ADMIN'}">
   <form action="controller" method="GET">
     <input type="hidden" name="command" value="viewusers">
     <button id="button-hover" class="close-button"></button>
   </form>
+  </c:when>
+  <c:when test="${user.roleName == 'MODERATOR'}">
+    <form action="controller" method="GET">
+      <input type="hidden" name="command" value="viewusers">
+      <button id="button-hover" class="close-button"></button>
+    </form>
+  </c:when>
+  <c:when test="${user.roleName == 'LIBRARIAN'}">
+    <form action="controller" method="GET">
+      <input type="hidden" name="command" value="viewcommonusers">
+      <button id="button-hover" class="close-button"></button>
+    </form>
+  </c:when>
+</c:choose>
   <div class="content"> <p style="font-size: 30px">
     <strong>Логин пользователя:</strong> ${requesteduser.username}</p>
     <p style="font-size: 30px"><strong>Роль:</strong> ${requesteduser.roleName}</p>
@@ -62,6 +78,13 @@
         <input type="hidden" name="id" value="${requesteduser.id}">
         <input type="submit" id="button-hover" class="user-button-submit" value="Изменить статус блокировки">
       </form>
+      </c:when>
+      <c:when test="${user.roleName == 'LIBRARIAN'}">
+      <form action="controller" method="GET">
+        <input type="hidden" name="command" value="viewuserrequests">
+        <input type="hidden" name="username" value="${requesteduser.username}">
+        <button type="submit" id="button-hover" class="user-button-submit">Посмотреть заявки пользователя</button>
+      </form> <form action="controller" method="POST">
       </c:when>
     </c:choose>
     </div>

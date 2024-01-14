@@ -36,7 +36,6 @@ public class ViewBooksCommand extends Command {
     public void process() throws ServletException, IOException, SQLException {
         List<Book> books = this.bookDAO.getAllBooks();
         User user = (User) request.getSession().getAttribute("user");
-        System.out.println(user.getRoleName());
         request.setAttribute("user",user);
         request.setAttribute("books", books);
         forward(ConfigurationManager.getProperty("path.page.catalog"));

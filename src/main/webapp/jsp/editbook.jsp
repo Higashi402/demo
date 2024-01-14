@@ -39,7 +39,7 @@
         <br>
 
         <label for="amount" style="font-size: 30px; margin: 0px">Количество:</label><br>
-        <input type="number" style="height: 30px" id="amount" name="amount" value="${empty book ? '' : book.amount}" min="1" max="10">
+        <input type="number" style="height: 30px" id="amount" name="amount" value="${empty book ? '' : book.amount}"  min="1" max="10">
         <br>
 <%--
         <input type="submit" style="margin: 0px;" id="button-hover" class = "user-button-submit"  value="Редактировать книгу">

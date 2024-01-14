@@ -1,14 +1,8 @@
 package com.example.demo.commands;
 
 import com.example.demo.db.DBType;
-import com.example.demo.db.dao.BookDAO;
-import com.example.demo.db.dao.DAOFactory;
-import com.example.demo.db.dao.ProposalDAO;
-import com.example.demo.db.dao.UserDAO;
-import com.example.demo.utils.ConfigurationManager;
-import com.example.demo.utils.Proposal;
-import com.example.demo.utils.RequestStatus;
-import com.example.demo.utils.User;
+import com.example.demo.db.dao.*;
+import com.example.demo.utils.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,6 +19,7 @@ public class UpdateRequestStatusCommand extends Command {
     public BookDAO bookDAO;
     public ProposalDAO proposalDAO;
     public UserDAO userDAO;
+    public IssuanceDAO issuanceDAO;
 
     static {
         daoFactory = DAOFactory.getInstance(DBType.ORACLE);
@@ -36,6 +31,7 @@ public class UpdateRequestStatusCommand extends Command {
         bookDAO = daoFactory.getBookDAO();
         proposalDAO = daoFactory.getProposalDAO();
         userDAO = daoFactory.getUserDAO();
+        issuanceDAO = daoFactory.getIssuanceDAO();
     }
 
     @Override
@@ -48,6 +44,10 @@ public class UpdateRequestStatusCommand extends Command {
         this.proposalDAO.changeProposalStatus(status.getDescription(),proposalId);
         List<Proposal> proposals = this.proposalDAO.getProposalsOfUser(proposal.getLibraryUserId());
         request.setAttribute("proposals", proposals);
+        Issuance issuance = issuanceDAO.getIssuanceByProposal(proposalId);
+        if(status.getDescription() == "Выдана" && issuance == null) {
+            this.issuanceDAO.addIssuance(proposalId);
+        }
         forward(ConfigurationManager.getProperty("path.page.userrequests"));
     }
 }
