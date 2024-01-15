@@ -30,6 +30,7 @@
         <div class="error-wrongLogin">
             ${errormsg}
             ${sessionScope.blockStatus}
+            ${sessionScope.accessStatus}
         </div>
 
         ${wrongAction}

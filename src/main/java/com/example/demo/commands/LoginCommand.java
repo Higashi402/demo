@@ -49,6 +49,7 @@ public class LoginCommand extends Command  {
             }
             session.setAttribute("user", user);
             session.setAttribute("authorized", true);
+            //session.setAttribute("accessStatus", "");
             User userOut = (User) session.getAttribute("user");
             System.out.println(userOut.getRoleName());
             System.out.println(userOut.getId());

@@ -16,13 +16,13 @@ public class SecurityWrapper {
         List<RoleType> viewrequestsRoles = Arrays.asList(RoleType.MODERATOR, RoleType.USER, RoleType.LIBRARIAN);
         List<RoleType> viewusersRoles = Arrays.asList(RoleType.MODERATOR, RoleType.ADMIN, RoleType.LIBRARIAN);
         List<RoleType> librarianRoles = List.of(RoleType.LIBRARIAN);
-        securityDict.put(ConfigurationManager.getProperty("command.name.viewbooks"), viewbooksRoles);
-        securityDict.put(ConfigurationManager.getProperty("command.name.viewrequests"), viewrequestsRoles);
-        securityDict.put(ConfigurationManager.getProperty("command.name.viewcommonusers"), librarianRoles);
+        securityDict.put(ConfigurationManager.getProperty("command.name.viewbooks"), allRoles);
+        securityDict.put(ConfigurationManager.getProperty("command.name.viewrequests"), allRoles);
+        securityDict.put(ConfigurationManager.getProperty("command.name.viewcommonusers"), allRoles);
         securityDict.put(ConfigurationManager.getProperty("command.name.redirecttomainmenu"), allRoles);
         securityDict.put(ConfigurationManager.getProperty("command.name.viewusers"), viewusersRoles);
-        securityDict.put(ConfigurationManager.getProperty("command.name.VIEWISSUANCES"), librarianRoles);
-        securityDict.put(ConfigurationManager.getProperty("command.name.viewissuanceinfo"), librarianRoles);
+        securityDict.put(ConfigurationManager.getProperty("command.name.VIEWISSUANCES"), allRoles);
+        securityDict.put(ConfigurationManager.getProperty("command.name.viewissuanceinfo"), allRoles);
         securityDict.put(ConfigurationManager.getProperty("command.name.redirecttoaddbookpage"), allRoles);
         securityDict.put(ConfigurationManager.getProperty("command.name.redirecttouserpage"), allRoles);
         securityDict.put(ConfigurationManager.getProperty("command.name.redirecttocatalog"), allRoles);
@@ -47,8 +47,8 @@ public class SecurityWrapper {
         securityDict.put(ConfigurationManager.getProperty("command.name.viewuserrequests"), allRoles);
         securityDict.put(ConfigurationManager.getProperty("command.name.viewusersrequestsinformation"), allRoles);
         securityDict.put(ConfigurationManager.getProperty("command.name.viewbookinformation"), allRoles);
-
-
+        securityDict.put(ConfigurationManager.getProperty("command.name.logout"), allRoles);
+        securityDict.put(ConfigurationManager.getProperty("command.name.login"), allRoles);
 
     }
 

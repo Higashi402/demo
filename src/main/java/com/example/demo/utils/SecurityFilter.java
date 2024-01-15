@@ -20,7 +20,7 @@ public class SecurityFilter implements Filter {
         {
             if (!SecurityWrapper.checkRoleForCommand(commandInfo, RoleType.valueOf(user.getRoleName()))) {
                 HttpSession session = request.getSession();
-                session.setAttribute("blockStatus", ConfigurationManager.getProperty("message.blockerror"));
+                session.setAttribute("accessStatus", ConfigurationManager.getProperty("message.accessStatus"));
                 response.sendRedirect(contextPath);
                 return;
             }
