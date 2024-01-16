@@ -51,9 +51,5 @@ public class AddBooksCommand extends Command {
             forward(ConfigurationManager.getProperty("path.page.addbook"));
         }
     }
-
-    //private int generateNewBookId(BookDictionary bookDictionary) {
-        //return bookDictionary.getDictionarySize() + 1;
-   // }
 }
 

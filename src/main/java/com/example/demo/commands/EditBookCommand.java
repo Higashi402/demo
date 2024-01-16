@@ -52,8 +52,7 @@ public class EditBookCommand extends Command {
                 forward(ConfigurationManager.getProperty("path.page.catalog"));
             } catch (NumberFormatException e) {
                 forward(ConfigurationManager.getProperty("path.page.catalog"));
-                // Обработка ошибки, если значение рейтинга не удалось преобразовать в число
-                e.printStackTrace(); // или другая логика обработки ошибки
+                e.printStackTrace();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

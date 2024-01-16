@@ -34,7 +34,6 @@ public class ViewUsersCommand extends Command  {
 
     @Override
     public void process() throws ServletException, IOException, SQLException {
-        System.out.println("VIEWUSERS");
         List<User> users = this.userDAO.getAllUsers();
         request.setAttribute("users", users);
         forward(ConfigurationManager.getProperty("path.page.usercatalog"));

@@ -50,7 +50,6 @@ public class EditUserCommand extends Command {
                 }
                 if (!userExists) {
                     this.userDAO.updateUser(id, userFIO, dateParameter, username, userPassword, roleTypeId);
-                    System.out.println(user.getUserFIO());
                     users = this.userDAO.getAllUsers();
                     this.request.setAttribute("users", users);
                     this.forward(ConfigurationManager.getProperty("path.page.usercatalog"));

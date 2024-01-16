@@ -37,7 +37,6 @@ public class EditIssuanceDatesCommand extends Command{
         String issuanceId = this.request.getParameter("issuanceId");
         String issuanceDate = this.request.getParameter("issuancedate");
         String returningDate = this.request.getParameter("returningdate");
-        System.out.println(issuanceId);
         this.issuanceDAO.updateIssuanceDates(issuanceDate,returningDate,issuanceId);
         List<Issuance> issuances = this.issuanceDAO.getAllIssuances();
         request.setAttribute("issuances", issuances);

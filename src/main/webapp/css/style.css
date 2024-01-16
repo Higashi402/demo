@@ -472,6 +472,24 @@ tr.data-row-index {
     align-items: center;
 }
 
+.admin-edit-book-button {
+    width: 100%;
+    left: 2%;
+    margin-top: 10px;
+    position: relative;
+    height: 50px;
+    border: 2px solid #FFA07A;
+    background-color: #FFDAB9;
+    color: #FFA07A;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
 .info-author {
     font-size: 30px;
 }

@@ -26,7 +26,7 @@ public class OracleBookDAO implements BookDAO {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM \"BOOKS\"");
         Book book = new Book();
         while(resultSet.next()) {
-            book = new Book();
+
             book.setId(resultSet.getInt("BOOKID"));
             book.setTitle(resultSet.getString("TITLE"));
             book.setAuthor(resultSet.getString("AUTHOR"));

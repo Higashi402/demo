@@ -43,7 +43,6 @@ public class BookRequestAddCommand extends Command {
         request.setAttribute("user",user);
         request.setAttribute("books", books);
         String bookId = request.getParameter("id");
-        System.out.println(bookId);
         List<Proposal> proposals = this.proposalDAO.getProposalsOfUser(user.getId());
 
         boolean cancel = false;

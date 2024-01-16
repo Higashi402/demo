@@ -45,7 +45,6 @@ public class BookRequestDeleteCommand extends Command {
         Proposal proposal = this.proposalDAO.getProposalById(proposalId);
         User user = this.userDAO.getUserByID(proposal.getLibraryUserId());
         request.setAttribute("requestedUser",user);
-
         this.proposalDAO.deleteProposalById(proposalId);
         List<Proposal> proposals = this.proposalDAO.getProposalsOfUser(proposal.getLibraryUserId());
         request.setAttribute("proposals", proposals);

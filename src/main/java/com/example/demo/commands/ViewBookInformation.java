@@ -35,7 +35,6 @@ public class ViewBookInformation extends Command{
     public void send() throws ServletException, IOException, SQLException {
         String bookId = request.getParameter("id");
         Book book = this.bookDAO.getBookById(Integer.parseInt(bookId));
-
         request.setAttribute("bookId", bookId);
         request.setAttribute("bookTitle", book.getTitle());
         request.setAttribute("bookAuthor", book.getAuthor());
@@ -44,10 +43,8 @@ public class ViewBookInformation extends Command{
 
         List<Book> books = this.bookDAO.getAllBooks();
         User user = (User) request.getSession().getAttribute("user");
-        System.out.println(user.getRoleName());
         request.setAttribute("user",user);
         request.setAttribute("books", books);
-
         forward(ConfigurationManager.getProperty("path.page.bookinfo"));
     }
 }

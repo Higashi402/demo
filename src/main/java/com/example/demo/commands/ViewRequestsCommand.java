@@ -35,7 +35,6 @@ public class ViewRequestsCommand extends Command {
 
     @Override
     public void process() throws ServletException, IOException, SQLException {
-        System.out.println("VIEWREQUESTSCOMMAND");
         User user = (User) request.getSession().getAttribute("user");
         request.setAttribute("user",user);
         List<Proposal> proposals = this.proposalDAO.getProposalsOfUser(user.getId());

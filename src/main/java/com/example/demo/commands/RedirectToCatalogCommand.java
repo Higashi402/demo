@@ -34,7 +34,6 @@ public class RedirectToCatalogCommand extends Command {
     @Override
     public void process() throws ServletException, IOException, SQLException {
         User user = (User) request.getSession().getAttribute("user");
-        System.out.println(user.getRoleName());
         request.setAttribute("user",user);
         List<Book> books = this.bookDAO.getAllBooks();
         request.setAttribute("books", books);

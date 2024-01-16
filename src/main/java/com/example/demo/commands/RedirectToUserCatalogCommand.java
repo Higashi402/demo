@@ -16,7 +16,6 @@ public class RedirectToUserCatalogCommand extends Command{
 
     @Override
     public void send() throws ServletException, IOException {
-        //request.setAttribute("userDictionary", UserContainer.users);
         forward(ConfigurationManager.getProperty("path.page.usercatalog"));
     }
 }

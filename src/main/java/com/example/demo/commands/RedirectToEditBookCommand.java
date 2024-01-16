@@ -35,8 +35,8 @@ public class RedirectToEditBookCommand extends Command {
     @Override
     public void send() throws ServletException, IOException, SQLException {
         String id = request.getParameter("id");
-        int boookId = Integer.parseInt(id);
-        Book book = this.bookDAO.getBookById(boookId);
+        int bookId = Integer.parseInt(id);
+        Book book = this.bookDAO.getBookById(bookId);
         request.setAttribute("book", book);
         request.setAttribute("books", this.bookDAO.getAllBooks());
         forward(ConfigurationManager.getProperty("path.page.editbook"));

@@ -34,18 +34,13 @@ public class ViewUsersRequestInformationCommand extends Command{
 
     @Override
     public void send() throws ServletException, IOException, SQLException {
-        System.out.println("Request info command" + request.getParameter("username"));
         Proposal proposal = this.proposalDAO.getProposalById(Integer.parseInt(request.getParameter("id")));
         User user = userDAO.getUserByID(proposal.getLibraryUserId());
-
         request.setAttribute("username", user.getUserFIO());
         request.setAttribute("requestId", proposal.getId());
-
         request.setAttribute("requestTitle", proposal.getBookTitle());
         request.setAttribute("requestAuthor", proposal.getAuthor());
         request.setAttribute("requestStatus", proposal.getProposalStatus());
-
-
         forward(ConfigurationManager.getProperty("path.page.requsetinfo"));
     }
 }

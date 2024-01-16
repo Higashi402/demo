@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%-- Соответствие строковых значений статуса и enum --%>
 <c:set var="status_INPROCESSING" value="INPROCESSING" />
 <c:set var="status_READYFORPICKUP" value="READYFORPICKUP" />
 <c:set var="status_ISSUED" value="ISSUED" />
