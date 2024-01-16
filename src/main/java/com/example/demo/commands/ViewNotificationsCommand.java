@@ -36,6 +36,7 @@ public class ViewNotificationsCommand extends Command{
         request.setAttribute("user",user);
         List<Proposal> proposals = this.proposalDAO.getReadyToPickupProposalsOfUser(user.getId());
         request.setAttribute("proposals", proposals);
+        request.getSession().setAttribute("notification", false);
         forward(ConfigurationManager.getProperty("path.page.notifications"));
     }
 }

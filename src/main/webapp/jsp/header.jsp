@@ -30,11 +30,20 @@
                         <button type="submit" id="button-hover" class="user-buttons-request">Просмотр заявок</button>
                     </form>
                 </div>
-
-                <form action="controller" method="GET">
-                    <input type="hidden" name="command" value="viewnotifications">
-                    <button type="submit" id="button-hover" class="user-buttons-notifications"></button>
-                </form>
+                <c:choose>
+                    <c:when test="${sessionScope.notification}">
+                        <form action="controller" method="GET">
+                            <input type="hidden" name="command" value="viewnotifications">
+                            <button type="submit" id="button-hover" class="user-buttons-notifications-alert"></button>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <form action="controller" method="GET">
+                            <input type="hidden" name="command" value="viewnotifications">
+                            <button type="submit" id="button-hover" class="user-buttons-notifications"></button>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
 
                 <form action="controller" method="GET">
                     <input type="hidden" name="command" value="logout">
