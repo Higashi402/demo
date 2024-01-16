@@ -15,7 +15,7 @@
     </servlet-mapping>
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>com.example.demo.utils.AuthFilter</filter-class>
+        <filter-class>com.example.demo.filters.AuthFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
@@ -24,7 +24,7 @@
 
     <filter>
         <filter-name>BlockFilter</filter-name>
-        <filter-class>com.example.demo.utils.BlockFilter</filter-class>
+        <filter-class>com.example.demo.filters.BlockFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>BlockFilter</filter-name>
@@ -33,7 +33,7 @@
 
     <filter>
         <filter-name>SecurityFilter</filter-name>
-        <filter-class>com.example.demo.utils.SecurityFilter</filter-class>
+        <filter-class>com.example.demo.filters.SecurityFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>SecurityFilter</filter-name>

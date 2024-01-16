@@ -158,6 +158,11 @@ public enum CommandEnum {
             this.command = new ViewIssuanceInformation();
         }
     },
+    VIEWNOTIFICATIONS{
+        {
+            this.command = new ViewNotificationsCommand();
+        }
+    },
     REDIRECTTOISSUANCES{
         {
             this.command = new RedirectToIssuancesCommand();

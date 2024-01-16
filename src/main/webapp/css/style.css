@@ -21,7 +21,7 @@ body {
 }
 
 .black-line-container {
-    position: relative;
+    position: sticky;
 }
 
 .login-black-line {
@@ -29,7 +29,7 @@ body {
     height: 80px;
     background-color: #000;
     position: absolute;
-    top: 100px;
+    top: 0px;
     width: 100%;
 }
 
@@ -37,7 +37,7 @@ body {
     font-size: 60px;
     position: absolute;
     color: aliceblue;
-    top: 95px;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 0;
@@ -251,6 +251,19 @@ input[type="password"] {
     height: 90px;
     background-image: url('img/exit.png');
     background-color: transparent;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.user-buttons-notifications{
+    position: absolute;
+    top: 15px;
+    left: 80%;
+    width: 70px;
+    height: 70px;
+    background-image: url('img/notificationsbutton.png');
+    background-color: black;
     background-size: cover;
     border: none;
     cursor: pointer;

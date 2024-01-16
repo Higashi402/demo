@@ -1,9 +1,7 @@
 package com.example.demo.db.oracledao;
 
 import com.example.demo.db.dao.ProposalDAO;
-import com.example.demo.utils.Book;
 import com.example.demo.utils.Proposal;
-import com.example.demo.utils.RequestStatus;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,6 +31,25 @@ public class OracleProposalDAO implements ProposalDAO {
         Statement statement = this.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKPROPOSAL JOIN BOOKS ON bookproposal.book = books.bookid \n" +
                 "WHERE LIBRARYUSER =" + userId);
+        Proposal proposal = null;
+        while (resultSet.next()) {
+            proposal = new Proposal();
+            proposal.setId(resultSet.getInt("PROPOSALID"));
+            proposal.setBookId(resultSet.getInt("BOOKID"));
+            proposal.setBookTitle(resultSet.getString("TITLE"));
+            proposal.setAuthor(resultSet.getString("AUTHOR"));
+            proposal.setProposalStatus(resultSet.getString("STATUS"));
+            proposals.add(proposal);
+        }
+        return proposals;
+    }
+
+    @Override
+    public List<Proposal> getReadyToPickupProposalsOfUser(int userId) throws SQLException {
+        List<Proposal> proposals = new ArrayList<>();
+        Statement statement = this.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKPROPOSAL JOIN BOOKS ON bookproposal.book = books.bookid \n" +
+                "WHERE LIBRARYUSER =" + userId  + "AND STATUS = 'Готова к выдаче'");
         Proposal proposal = null;
         while (resultSet.next()) {
             proposal = new Proposal();

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/apache-tomcat-9.0.83/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/apache-tomcat-9.0.83/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../Program Files/apache-tomcat-9.0.83/webapps/examples/WEB-INF/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../Program Files/apache-tomcat-9.0.83/webapps/examples/WEB-INF/lib" recursive="false" />
+  </library>
+</component>

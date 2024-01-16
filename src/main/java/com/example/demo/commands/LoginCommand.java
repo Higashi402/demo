@@ -3,7 +3,6 @@ package com.example.demo.commands;
 import com.example.demo.db.DBType;
 import com.example.demo.db.dao.DAOFactory;
 import com.example.demo.db.dao.UserDAO;
-import com.example.demo.utils.BlockFilter;
 import com.example.demo.utils.ConfigurationManager;
 import com.example.demo.utils.User;
 

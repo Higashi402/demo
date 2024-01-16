@@ -10,6 +10,8 @@ public interface ProposalDAO {
 
     List<Proposal> getProposalsOfUser(int userId) throws SQLException;
 
+    List<Proposal> getReadyToPickupProposalsOfUser(int userId) throws SQLException;
+
     Proposal getProposalById(int proposalId) throws SQLException;
 
     void deleteProposalById(int proposalId) throws SQLException;

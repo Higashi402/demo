@@ -14,7 +14,7 @@
 <%@include file="catalog.jsp" %>
 <div class = "bookInfoForm">
         <form action="controller" method="GET">
-            <input type="hidden" name="command" value="redirectToCatalog">
+            <input type="hidden" name="command" value="redirecttocatalog">
             <button id="button-hover" class="close-button"></button>
         </form>
         <c:choose>

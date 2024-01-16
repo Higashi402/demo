@@ -7,8 +7,15 @@
           <element id="module-output" name="demo" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.1" />
+          <element id="library" level="project" name="Maven: org.apiguardian:apiguardian-api:1.1.2" />
+          <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-commons:1.8.1" />
+          <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" />
+          <element id="library" level="project" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="lib1" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="demo/web/Web" />
